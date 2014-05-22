@@ -1,3 +1,7 @@
 .error {
     color: #E40008;
 }
+
+input.bet {
+    width: 30px;
+}

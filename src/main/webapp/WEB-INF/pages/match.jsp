@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,15 +11,30 @@
 	</script>
 </head>
 <body>
-<section class="row">
-	User : ${user}
-</section>
-<c:forEach items="${dtos}" var="dto">
 	<section class="row">
-		<span>${dto.opponent1}</span>
-		<span>${dto.score1}-${dto.score2}</span>
-		<span>${dto.opponent2}</span>
+		<label for="dates">Day : </label>
+		<select name="dates" id="dates">
+			<c:forEach items="${dates}" var="date">
+				<c:choose>
+					<c:when test="${date==today}">
+						<option value="${date.time}" selected="selected"><fmt:formatDate value="${date}"
+						                                                                 pattern="dd/MM/yyyy"/></option>
+					</c:when>
+					<c:otherwise>
+						<option value="${date.time}"><fmt:formatDate value="${date}" pattern="dd/MM/yyyy"/></option>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</select>
 	</section>
-</c:forEach>
+	<c:forEach items="${dtos}" var="dto">
+		<section class="row">
+			<span class="col-lg-2 col-md-2 col-sm-2"><b>${dto.opponent1}</b></span>
+			<span class="col-lg-2 col-md-2 col-sm-2">${dto.score1}-${dto.score2} / <input type="text" class="bet1 bet"
+			                                                                              value="${dto.bet1}"/>-<input
+					type="text" class="bet2 bet" value="${dto.bet2}"/></span>
+			<span class="col-lg-2 col-md-2 col-sm-2"><b>${dto.opponent2}</b></span>
+		</section>
+	</c:forEach>
 </body>
 </html>

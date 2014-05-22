@@ -27,7 +27,6 @@
     <sec:http auto-config='true' use-expressions="true">
         <sec:intercept-url pattern="/match**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
         <sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
-        <!--<sec:intercept-url pattern="/**" access="ROLE_USER" />-->
         <sec:form-login login-page="/login"
                         default-target-url="/match"
                         authentication-failure-url="/login_error"/>
