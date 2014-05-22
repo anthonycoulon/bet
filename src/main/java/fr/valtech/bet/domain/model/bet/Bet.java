@@ -17,9 +17,8 @@ public class Bet {
     @JoinColumn(name="BET_USER_FK")
     private User gambler;
 
-    @Enumerated
-    @Column(name = "CHOICE")
-    private BetChoice choice;
+    @Column(name = "BET")
+    private String bet;
 
     @ManyToOne
     @JoinColumn(name = "MATCH_ID")
@@ -41,12 +40,12 @@ public class Bet {
         this.gambler = gambler;
     }
 
-    public BetChoice getChoice() {
-        return choice;
+    public String getBet() {
+        return bet;
     }
 
-    public void setChoice(BetChoice choice) {
-        this.choice = choice;
+    public void setBet(String bet) {
+        this.bet = bet;
     }
 
     public Match getMatch() {
@@ -79,7 +78,7 @@ public class Bet {
         final StringBuilder sb = new StringBuilder("Bet{");
         sb.append("id=").append(id);
         sb.append(", gambler=").append(gambler);
-        sb.append(", choice=").append(choice);
+        sb.append(", bet='").append(bet).append('\'');
         sb.append(", match=").append(match);
         sb.append('}');
         return sb.toString();

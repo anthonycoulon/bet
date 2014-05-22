@@ -36,7 +36,7 @@
 			<a href="#">Ranking</a>
 			</li>
 			<li>
-				<a href="<c:url value="/j_spring_security_logout"/>">Deconection</a>
+				<a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
 			</li>
 		</ul>
 	</nav>

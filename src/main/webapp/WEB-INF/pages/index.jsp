@@ -15,7 +15,7 @@
 		<input type="password" id="j_password" name="j_password" class="col-lg-2 col-md-2 col-sm-2"/>
 	</section>
 	<section class="row">
-		<input type="submit" value="Connection"
+		<input type="submit" value="Sign in"
 		       class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-1 col-sm-offset-2"/>
 	</section>
 	<c:if test="${error!=null}">
