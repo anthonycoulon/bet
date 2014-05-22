@@ -1,11 +1,9 @@
 package fr.valtech.bet.domain.model.match;
 
-import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.opponent.Opponent;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "MATCH")
@@ -15,11 +13,11 @@ public class Match {
     @GeneratedValue
     private long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="MATCH_OPPONENT1_FK")
     private Opponent opponent1;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="MATCH_OPPONENT2_FK")
     private Opponent opponent2;
 
@@ -28,10 +26,6 @@ public class Match {
 
     @Column(name = "SCORE")
     private String score;
-
-    @Column(name = "BETS")
-    @OneToMany(mappedBy = "match")
-    private List<Bet> bets;
 
     public long getId() {
         return id;
@@ -73,14 +67,6 @@ public class Match {
         this.score = score;
     }
 
-    public List<Bet> getBets() {
-        return bets;
-    }
-
-    public void setBets(List<Bet> bets) {
-        this.bets = bets;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,7 +99,6 @@ public class Match {
         sb.append(", opponent2=").append(opponent2);
         sb.append(", matchDate=").append(matchDate);
         sb.append(", score='").append(score).append('\'');
-        sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
     }

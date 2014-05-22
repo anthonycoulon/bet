@@ -13,15 +13,14 @@ public class Bet {
     @GeneratedValue
     private long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="BET_USER_FK")
     private User gambler;
 
     @Column(name = "BET")
     private String bet;
 
-    @ManyToOne
-    @JoinColumn(name = "MATCH_ID")
+    @OneToOne
     private Match match;
 
     public long getId() {

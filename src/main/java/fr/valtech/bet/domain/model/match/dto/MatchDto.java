@@ -1,5 +1,7 @@
 package fr.valtech.bet.domain.model.match.dto;
 
+import java.util.Date;
+
 public class MatchDto {
 
     private String opponent1;
@@ -13,6 +15,8 @@ public class MatchDto {
     private Integer bet1;
 
     private Integer bet2;
+
+    private Date matchDate;
 
     public String getOpponent1() {
         return opponent1;
@@ -62,6 +66,14 @@ public class MatchDto {
         this.bet2 = bet2;
     }
 
+    public Date getMatchDate() {
+        return matchDate;
+    }
+
+    public void setMatchDate(Date matchDate) {
+        this.matchDate = matchDate;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
@@ -71,6 +83,7 @@ public class MatchDto {
         sb.append(", score2=").append(score2);
         sb.append(", bet1=").append(bet1);
         sb.append(", bet2=").append(bet2);
+        sb.append(", matchDate=").append(matchDate);
         sb.append('}');
         return sb.toString();
     }

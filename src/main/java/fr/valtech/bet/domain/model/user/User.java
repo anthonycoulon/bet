@@ -1,15 +1,11 @@
 package fr.valtech.bet.domain.model.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import fr.valtech.bet.domain.model.bet.Bet;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "USER")
@@ -38,6 +34,9 @@ public class User {
     @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID", referencedColumnName = "ID") },
             inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
     private Role role;
+
+    @OneToMany(mappedBy = "gambler")
+    private List<Bet> bets;
 
     public Long getId() {
         return id;
@@ -87,6 +86,14 @@ public class User {
         this.role = roles;
     }
 
+    public List<Bet> getBets() {
+        return bets;
+    }
+
+    public void setBets(List<Bet> bets) {
+        this.bets = bets;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -120,6 +127,7 @@ public class User {
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
     }
