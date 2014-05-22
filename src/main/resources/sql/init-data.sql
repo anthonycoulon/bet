@@ -1,0 +1,2 @@
+INSERT INTO bet.USER (id, firstName, name, password, username) VALUES (1, 'Anthony', 'Coulon', null, 'anthony.coulon@valtech.fr');
+INSERT INTO bet.USER (id, firstName, name, password, username) VALUES (2, 'Fabrice', 'Tavilla', null, 'fabrice.tavilla@valtech.fr');
