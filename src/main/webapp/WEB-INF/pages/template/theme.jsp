@@ -23,6 +23,25 @@
 </head>
 
 <body>
-	<decorator:body />
+<div class="container">
+	<nav class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<span class="navbar-brand">Valtech Bet</span>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active">
+				<a href="#">Matchs</a>
+			</li>
+			<li>
+				<a href="#">Ranking</a>
+			</li>
+		</ul>
+	</nav>
+	<section id="content" class="row">
+		<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<decorator:body/>
+		</section>
+	</section>
+</div>
 </body>
 </html>
