@@ -7,19 +7,22 @@
 <body>
 <form action="j_spring_security_check" method="post" id="form_login">
 	<section class="row">
-		<label for="j_username" class="col-lg-1">Login</label>
-		<input type="text" id="j_username" name="j_username" class="col-lg-2"/>
+		<label for="j_username" class="col-lg-1 col-md-1 col-sm-1">Login</label>
+		<input type="text" id="j_username" name="j_username" class="col-lg-2 col-md-2 col-sm-2"/>
 	</section>
 	<section class="row">
-		<label for="j_password" class="col-lg-1">Password</label>
-		<input type="password" id="j_password" name="j_password" class="col-lg-2"/>
+		<label for="j_password" class="col-lg-1 col-md-1 col-sm-1">Password</label>
+		<input type="password" id="j_password" name="j_password" class="col-lg-2 col-md-2 col-sm-2"/>
 	</section>
 	<section class="row">
-		<input type="submit" value="Connection"/>
-		<c:if test="${error!=null}">
+		<input type="submit" value="Connection"
+		       class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-1 col-sm-offset-2"/>
+	</section>
+	<c:if test="${error!=null}">
+		<section class="row">
 			<span class="error">${error}</span>
-		</c:if>
-	</section>
+		</section>
+	</c:if>
 </form>
 	<br/>
 	<c:forEach items="${users}" var="user">
