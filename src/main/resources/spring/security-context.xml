@@ -1,9 +1,37 @@
-<beans 	xmlns="http://www.springframework.org/schema/beans"
-		xmlns:sec="http://www.springframework.org/schema/security"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 			http://www.springframework.org/schema/security
 			http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+            <!--<sec:password-encoder hash="sha">-->
+            <!--<sec:salt-source system-wide="zlatan" />-->
+            <!--</sec:password-encoder>-->
+            <sec:jdbc-user-service data-source-ref="betDataSource"
+                                   users-by-username-query="SELECT u.USERNAME,u.PASSWORD,'TRUE' FROM USER u WHERE u.USERNAME = ?"
+                                   authorities-by-username-query="
+                SELECT u.USERNAME, r.ROLE
+				FROM USER u, ROLE r, USER_ROLE ur
+				WHERE u.ID=ur.USER_ID
+				AND r.ID=ur.ROLE_ID
+				AND u.USERNAME=?"/>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
+    <sec:http pattern="/resources/**" security="none"/>
+
+    <sec:http auto-config='true'>
+        <sec:intercept-url pattern="/match**" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/match**" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
+        <!--<sec:intercept-url pattern="/**" access="ROLE_USER" />-->
+        <sec:form-login login-page="/login"
+                        default-target-url="/match"
+                        authentication-failure-url="/login_error"/>
+        <sec:logout logout-success-url="/login"/>
+    </sec:http>
 </beans>

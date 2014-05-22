@@ -1,13 +1,12 @@
 package fr.valtech.bet.domain.model.user;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
@@ -34,11 +33,11 @@ public class User {
     @Column(length = 80, name = "FIRSTNAME")
     private String firstName;
 
-    @ManyToMany
+    @ManyToOne
     @ForeignKey(name = "FK_USER_ROLE", inverseName = "FK_ROLE_USER")
     @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID", referencedColumnName = "ID") },
             inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
-    private List<Role> roles;
+    private Role role;
 
     public Long getId() {
         return id;
@@ -80,12 +79,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRoles() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Role roles) {
+        this.role = roles;
     }
 
     @Override
@@ -120,7 +119,7 @@ public class User {
         sb.append(", password='").append(password).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", roles=").append(roles);
+        sb.append(", role=").append(role);
         sb.append('}');
         return sb.toString();
     }

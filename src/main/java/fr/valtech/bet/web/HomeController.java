@@ -1,6 +1,8 @@
 package fr.valtech.bet.web;
 
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +17,21 @@ public class HomeController {
     private UserService userService;
 
     @RequestMapping
-    public ModelAndView home(HttpServletRequest request) {
+    public void home(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("login");
+    }
+
+    @RequestMapping("login")
+    public ModelAndView login() {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("users", userService.findUsers());
+        return mav;
+    }
+
+    @RequestMapping("login_error")
+    public ModelAndView loginError() {
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("error", "Your account is not valid");
         return mav;
     }
 

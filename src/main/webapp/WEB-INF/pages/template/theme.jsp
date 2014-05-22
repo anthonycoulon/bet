@@ -29,16 +29,19 @@
 			<span class="navbar-brand">Valtech Bet</span>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active">
-				<a href="#">Matchs</a>
+			<li id="menu-match" class="menu-item">
+				<a href="<c:url value="match"/>">Matchs</a>
+			</li>
+			<li id="menu-ranking" class="menu-item">
+			<a href="#">Ranking</a>
 			</li>
 			<li>
-				<a href="#">Ranking</a>
+				<a href="<c:url value="/j_spring_security_logout"/>">Deconection</a>
 			</li>
 		</ul>
 	</nav>
-	<section id="content" class="row">
-		<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<section id="content">
+	<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<decorator:body/>
 		</section>
 	</section>
