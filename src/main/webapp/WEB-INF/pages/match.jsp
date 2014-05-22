@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,8 +10,15 @@
 	</script>
 </head>
 <body>
-	Match du jour : <br><br>
-	France - Suisse <br>
-	Bresil - Zlatan <br>
+<section class="row">
+	User : ${user}
+</section>
+<c:forEach items="${dtos}" var="dto">
+	<section class="row">
+		<span>${dto.opponent1}</span>
+		<span>${dto.score1}-${dto.score2}</span>
+		<span>${dto.opponent2}</span>
+	</section>
+</c:forEach>
 </body>
 </html>
