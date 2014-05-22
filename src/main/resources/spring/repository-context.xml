@@ -12,10 +12,10 @@
 			http://www.springframework.org/schema/data/jpa
 			http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd">
 
-    <bean id="moduleDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-          p:driverClassName="${bet.datasource.driver}"
-          p:url="${bet.datasource.url}" p:defaultAutoCommit="false"
-          p:username="${bet.datasource.user}" p:password="${bet.datasource.password}"
+    <bean id="betDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://localhost:3306/bet" p:defaultAutoCommit="false"
+          p:username="bet-user" p:password="dbpwd"
           p:maxActive="8" p:maxIdle="8"
           p:validationQuery="/* ping */"
           p:testOnBorrow="false"
@@ -25,17 +25,17 @@
           p:minEvictableIdleTimeMillis="600000"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          p:persistenceUnitName="modulePersistenceUnit">
-        <property name="jpaProperties">
+          p:persistenceUnitName="betPersistenceUnit" p:dataSource-ref="betDataSource">
+    <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">${bet.hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.hbm2ddl.import_files">sql/init-data.sql</prop>
                 <prop key="hibernate.cache.use_second_level_cache">false</prop>
                 <prop key="hibernate.order_inserts">true</prop>
                 <prop key="hibernate.order_updates">true</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
             </props>
         </property>
     </bean>

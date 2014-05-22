@@ -1,10 +1,15 @@
 package fr.valtech.bet.domain.model.user;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
@@ -13,19 +18,27 @@ public class User {
 
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private Long id;
 
     @NaturalId
-    @Column(nullable = false)
+    @Column(nullable = false, name = "USERNAME")
     private String username;
 
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(length = 80)
+    @Column(length = 80, name = "NAME")
     private String name;
 
-    @Column(length = 80)
+    @Column(length = 80, name = "FIRSTNAME")
     private String firstName;
+
+    @ManyToMany
+    @ForeignKey(name = "FK_USER_ROLE", inverseName = "FK_ROLE_USER")
+    @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID", referencedColumnName = "ID") },
+            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
+    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -67,6 +80,14 @@ public class User {
         this.firstName = firstName;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -99,6 +120,7 @@ public class User {
         sb.append(", password='").append(password).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();
     }

@@ -13,8 +13,6 @@
 
     <tx:annotation-driven />
 
-	<import resource="classpath:/spring/repository-context.xml"/>
-
 	<context:component-scan base-package="fr.valtech.bet.service"/>
 
 </beans>

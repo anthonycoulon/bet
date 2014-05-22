@@ -309,7 +309,7 @@
                         </component>
                     </components>
                     <componentProperties>
-                        <persistenceunit>modulePersistenceUnit</persistenceunit>
+                        <persistenceunit>betPersistenceUnit</persistenceunit>
                         <outputfilename>01-create-schema.sql</outputfilename>
                         <export>false</export>
                     </componentProperties>
