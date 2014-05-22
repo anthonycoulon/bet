@@ -1,21 +1,18 @@
 package fr.valtech.bet.domain.repository.user;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.user.User;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl extends BetEntityManagerRepository implements UserRepository{
 
-    @PersistenceContext(unitName = "betPersistenceUnit")
-    private EntityManager entityManager;
 
     @Override
     public List<User> findUsers() {
-        TypedQuery<User> query = entityManager.createQuery("FROM User", User.class);
+        TypedQuery<User> query = getEntityManager().createQuery("FROM User", User.class);
         return query.getResultList();
     }
 
