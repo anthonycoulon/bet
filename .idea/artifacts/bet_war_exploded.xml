@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="bet:war exploded">
-    <output-path>$PROJECT_DIR$/target/valtech-bet</output-path>
+    <output-path>$PROJECT_DIR$/target/bet</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="bet/web/Web" />
       <element id="directory" name="WEB-INF">
