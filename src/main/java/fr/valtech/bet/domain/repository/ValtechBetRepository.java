@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-    public class BetRepository {
+    public class ValtechBetRepository {
 
     @PersistenceContext(unitName = "betPersistenceUnit")
     private EntityManager entityManager;

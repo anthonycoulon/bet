@@ -6,4 +6,6 @@ import fr.valtech.bet.domain.model.user.User;
 public interface UserRepository {
 
     List<User> findUsers();
+
+    User findUserByUsername(String username);
 }

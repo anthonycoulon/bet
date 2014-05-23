@@ -2,7 +2,10 @@ package fr.valtech.bet.web;
 
 import java.util.Date;
 import java.util.List;
+
+import fr.valtech.bet.service.match.MatchService;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,9 @@ import fr.valtech.bet.domain.model.match.dto.MatchDto;
 @RequestMapping("match")
 public class MatchController {
 
+    @Autowired
+    private MatchService matchService;
+
     @RequestMapping
     public ModelAndView match() {
         String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -24,9 +30,10 @@ public class MatchController {
         List<Date> dates = getDates();
         mav.addObject("dates", dates);
 
-        mav.addObject("today", new DateTime().toDateMidnight().toDate());
+        Date today = new DateTime().toDateMidnight().toDate();
+        mav.addObject("today", today);
 
-        List<MatchDto> dtos = getMatchDtos();
+        List<MatchDto> dtos = matchService.findMatchsByDateByUser(today, username);
         mav.addObject("dtos", dtos);
         return mav;
     }

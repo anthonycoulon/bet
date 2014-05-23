@@ -18,6 +18,7 @@ public class Bet {
 
     @Id
     @GeneratedValue
+    @Column(name = "BET_ID")
     private long id;
 
     @ManyToOne
@@ -29,8 +30,8 @@ public class Bet {
 
     @ManyToOne
     @ForeignKey(name = "FK_BET_MATCH", inverseName = "FK_MATCH_BET")
-    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "BET_ID", referencedColumnName = "ID") },
-            inverseJoinColumns = { @JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") })
+    @JoinTable(name = "BET_MATCH", joinColumns = { @JoinColumn(name = "BET_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "MATCH_ID") })
     private Match match;
 
     public long getId() {

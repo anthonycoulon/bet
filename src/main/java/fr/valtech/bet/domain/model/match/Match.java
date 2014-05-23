@@ -22,7 +22,7 @@ public class Match {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "MATCH_ID")
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -41,8 +41,8 @@ public class Match {
 
     @OneToMany
     @ForeignKey(name = "FK_MATCH_BET", inverseName = "FK_BET_MATCH")
-    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") },
-            inverseJoinColumns = { @JoinColumn(name = "BET_ID", referencedColumnName = "ID") })
+    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "MATCH_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "BET_ID") })
     private List<Bet> bets;
 
     public long getId() {

@@ -18,4 +18,10 @@ public class UserServiceImpl implements UserService {
     public List<User> findUsers() {
         return userRepository.findUsers();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
 }

@@ -8,4 +8,7 @@ public interface UserService {
 
     @Transactional(readOnly = true)
     List<User> findUsers();
+
+    @Transactional(readOnly = true)
+    User findUserByUsername(String username);
 }
