@@ -30,9 +30,13 @@
 	<c:forEach items="${dtos}" var="dto">
 		<section class="row">
 			<span class="col-lg-2 col-md-2 col-sm-2"><b>${dto.opponent1}</b></span>
-			<span class="col-lg-2 col-md-2 col-sm-2">${dto.score1}-${dto.score2} / <input type="text" class="bet1 bet"
-			                                                                              value="${dto.bet1}"/>-<input
-					type="text" class="bet2 bet" value="${dto.bet2}"/></span>
+			<span class="col-lg-2 col-md-2 col-sm-2">
+				<c:if test="${dto.score1!=null}">
+					${dto.score1}-${dto.score2} /
+				</c:if>
+				<input type="text" class="bet1 bet" value="${dto.bet1}"/>
+				-
+				<input type="text" class="bet2 bet" value="${dto.bet2}"/></span>
 			<span class="col-lg-2 col-md-2 col-sm-2"><b>${dto.opponent2}</b></span>
 		</section>
 	</c:forEach>
