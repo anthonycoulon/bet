@@ -1,9 +1,20 @@
 package fr.valtech.bet.domain.model.match;
 
-import fr.valtech.bet.domain.model.opponent.Opponent;
-
-import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
+import fr.valtech.bet.domain.model.bet.Bet;
+import fr.valtech.bet.domain.model.opponent.Opponent;
 
 @Entity
 @Table(name = "MATCH")
@@ -11,6 +22,7 @@ public class Match {
 
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -26,6 +38,12 @@ public class Match {
 
     @Column(name = "SCORE")
     private String score;
+
+    @OneToMany
+    @ForeignKey(name = "FK_MATCH_BET", inverseName = "FK_BET_MATCH")
+    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") },
+            inverseJoinColumns = { @JoinColumn(name = "BET_ID", referencedColumnName = "ID") })
+    private List<Bet> bets;
 
     public long getId() {
         return id;
@@ -67,6 +85,14 @@ public class Match {
         this.score = score;
     }
 
+    public List<Bet> getBets() {
+        return bets;
+    }
+
+    public void setBets(List<Bet> bets) {
+        this.bets = bets;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,6 +125,7 @@ public class Match {
         sb.append(", opponent2=").append(opponent2);
         sb.append(", matchDate=").append(matchDate);
         sb.append(", score='").append(score).append('\'');
+        sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
     }

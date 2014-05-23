@@ -1,9 +1,16 @@
 package fr.valtech.bet.domain.model.bet;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.user.User;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "BET")
@@ -20,7 +27,10 @@ public class Bet {
     @Column(name = "BET")
     private String bet;
 
-    @OneToOne
+    @ManyToOne
+    @ForeignKey(name = "FK_BET_MATCH", inverseName = "FK_MATCH_BET")
+    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "BET_ID", referencedColumnName = "ID") },
+            inverseJoinColumns = { @JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") })
     private Match match;
 
     public long getId() {
