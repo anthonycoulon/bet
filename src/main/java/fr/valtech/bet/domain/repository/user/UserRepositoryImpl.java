@@ -17,4 +17,11 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository{
         return query.getResultList();
     }
 
+    @Override
+    public User findUser(String username) {
+        TypedQuery<User> query = getEntityManager().createQuery("FROM User u where u.username=:username", User.class);
+        query.setParameter("username", username);
+        return query.getSingleResult();
+    }
+
 }

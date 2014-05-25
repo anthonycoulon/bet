@@ -4,19 +4,39 @@ import java.util.Date;
 
 public class MatchDto {
 
+    private Long betId;
+
+    private Long matchId;
+
     private String opponent1;
 
     private String opponent2;
 
-    private Integer score1;
+    private String score;
 
-    private Integer score2;
+    private String bet;
 
     private Integer bet1;
 
     private Integer bet2;
 
     private Date matchDate;
+
+    public Long getBetId() {
+        return betId;
+    }
+
+    public void setBetId(Long betId) {
+        this.betId = betId;
+    }
+
+    public Long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(Long matchId) {
+        this.matchId = matchId;
+    }
 
     public String getOpponent1() {
         return opponent1;
@@ -34,20 +54,20 @@ public class MatchDto {
         this.opponent2 = opponent2;
     }
 
-    public Integer getScore1() {
-        return score1;
+    public String getScore() {
+        return score;
     }
 
-    public void setScore1(Integer score1) {
-        this.score1 = score1;
+    public void setScore(String score) {
+        this.score = score;
     }
 
-    public Integer getScore2() {
-        return score2;
+    public String getBet() {
+        return bet;
     }
 
-    public void setScore2(Integer score2) {
-        this.score2 = score2;
+    public void setBet(String bet) {
+        this.bet = bet;
     }
 
     public Integer getBet1() {
@@ -77,10 +97,12 @@ public class MatchDto {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
-        sb.append("opponent1='").append(opponent1).append('\'');
+        sb.append("betId=").append(betId);
+        sb.append(", matchId=").append(matchId);
+        sb.append(", opponent1='").append(opponent1).append('\'');
         sb.append(", opponent2='").append(opponent2).append('\'');
-        sb.append(", score1=").append(score1);
-        sb.append(", score2=").append(score2);
+        sb.append(", score='").append(score).append('\'');
+        sb.append(", bet='").append(bet).append('\'');
         sb.append(", bet1=").append(bet1);
         sb.append(", bet2=").append(bet2);
         sb.append(", matchDate=").append(matchDate);

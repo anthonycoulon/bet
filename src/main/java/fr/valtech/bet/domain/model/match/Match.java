@@ -17,7 +17,7 @@ import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.opponent.Opponent;
 
 @Entity
-@Table(name = "MATCH")
+@Table(name = "MATCHS")
 public class Match {
 
     @Id

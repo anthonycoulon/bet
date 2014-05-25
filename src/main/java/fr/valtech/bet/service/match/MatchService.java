@@ -10,5 +10,5 @@ import java.util.List;
 public interface MatchService {
 
     @Transactional(readOnly = true)
-    List<Match> findMatchByDateByUser(Date date, User currentUser);
+    List<fr.valtech.bet.domain.model.match.dto.MatchDto> findMatchByDateByUser(Date date, User currentUser);
 }

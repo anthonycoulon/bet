@@ -1,15 +1,14 @@
 package fr.valtech.bet.service.match;
 
-import fr.valtech.bet.domain.model.match.Match;
-import fr.valtech.bet.domain.model.match.dto.MatchDto;
-import fr.valtech.bet.domain.model.user.User;
-import fr.valtech.bet.domain.repository.match.MatchRepository;
+import java.util.Date;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
+import fr.valtech.bet.domain.model.match.dto.MatchDto;
+import fr.valtech.bet.domain.model.user.User;
+import fr.valtech.bet.domain.repository.match.MatchRepository;
 
 @Service
 public class MatchServiceImpl implements MatchService {
@@ -19,15 +18,17 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Match> findMatchByDateByUser(Date date, User currentUser) {
-        List<Match> matchs = matchRepository.findMatchByDateByUser(date, currentUser);
-        MatchDto dto = null;
-        for (Match match : matchs) {
-            dto.setOpponent1(match.getOpponent1().getName());
-            dto.setOpponent2(match.getOpponent2().getName());
-            dto.setMatchDate(match.getMatchDate());
+    public List<MatchDto> findMatchByDateByUser(Date date, User currentUser) {
+        List<MatchDto> matches = matchRepository.findMatchByDateByUser(date, currentUser);
+        for (MatchDto match : matches) {
+            String bet = match.getBet();
+            if(StringUtils.isNotBlank(bet)){
+                String[] splitedBet = bet.split("-", 2);
+                match.setBet1(Integer.valueOf(splitedBet[0]));
+                match.setBet2(Integer.valueOf(splitedBet[1]));
+            }
         }
 
-        return null;
+        return matches;
     }
 }

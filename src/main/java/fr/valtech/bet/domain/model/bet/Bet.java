@@ -18,6 +18,7 @@ public class Bet {
 
     @Id
     @GeneratedValue
+    @Column(name="ID")
     private long id;
 
     @ManyToOne
