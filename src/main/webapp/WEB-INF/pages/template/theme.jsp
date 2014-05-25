@@ -24,21 +24,29 @@
 
 <body>
 <div class="container">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 			<span class="navbar-brand">Valtech Bet</span>
 		</div>
-		<ul class="nav navbar-nav">
-			<li id="menu-match" class="menu-item">
-				<a href="<c:url value="match"/>">Matchs</a>
-			</li>
-			<li id="menu-ranking" class="menu-item">
-			<a href="#">Ranking</a>
-			</li>
-			<li>
-				<a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
-			</li>
-		</ul>
+        <div class="collapse navbar-collapse" id="menu-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="menu-match" class="menu-item">
+                    <a href="<c:url value="match"/>">Matches</a>
+                </li>
+                <li id="menu-ranking" class="menu-item">
+                <a href="#">Ranking</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
+                </li>
+            </ul>
+         </div>
 	</nav>
 	<section id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<decorator:body/>
