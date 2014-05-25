@@ -41,4 +41,9 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
             .setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
+
+    @Override
+    public List<Date> findDates() {
+        return getEntityManager().createQuery("SELECT distinct m.matchDate FROM Match m", Date.class).getResultList();
+    }
 }

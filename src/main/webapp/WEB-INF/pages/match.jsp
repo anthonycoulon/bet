@@ -3,6 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+	<script type="text/javascript" src="<c:url value="/resources/js/Matches.js"/>"></script>
+	<link rel="stylesheet" href="<c:url value="/resources/css/match.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -27,17 +29,23 @@
 			</c:forEach>
 		</select>
 	</section>
-	<c:forEach items="${dtos}" var="dto">
-		<section class="row">
-			<span class="col-lg-2 col-md-2 col-sm-2"><b>${dto.opponent1}</b></span>
-			<span class="col-lg-1 col-md-1 col-sm-1">
-				${dto.score}
-			</span>
-			<span class="col-lg-2 col-md-2 col-sm-2">
-				<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
-			</span>
-			<span class="col-lg-3 col-md-2 col-sm-2"><b>${dto.opponent2}</b></span>
-		</section>
-	</c:forEach>
+	<section id="matches">
+		<c:forEach items="${dtos}" var="dto">
+			<section class="row col-lg-12 col-md-12 col-sm-12">
+				<div ><b>${dto.opponent1}</b></div>
+				<div class="score">
+					${dto.score}
+				</div>
+				<div class="bet">
+					<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
+				</div>
+				<div ><b>${dto.opponent2}</b></div>
+			</section>
+		</c:forEach>
+	</section>
+
+	<script type="text/javascript">
+		new Matches().init();
+	</script>
 </body>
 </html>

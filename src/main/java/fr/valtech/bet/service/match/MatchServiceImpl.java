@@ -31,4 +31,9 @@ public class MatchServiceImpl implements MatchService {
 
         return matches;
     }
+
+    @Override
+    public List<Date> findDates() {
+        return matchRepository.findDates();
+    }
 }

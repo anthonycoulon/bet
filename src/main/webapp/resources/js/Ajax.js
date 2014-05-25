@@ -7,7 +7,7 @@ Ajax.prototype.get = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'GET',
-		success : _handler ? _handler : function(){ new Dialog().successDialog();},
+		success : _handler ? _handler : function(){/*TODO something*/},
 		error : bind(this, this.error)
 	});
 };
@@ -22,7 +22,7 @@ Ajax.prototype.postData = function(_url, _data, _handler) {
 		data: JSON.stringify(_data),
 		datatype : 'json',
 		contentType : 'application/json',
-		success: _handler ? _handler : function(){ new Dialog().successDialog();},
+		success: _handler ? _handler : function(){/*TODO something*/},
 		error: bind(this, this.error)
 	});
 };
@@ -34,7 +34,7 @@ Ajax.prototype.post = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'POST',
-		success: _handler ? _handler : function(){ new Dialog().successDialog();},
+		success: _handler ? _handler : function(){/*TODO something*/},
 		error: bind(this, this.error)
 	});
 };
@@ -56,19 +56,13 @@ Ajax.prototype.delAction = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'DELETE',
-		success: _handler ? _handler : function(){ new Dialog().successDialog();},
+		success: _handler ? _handler : function(){/*TODO something*/},
 		error: bind(this, this.error)
 	});
 };
 
 Ajax.prototype.error = function(jqXHR) {
-	if(jqXHR.status===901){
-		var dialog = new Dialog("/sis-portal/");
-		var content = $("<div class='dialog'><br/>Votre session a expirée !<br/><br/>Vous allez être redirigé(e) vers le portail.</div>");
-		dialog.simpleDialog(content, "Session expirée");
-	}else {
-		new Dialog().errorDialog();
-	}
+	//TODO something
 };
 
 Ajax.prototype.createSpinner = function() {

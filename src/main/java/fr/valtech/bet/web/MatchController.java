@@ -6,9 +6,10 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.service.match.MatchService;
@@ -26,55 +27,26 @@ public class MatchController {
 
     @RequestMapping
     public ModelAndView match() {
-        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        User user = userService.findUser(username);
 
         ModelAndView mav = new ModelAndView("match");
 
-        List<Date> dates = getDates();
-        mav.addObject("dates", dates);
+        mav.addObject("dates", matchService.findDates());
 
         Date date = new DateTime().toDateMidnight().toDate();
         mav.addObject("today", date);
 
-        mav.addObject("dtos", matchService.findMatchByDateByUser(date, user));
+        mav.addObject("dtos", matchService.findMatchByDateByUser(date, getUser()));
         return mav;
     }
 
-    private List<Date> getDates() {
-        List<Date> dates = Lists.newArrayList();
-        DateTime d = new DateTime(2014, 5, 20, 0, 0, 0);
-        dates.add(d.toDate());
-        d = d.plusDays(1);
-        dates.add(d.toDate());
-        d = d.plusDays(1);
-        dates.add(d.toDate());
-        d = d.plusDays(1);
-        dates.add(d.toDate());
-        d = d.plusDays(1);
-        dates.add(d.toDate());
-        return dates;
+    @ResponseBody
+    @RequestMapping("{date}")
+    public List<MatchDto> matches(@PathVariable Long date) {
+        return matchService.findMatchByDateByUser(new Date(date), getUser());
     }
 
-    private List<MatchDto> getMatchDtos() {
-        List<MatchDto> dtos = Lists.newArrayList();
-        MatchDto dto = new MatchDto();
-        dto.setOpponent1("France");
-        dto.setOpponent2("Suisse");
-        dto.setScore("4-1");
-        dtos.add(dto);
-        dto = new MatchDto();
-        dto.setOpponent1("Brezil");
-        dto.setOpponent2("Croatie");
-        dto.setScore("3-0");
-        dto.setBet1(3);
-        dto.setBet2(1);
-        dtos.add(dto);
-        dto = new MatchDto();
-        dto.setOpponent1("Espagne");
-        dto.setOpponent2("Pays-bas");
-        dto.setScore("1-2");
-        dtos.add(dto);
-        return dtos;
+    private User getUser() {
+        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        return userService.findUser(username);
     }
 }
