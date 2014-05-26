@@ -45,7 +45,7 @@
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a href="#">My account</a>
+                    <a href=<c:url value="/myaccount"/>>My account</a>
                 </li>
                 <li>
                     <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
