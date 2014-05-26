@@ -32,6 +32,8 @@
 	<section id="matches">
 		<c:forEach items="${dtos}" var="dto">
 			<section class="row col-lg-12 col-md-12 col-sm-12">
+				<input class="betId" type="hidden" value="${dto.betId}"/>
+				<input class="matchId" type="hidden" value="${dto.matchId}"/>
 				<div ><b>${dto.opponent1}</b></div>
 				<div class="score">
 					${dto.score}
@@ -43,7 +45,9 @@
 			</section>
 		</c:forEach>
 	</section>
-
+	<section class="row">
+		<input type="button" value="Save" id="save_button" class="btn btn-large btn-primary"/>
+	</section>
 	<script type="text/javascript">
 		new Matches().init();
 	</script>
