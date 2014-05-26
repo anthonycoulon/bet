@@ -42,6 +42,11 @@
                 <li id="menu-ranking" class="menu-item">
                 <a href="#">Ranking</a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="#">My account</a>
+                </li>
                 <li>
                     <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
                 </li>

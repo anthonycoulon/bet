@@ -2,31 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>" />
 </head>
 <body>
-<form action="j_spring_security_check" class="form-signin"  method="post" id="form_login">
-	<section class="row">
-		<label for="j_username" class="col-lg-1 col-md-1 col-sm-1">Login</label>
-		<input type="text" id="j_username" name="j_username" class="col-lg-2 col-md-2 col-sm-2 input-block-level"/>
-	</section>
-	<section class="row">
-		<label for="j_password" class="col-lg-1 col-md-1 col-sm-1">Password</label>
-		<input type="password" id="j_password" name="j_password" class="col-lg-2 col-md-2 col-sm-2 input-block-level"/>
-	</section>
-	<section class="row">
-		<input type="submit" value="Sign in"
-		       class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-1 col-sm-offset-2 btn btn-large btn-primary"/>
-	</section>
-	<c:if test="${error!=null}">
-		<section class="row">
-			<span class="error">${error}</span>
-		</section>
-	</c:if>
-</form>
-	<br/>
-	<c:forEach items="${users}" var="user">
-		${user.username} <br/>
-	</c:forEach>
+<div class="container">
+    <form action="j_spring_security_check" class="form-signin"  method="post" id="form_login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" id="j_username" name="j_username" class="input-block-level" placeholder="Email"/>
+        <input type="password" id="j_password" name="j_password" class="input-block-level" placeholder="Password"/>
+        <input type="submit" value="Sign in"
+               class="btn btn-large btn-primary"/>
+        <c:if test="${error!=null}">
+            <span class="error">${error}</span>
+        </c:if>
+    </form>
+</div>
 </body>
 </html>
