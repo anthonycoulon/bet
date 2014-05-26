@@ -29,22 +29,28 @@
 			</c:forEach>
 		</select>
 	</section>
-	<section id="matches">
+	<table id="matches" class="table-responsive table table-striped">
 		<c:forEach items="${dtos}" var="dto">
-			<section class="row col-lg-12 col-md-12 col-sm-12">
-				<input class="betId" type="hidden" value="${dto.betId}"/>
-				<input class="matchId" type="hidden" value="${dto.matchId}"/>
-				<div ><b>${dto.opponent1}</b></div>
-				<div class="score">
+			<tr class="row">
+				<td>
+					<input class="betId" type="hidden" value="${dto.betId}"/>
+					<input class="matchId" type="hidden" value="${dto.matchId}"/>
+				</td>
+				<td>
+					<b>${dto.opponent1}</b>
+				</td>
+				<td>
 					${dto.score}
-				</div>
-				<div class="bet">
+				</td>
+				<td class="bet">
 					<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
-				</div>
-				<div ><b>${dto.opponent2}</b></div>
-			</section>
+				</td>
+				<td>
+					<b>${dto.opponent2}</b>
+				</td>
+			</tr>
 		</c:forEach>
-	</section>
+	</table>
 	<section class="row">
 		<input type="button" value="Save" id="save_button" class="btn btn-large btn-primary"/>
 	</section>
