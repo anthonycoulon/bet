@@ -2,7 +2,9 @@ package fr.valtech.bet.service.match;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
+import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 
 public interface MatchService {
@@ -11,4 +13,8 @@ public interface MatchService {
     List<fr.valtech.bet.domain.model.match.dto.MatchDto> findMatchByDateByUser(Date date, User currentUser);
 
     List<Date> findDates();
+
+    void saveUserBets(List<MatchDto> dtos, User user);
+
+    List<MatchDto> transform(List<Map<String, String>> dtos);
 }

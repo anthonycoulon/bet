@@ -1,11 +1,19 @@
 package fr.valtech.bet.domain.model.user;
 
-import fr.valtech.bet.domain.model.bet.Bet;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
-
-import javax.persistence.*;
-import java.util.List;
+import com.google.common.collect.Lists;
+import fr.valtech.bet.domain.model.bet.Bet;
 
 @Entity
 @Table(name = "USER")
@@ -130,5 +138,13 @@ public class User {
         sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
+    }
+
+    public void addBet(Bet bet) {
+        if(bets==null) {
+            bets= Lists.newArrayList();
+        }
+        bet.setGambler(this);
+        bets.add(bet);
     }
 }

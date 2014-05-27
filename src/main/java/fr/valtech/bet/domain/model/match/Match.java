@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
+import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.opponent.Opponent;
 
@@ -128,5 +129,13 @@ public class Match {
         sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
+    }
+
+    public void addBet(Bet bet) {
+        if(bets==null) {
+            bets= Lists.newArrayList();
+        }
+        bet.setMatch(this);
+        bets.add(bet);
     }
 }

@@ -1,5 +1,8 @@
 package fr.valtech.bet.web.match;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.service.match.MatchService;
@@ -10,9 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("match")
@@ -51,7 +51,7 @@ public class MatchController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
-    public void save(@RequestBody List<MatchDto> dtos) {
-        System.out.println("dtos = " + dtos);
+    public void save(@RequestBody List<Map<String, String>> dtos) {
+        matchService.saveUserBets(matchService.transform(dtos), getUser());
     }
 }

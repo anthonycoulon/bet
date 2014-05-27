@@ -8,7 +8,7 @@ Matches.prototype.init = function() {
 };
 
 Matches.prototype.saveBet = function() {
-	var matches = $('#matches table tr.row');
+	var matches = $('#matches tr.row');
 	var bets=[];
 	for(var i=0; i<matches.length; i++){
 		var m = matches[i];
@@ -20,36 +20,34 @@ Matches.prototype.saveBet = function() {
 		bets.push(bet);
 	}
 
-	new Ajax().postData(this.contextUrl, bets, function() {
-		alert('ok');
-	})
+	new Ajax().postData(this.contextUrl, bets);
 };
 
 Matches.prototype.refreshMatches = function() {
-	$('table#matches').empty();
+	$('table#matches tbody').empty();
 	new Ajax().get(this.contextUrl+$('#dates').val(), function(_data){
 		for(var i=0; i<_data.length; i++) {
 			var d=_data[i];
 			var match = Matches.mask.replace('${dto.opponent1}', d.opponent1)
-				.replace('${dto.betId}', d.betId)
+				.replace('${dto.betId}', d.betId==null?'': d.betId)
 				.replace('${dto.matchId}', d.matchId)
 				.replace('${dto.score}', d.score==null?'':d.score)
 				.replace('${dto.bet1}', d.bet1==null?'': d.bet1)
 				.replace('${dto.bet2}', d.bet2==null?'': d.bet2)
 				.replace('${dto.opponent2}', d.opponent2);
-			$('table#matches').append(match);
+			$('table#matches tbody').append(match);
 		}
 	})
-}
+};
 
 Matches.mask=
-'<tr class="row">'+
+'<tr>'+
 	'<td>'+
 		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
 	'</td>'+
 	'<td>'+
-		'<b>${dto.opponent1}</b>'+
+		'${dto.opponent1}'+
 	'</td>'+
 	'<td>'+
 		'${dto.score}'+
@@ -58,6 +56,6 @@ Matches.mask=
 		'<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>'+
 	'</td>'+
 	'<td>'+
-		'<b>${dto.opponent2}</b>'+
+		'${dto.opponent2}'+
 	'</td>'+
 '</tr>';

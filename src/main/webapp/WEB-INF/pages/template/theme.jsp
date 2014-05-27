@@ -19,7 +19,6 @@
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 
 	<decorator:head />
-
 </head>
 
 <body>
@@ -53,9 +52,10 @@
             </ul>
          </div>
 	</nav>
+		<div class="alert alert-success bet-alert">Successfully saved</div>
+		<div class="alert alert-danger bet-alert">Error server ...</div>
 	<section id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<decorator:body/>
-		</section>
+		<decorator:body/>
 	</section>
 </div>
 </body>

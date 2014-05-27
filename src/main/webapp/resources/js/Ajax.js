@@ -7,7 +7,7 @@ Ajax.prototype.get = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'GET',
-		success : _handler ? _handler : function(){/*TODO something*/},
+		success : _handler ? _handler : bind(this,this.success),
 		error : bind(this, this.error)
 	});
 };
@@ -22,7 +22,7 @@ Ajax.prototype.postData = function(_url, _data, _handler) {
 		data: JSON.stringify(_data),
 		datatype : 'json',
 		contentType : 'application/json',
-		success: _handler ? _handler : function(){/*TODO something*/},
+		success: _handler ? _handler : bind(this,this.success),
 		error: bind(this, this.error)
 	});
 };
@@ -34,7 +34,7 @@ Ajax.prototype.post = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'POST',
-		success: _handler ? _handler : function(){/*TODO something*/},
+		success: _handler ? _handler : bind(this,this.success),
 		error: bind(this, this.error)
 	});
 };
@@ -56,13 +56,23 @@ Ajax.prototype.delAction = function(_url, _handler) {
 		url : _url,
 		cache : false,
 		type : 'DELETE',
-		success: _handler ? _handler : function(){/*TODO something*/},
+		success: _handler ? _handler : bind(this,this.success),
 		error: bind(this, this.error)
 	});
 };
 
+Ajax.prototype.success = function() {
+	$('.alert-success').show();
+	setTimeout(function(){
+		$('.alert-success').hide();
+	}, 2000);
+};
+
 Ajax.prototype.error = function(jqXHR) {
-	//TODO something
+	$('.alert-danger').show();
+	setTimeout(function(){
+		$('alert-danger').hide();
+	}, 2000);
 };
 
 Ajax.prototype.createSpinner = function() {

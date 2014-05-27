@@ -18,7 +18,7 @@
 		<select name="dates" id="dates">
 			<c:forEach items="${dates}" var="date">
 				<c:choose>
-					<c:when test="${date==today}">
+					<c:when test="${date.time eq today.time}">
 						<option value="${date.time}" selected="selected"><fmt:formatDate value="${date}"
 						                                                                 pattern="dd/MM/yyyy"/></option>
 					</c:when>
@@ -30,26 +30,35 @@
 		</select>
 	</section>
 	<table id="matches" class="table-responsive table table-striped">
-		<c:forEach items="${dtos}" var="dto">
-			<tr class="row">
-				<td>
-					<input class="betId" type="hidden" value="${dto.betId}"/>
-					<input class="matchId" type="hidden" value="${dto.matchId}"/>
-				</td>
-				<td>
-					<b>${dto.opponent1}</b>
-				</td>
-				<td>
-					${dto.score}
-				</td>
-				<td class="bet">
-					<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
-				</td>
-				<td>
-					<b>${dto.opponent2}</b>
-				</td>
-			</tr>
-		</c:forEach>
+		<thead>
+			<th></th>
+			<th>Opponent #1</th>
+			<th>Score</th>
+			<th>Bet</th>
+			<th>Opponent #2</th>
+		</thead>
+		<tbody>
+			<c:forEach items="${dtos}" var="dto">
+				<tr>
+					<td>
+						<input class="betId" type="hidden" value="${dto.betId}"/>
+						<input class="matchId" type="hidden" value="${dto.matchId}"/>
+					</td>
+					<td>
+						${dto.opponent1}
+					</td>
+					<td>
+						${dto.score}
+					</td>
+					<td class="bet">
+						<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
+					</td>
+					<td>
+						${dto.opponent2}
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	<section class="row">
 		<input type="button" value="Save" id="save_button" class="btn btn-large btn-primary"/>

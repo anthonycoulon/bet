@@ -6,6 +6,10 @@ input.bet {
     width: 30px;
 }
 
+div.bet-alert {
+    display: none;
+}
+
 body {
     padding-top: 40px;
     padding-bottom: 40px;
