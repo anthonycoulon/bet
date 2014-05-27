@@ -32,6 +32,7 @@
 	<table id="matches" class="table-responsive table table-striped">
 		<thead>
 			<th></th>
+			<th>Time</th>
 			<th>Opponent #1</th>
 			<th>Score</th>
 			<th>Bet</th>
@@ -43,6 +44,9 @@
 					<td>
 						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
+					</td>
+					<td>
+						<fmt:formatDate value="${dto.matchTime}" pattern="hh:mm a"/>
 					</td>
 					<td>
 						${dto.opponent1}

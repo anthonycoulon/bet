@@ -8,6 +8,8 @@ import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
+import org.hibernate.type.TimestampType;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
@@ -23,7 +25,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
         Session session = (Session) getEntityManager().getDelegate();
         SQLQuery query = session
-                .createSQLQuery("SELECT distinct m.id as matchId, b.id as betId, o1.NAME as opponent1, o2.NAME opponent2, m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate"
+                .createSQLQuery("SELECT distinct m.id as matchId, b.id as betId, o1.NAME as opponent1, o2.NAME opponent2, m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime"
                         + //
                         " FROM bet.MATCHS m "
                         + //
@@ -41,7 +43,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
         query.addScalar("matchId", LongType.INSTANCE).addScalar("betId", LongType.INSTANCE).addScalar("opponent1", StringType.INSTANCE)
                 .addScalar("opponent2", StringType.INSTANCE).addScalar("score", StringType.INSTANCE).addScalar("bet", StringType.INSTANCE)
-                .addScalar("matchDate", DateType.INSTANCE).setResultTransformer(Transformers.aliasToBean(MatchDto.class));
+                .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE).setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
 

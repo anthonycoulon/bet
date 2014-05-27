@@ -21,6 +21,7 @@ public class MatchDto {
     private Integer bet2;
 
     private Date matchDate;
+    private Date matchTime;
 
     public Long getBetId() {
         return betId;
@@ -94,6 +95,14 @@ public class MatchDto {
         this.matchDate = matchDate;
     }
 
+    public Date getMatchTime() {
+        return matchTime;
+    }
+
+    public void setMatchTime(Date matchTime) {
+        this.matchTime = matchTime;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
@@ -106,6 +115,7 @@ public class MatchDto {
         sb.append(", bet1=").append(bet1);
         sb.append(", bet2=").append(bet2);
         sb.append(", matchDate=").append(matchDate);
+        sb.append(", matchTime=").append(matchTime);
         sb.append('}');
         return sb.toString();
     }
