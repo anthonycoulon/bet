@@ -8,7 +8,7 @@ Matches.prototype.init = function() {
 };
 
 Matches.prototype.saveBet = function() {
-	var matches = $('#matches tr.row');
+	var matches = $('#matches tbody tr');
 	var bets=[];
 	for(var i=0; i<matches.length; i++){
 		var m = matches[i];
