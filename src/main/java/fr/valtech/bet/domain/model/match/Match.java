@@ -37,6 +37,9 @@ public class Match {
     @Column(name = "MATCH_DATE")
     private Date matchDate;
 
+    @Column(name = "MATCH_TIME")
+    private Date timeDate;
+
     @Column(name = "SCORE")
     private String score;
 
@@ -94,6 +97,14 @@ public class Match {
         this.bets = bets;
     }
 
+    public Date getTimeDate() {
+        return timeDate;
+    }
+
+    public void setTimeDate(Date timeDate) {
+        this.timeDate = timeDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,6 +136,7 @@ public class Match {
         sb.append(", opponent1=").append(opponent1);
         sb.append(", opponent2=").append(opponent2);
         sb.append(", matchDate=").append(matchDate);
+        sb.append(", timeDate=").append(timeDate);
         sb.append(", score='").append(score).append('\'');
         sb.append(", bets=").append(bets);
         sb.append('}');
