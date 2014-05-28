@@ -25,19 +25,15 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
         Session session = (Session) getEntityManager().getDelegate();
         SQLQuery query = session
-                .createSQLQuery("SELECT distinct m.id as matchId, b.id as betId, o1.NAME as opponent1, o2.NAME opponent2, m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime"
-                        + //
-                        " FROM bet.MATCHS m "
-                        + //
-                        "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK"
-                        + //
-                        "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK"
-                        + //
-                        "  LEFT JOIN bet.MATCH_BET mb on m.ID=mb.MATCH_ID "
-                        + //
-                        "  LEFT JOIN (SELECT b.ID, b.BET from bet.BET b INNER JOIN bet.USER u on b.BET_USER_FK=u.ID WHERE u.ID=:userId) b on b.ID=mb.BET_ID"
-                        + //
-                        " WHERE m.MATCH_DATE=:date ORDER BY m.MATCH_DATE");//
+                .createSQLQuery("SELECT m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," +
+                        " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime" +
+                        " FROM bet.MATCHS m" +
+                        "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK" +
+                        "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK" +
+                        "  LEFT JOIN (SELECT b.ID, mb.MATCH_ID, b.BET FROM bet.BET b" +
+                        "    INNER JOIN bet.MATCH_BET mb on b.ID=mb.BET_ID" +
+                        "  WHERE b.BET_USER_FK=:userId) b on b.MATCH_ID=m.ID" +
+                        " WHERE m.MATCH_DATE=:date");//
         query.setParameter("date", date);
         query.setParameter("userId", currentUser.getId());
 
@@ -61,12 +57,13 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
             bet.setMatch(match);
             bet.setGambler(user);
             bet.setBet(constructBet(dto));
-            getEntityManager().persist(bet); //flush
+            getEntityManager().persist(bet);
         } else {
             bet = getEntityManager().find(Bet.class, dto.getBetId());
             bet.setBet(constructBet(dto));
             getEntityManager().merge(bet);
         }
+        getEntityManager().flush();
     }
 
     private String constructBet(MatchDto dto) {
