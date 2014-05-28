@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,8 +44,10 @@ public class MatchServiceImpl implements MatchService {
     @Override
     @Transactional
     public void saveUserBets(List<MatchDto> dtos, User user) {
+        DateTime today = new DateTime();
         for (MatchDto dto : dtos) {
-            if (dto.getBet1() != null && dto.getBet2() != null) {
+            if ((dto.getBet1() != null && dto.getBet2() != null)
+                    && today.isBefore(dto.getMatchTime().getTime())) {
                 matchRepository.saveUserBet(dto, user);
             }
         }
@@ -60,10 +63,18 @@ public class MatchServiceImpl implements MatchService {
             match.setMatchId(longValue(dto.get("matchId")));
             match.setBet1(intValue(dto.get("bet1")));
             match.setBet2(intValue(dto.get("bet2")));
+            match.setMatchTime(dateValue(dto.get("matchTime")));
             matches.add(match);
         }
 
         return matches;
+    }
+
+    private Date dateValue(String val) {
+        if(StringUtils.isBlank(val)) {
+            return null;
+        }
+        return new Date(longValue(val));
     }
 
     private Long longValue(String val) {

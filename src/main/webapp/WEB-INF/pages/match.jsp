@@ -46,6 +46,7 @@
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
 					</td>
 					<td>
+						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
 						<fmt:formatDate value="${dto.matchTime}" pattern="hh:mm a"/>
 					</td>
 					<td>
