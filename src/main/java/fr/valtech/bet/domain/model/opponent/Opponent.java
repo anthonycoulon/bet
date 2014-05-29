@@ -13,7 +13,7 @@ public class Opponent {
     @Column(name = "NAME", nullable = false, length = 80)
     private String name;
 
-    @Column(name="GROUP",columnDefinition="char(1)")
+    @Column(name="GROUP_NAME",columnDefinition="char(1)")
     private String group;
 
     public String getGroup() {
