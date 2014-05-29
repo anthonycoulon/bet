@@ -1,6 +1,5 @@
 package fr.valtech.bet.service.user;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,12 +11,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<User> findUsers() {
-        return userRepository.findUsers();
-    }
 
     @Override
     @Transactional(readOnly = true)

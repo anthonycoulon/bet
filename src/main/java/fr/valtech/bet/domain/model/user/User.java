@@ -46,6 +46,9 @@ public class User {
     @OneToMany(mappedBy = "gambler")
     private List<Bet> bets;
 
+    @Column(name = "SCORE")
+    private Integer score;
+
     public Long getId() {
         return id;
     }
@@ -86,12 +89,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Role getRoles() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRoles(Role roles) {
-        this.role = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public List<Bet> getBets() {
@@ -100,6 +103,14 @@ public class User {
 
     public void setBets(List<Bet> bets) {
         this.bets = bets;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     @Override

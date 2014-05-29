@@ -39,11 +39,11 @@
                     <a href="<c:url value="match"/>">Matches</a>
                 </li>
                 <li id="menu-ranking" class="menu-item">
-                <a href="#">Ranking</a>
+                    <a href="<c:url value="ranking"/>">Ranking</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <li>
+                <li id="menu-account" class="menu-item">
                     <a href=<c:url value="/myaccount"/>>My account</a>
                 </li>
                 <li>

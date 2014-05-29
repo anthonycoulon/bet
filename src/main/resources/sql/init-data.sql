@@ -1,15 +1,17 @@
 insert into bet.ROLE (ID, ROLE) values (1, 'ROLE_ADMIN');
 insert into bet.ROLE (ID, ROLE) values (2, 'ROLE_USER');
 
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME) VALUES (1, 'Anthony', 'Coulon', 'antho', 'anthony.coulon@valtech.fr');
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME) VALUES (2, 'Fabrice', 'Tavilla', 'fab', 'fabrice.tavilla@valtech.fr');
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME) VALUES (3, 'Antho', 'Coulon', 'admin', 'admin');
-INSERT INTO bet.USER (FIRSTNAME, NAME, PASSWORD, USERNAME) VALUES ('Lyazid', 'Selmi', 'Lyaz', 'lyazid.selmi@valtech.fr');
+INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (1, 'Anthony', 'Coulon', 'antho', 'anthony.coulon@valtech.fr', 25);
+INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (2, 'Fabrice', 'Tavilla', 'fab', 'fabrice.tavilla@valtech.fr', 15);
+INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (3, 'Antho', 'Coulon', 'admin', 'admin', 0);
+INSERT INTO bet.USER (ID,FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (4, 'Lyazid', 'Selmi', 'Lyaz', 'lyazid.selmi@valtech.fr', 20);
+INSERT INTO bet.USER (ID,FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (5, 'André', 'Desousa', 'andre', 'andre.desousa@valtech.fr', 8);
 
 insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (1, 2);
 insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (2, 2);
 insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (3, 1);
 insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (4, 2);
+insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (5, 2);
 
 insert into bet.OPPONENT(id, NAME) values (1, 'France');
 insert into bet.OPPONENT(id, NAME) values (2, 'Suisse');
