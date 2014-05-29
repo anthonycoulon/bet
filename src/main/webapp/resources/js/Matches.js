@@ -18,6 +18,11 @@ Matches.prototype.disabledBet = function () {
 			$(matches[i]).find('td input.bet').attr('disabled','disabled')
 		}
 	}
+	if(matches.length==$('input.bet[disabled=disabled]').length/2) {
+		$('#save_button').attr('disabled', 'disabled');
+	}else {
+		$('#save_button').removeAttr('disabled');
+	}
 };
 
 Matches.prototype.saveBet = function() {
