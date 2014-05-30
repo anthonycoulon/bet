@@ -9,6 +9,8 @@
    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/img/favicon.ico"/>"/>
+
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bet.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap/css/bootstrap-theme.min.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" />
