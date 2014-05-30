@@ -1,7 +1,9 @@
 package fr.valtech.bet.service.account;
 
-/**
- * Created by fabricetavilla on 30/05/2014.
- */
-public class AccountService {
+import fr.valtech.bet.domain.model.user.dto.UserDto;
+import org.springframework.transaction.annotation.Transactional;
+
+public interface AccountService {
+    @Transactional(readOnly = true)
+    void updateUser(UserDto userDto);
 }
