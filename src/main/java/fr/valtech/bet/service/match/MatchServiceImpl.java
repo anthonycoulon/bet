@@ -30,9 +30,22 @@ public class MatchServiceImpl implements MatchService {
                 match.setBet1(Integer.valueOf(splitedBet[0]));
                 match.setBet2(Integer.valueOf(splitedBet[1]));
             }
+
+            calculateQuote(match);
         }
 
         return matches;
+    }
+
+    private void calculateQuote(MatchDto match) {
+        int total = match.getQuote1() + match.getQuote2();
+        if (total == 0) {
+            match.setQuote1(50);
+            match.setQuote2(50);
+        } else {
+            match.setQuote1(match.getQuote1() * 100 / total);
+            match.setQuote2(match.getQuote2() * 100 / total);
+        }
     }
 
     @Override
@@ -46,8 +59,7 @@ public class MatchServiceImpl implements MatchService {
     public void saveUserBets(List<MatchDto> dtos, User user) {
         DateTime today = new DateTime();
         for (MatchDto dto : dtos) {
-            if ((dto.getBet1() != null && dto.getBet2() != null)
-                    && today.isBefore(dto.getMatchTime().getTime())) {
+            if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 matchRepository.saveUserBet(dto, user);
             }
         }
@@ -71,7 +83,7 @@ public class MatchServiceImpl implements MatchService {
     }
 
     private Date dateValue(String val) {
-        if(StringUtils.isBlank(val)) {
+        if (StringUtils.isBlank(val)) {
             return null;
         }
         return new Date(longValue(val));

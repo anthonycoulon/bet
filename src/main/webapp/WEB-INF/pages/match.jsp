@@ -37,6 +37,7 @@
 			<th>Score</th>
 			<th>Bet</th>
 			<th>Opponent #2</th>
+			<th>Quotes</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
@@ -60,6 +61,18 @@
 					</td>
 					<td>
 						${dto.opponent2}
+					</td>
+					<td>
+						<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100"
+							     style="width: ${dto.quote1}%;">
+								${dto.quote1}%
+							</div>
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.quote2}" aria-valuemin="0" aria-valuemax="100"
+							     style="width: ${dto.quote2}%;">
+								${dto.quote2}%
+							</div>
+						</div>
 					</td>
 				</tr>
 			</c:forEach>
