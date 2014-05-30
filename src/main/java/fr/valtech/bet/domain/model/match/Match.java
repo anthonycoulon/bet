@@ -29,12 +29,12 @@ public class Match {
     @Column(name = "ID")
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "MATCH_OPPONENT1_FK")
+    @OneToOne(fetch = FetchType.EAGER) // don't put optinal = false here else it generates unique contraint on the key
+    @JoinColumn(name = "MATCH_OPPONENT1_FK",nullable = false)
     private Opponent opponent1;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "MATCH_OPPONENT2_FK")
+    @OneToOne(fetch = FetchType.EAGER) // don't put optinal = false here else it generates unique contraint on the key
+    @JoinColumn(name = "MATCH_OPPONENT2_FK",nullable = false)
     private Opponent opponent2;
 
     @Column(name = "MATCH_DATE", nullable = false)
@@ -44,11 +44,8 @@ public class Match {
     private Date timeDate;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MATCH_STADIUM_FK")
+    @JoinColumn(name="MATCH_STADIUM_FK", nullable = false)
     private Stadium stadium;
-
-    @Column(name="MATCH_STAGE")
-    private byte stage;
 
     @Column(name = "SCORE")
     private String score;
@@ -128,9 +125,6 @@ public class Match {
     public Stadium getStadium() {return stadium; }
 
     public void setStadium(Stadium stadium) {this.stadium = stadium;}
-    public byte getStage() {return stage;}
-
-    public void setStage(byte stage) {this.stage = stage;}
 
     public Integer getQuote1() {
         return quote1;
