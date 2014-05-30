@@ -43,9 +43,8 @@ Matches.prototype.saveBet = function() {
 	this.ajax.postData(this.contextUrl, bets, bind(this, function(_data) {
 		this.ajax.success();
 		for(var i=0; i<_data.length; i++) {
-			console.log(_data);
 			var q = _data[i];
-			var progress = $('tr input[type=hidden][value='+ q.matchId+']').parent().parent().find('td div.progress');
+			var progress = $('tr input.matchId[type=hidden][value='+ q.matchId+']').parent().parent().next().find('td div.progress');
 			progress.empty();
 			progress.append(Matches.maskQuote
 				.replace('${dto.quote1}', q.quote1)
