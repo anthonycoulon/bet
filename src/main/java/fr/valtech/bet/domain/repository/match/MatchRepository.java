@@ -10,5 +10,5 @@ public interface MatchRepository {
 
     List<Date> findDates();
 
-    void saveUserBet(MatchDto dto, User user);
+    fr.valtech.bet.domain.model.match.Match saveUserBet(MatchDto dto, User user);
 }

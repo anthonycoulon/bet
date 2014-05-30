@@ -3,6 +3,12 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/myaccount.css"/>" />
+	<script type="text/javascript">
+		$(function() {
+			$('.menu-item').removeClass('active');
+			$('#menu-account').addClass('active');
+		})
+	</script>
 </head>
 <body>
 <div class="container-fluid">

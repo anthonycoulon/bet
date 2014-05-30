@@ -71,7 +71,7 @@ Ajax.prototype.success = function() {
 Ajax.prototype.error = function(jqXHR) {
 	$('.alert-danger').show();
 	setTimeout(function(){
-		$('alert-danger').hide();
+		$('.alert-danger').hide();
 	}, 2000);
 };
 

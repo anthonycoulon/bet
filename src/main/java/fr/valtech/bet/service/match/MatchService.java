@@ -10,11 +10,11 @@ import fr.valtech.bet.domain.model.user.User;
 public interface MatchService {
 
     @Transactional(readOnly = true)
-    List<fr.valtech.bet.domain.model.match.dto.MatchDto> findMatchByDateByUser(Date date, User currentUser);
+    List<MatchDto> findMatchByDateByUser(Date date, User currentUser);
 
     List<Date> findDates();
 
-    void saveUserBets(List<MatchDto> dtos, User user);
+    List<fr.valtech.bet.domain.model.match.dto.QuotesDto> saveUserBets(List<MatchDto> dtos, User user);
 
     List<MatchDto> transform(List<Map<String, String>> dtos);
 }

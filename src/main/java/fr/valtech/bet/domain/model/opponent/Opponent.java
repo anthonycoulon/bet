@@ -11,7 +11,7 @@ public class Opponent {
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 80)
     private String name;
 
     @Column(name="GR") // don't put GROUP else there will be an SQL error

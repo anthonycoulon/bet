@@ -1,14 +1,19 @@
 package fr.valtech.bet.service.match;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
+import fr.valtech.bet.domain.model.match.Match;
+import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
+import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.match.MatchRepository;
 
@@ -29,9 +34,17 @@ public class MatchServiceImpl implements MatchService {
                 match.setBet1(Integer.valueOf(splitedBet[0]));
                 match.setBet2(Integer.valueOf(splitedBet[1]));
             }
+            match.setMatchLevel(MatchLevel.values()[match.getMatchLevelOrdinal()].getLabel());
+            calculateQuote(match);
         }
 
         return matches;
+    }
+
+    private void calculateQuote(MatchDto match) {
+        int total = match.getQuote1() + match.getQuote2();
+        match.setQuote1(percent(match.getQuote1(), total));
+        match.setQuote2(percent(match.getQuote2(), total));
     }
 
     @Override
@@ -42,13 +55,32 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     @Transactional
-    public void saveUserBets(List<MatchDto> dtos, User user) {
+    public List<QuotesDto> saveUserBets(List<MatchDto> dtos, User user) {
+        DateTime today = new DateTime();
+        List<QuotesDto> quotes = Lists.newArrayList();
         for (MatchDto dto : dtos) {
-            if (dto.getBet1() != null && dto.getBet2() != null) {
-                matchRepository.saveUserBet(dto, user);
+            if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
+                Match match = matchRepository.saveUserBet(dto, user);
+                quotes.add(transformQuotes(match));
             }
         }
+        return quotes;
+    }
 
+    private QuotesDto transformQuotes(Match match) {
+        QuotesDto quoteDto = new QuotesDto();
+        quoteDto.setMatchId(match.getId());
+        int total = match.getQuote1() + match.getQuote2();
+        quoteDto.setQuote1(percent(match.getQuote1(), total));
+        quoteDto.setQuote2(percent(match.getQuote2(), total));
+        return quoteDto;
+    }
+
+    private int percent(Integer value, int total) {
+        if (total == 0) {
+            return 50;
+        }
+        return new BigDecimal(value * 100).divide(new BigDecimal(total), 0, BigDecimal.ROUND_HALF_EVEN).intValue();
     }
 
     @Override
@@ -60,10 +92,18 @@ public class MatchServiceImpl implements MatchService {
             match.setMatchId(longValue(dto.get("matchId")));
             match.setBet1(intValue(dto.get("bet1")));
             match.setBet2(intValue(dto.get("bet2")));
+            match.setMatchTime(dateValue(dto.get("matchTime")));
             matches.add(match);
         }
 
         return matches;
+    }
+
+    private Date dateValue(String val) {
+        if (StringUtils.isBlank(val)) {
+            return null;
+        }
+        return new Date(longValue(val));
     }
 
     private Long longValue(String val) {
