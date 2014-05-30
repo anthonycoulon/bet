@@ -31,19 +31,16 @@
 	</section>
 	<table id="matches" class="table-responsive table table-striped">
 		<thead>
-			<th></th>
 			<th>Level</th>
 			<th>Time</th>
-			<th>Opponent #1</th>
+			<th>#1</th>
 			<th>Score</th>
-			<th>Bet</th>
-			<th>Opponent #2</th>
-			<th>Quotes</th>
+			<th>#2</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
 				<tr>
-					<td>
+					<td style="display: none;">
 						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
 					</td>
@@ -60,13 +57,18 @@
 					<td>
 						${dto.score}
 					</td>
-					<td class="bet">
-						<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
-					</td>
 					<td>
 						${dto.opponent2}
 					</td>
+				</tr>
+				<tr>
 					<td>
+						<b>Bet : </b>
+					</td>
+					<td colspan="2" class="bet">
+						<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
+					</td>
+					<td colspan="3">
 						<div class="progress">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100"
 							     style="width: ${dto.quote1}%;">

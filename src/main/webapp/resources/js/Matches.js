@@ -12,10 +12,10 @@ Matches.prototype.init = function() {
 Matches.prototype.disabledBet = function () {
 	var matches = $('#matches tbody tr');
 	var today = new Date();
-	for (var i = 0; i < matches.length; i++) {
+	for (var i = 0; i < matches.length; i+=2) {
 		var matchTime=$(matches[i]).find('td input.matchTime').val();
 		if(matchTime<=today.getTime()) {
-			$(matches[i]).find('td input.bet').attr('disabled','disabled')
+			$(matches[i]).next().find('td input.bet').attr('disabled','disabled')
 		}
 	}
 	if(matches.length==$('input.bet[disabled=disabled]').length/2) {
@@ -28,13 +28,13 @@ Matches.prototype.disabledBet = function () {
 Matches.prototype.saveBet = function() {
 	var matches = $('#matches tbody tr');
 	var bets=[];
-	for(var i=0; i<matches.length; i++){
+	for(var i=0; i<matches.length; i+=2){
 		var m = matches[i];
 		var bet={};
 		bet.betId = $(m).find('.betId').val();
 		bet.matchId = $(m).find('.matchId').val();
-		bet.bet1 = $(m).find('.bet1').val();
-		bet.bet2 = $(m).find('.bet2').val();
+		bet.bet1 = $(m).next().find('.bet1').val();
+		bet.bet2 = $(m).next().find('.bet2').val();
 		bet.matchTime = $(m).find('.matchTime').val();
 		bets.push(bet);
 	}
@@ -102,7 +102,7 @@ Matches.prototype.refreshMatches = function() {
 
 Matches.mask=
 '<tr>'+
-	'<td>'+
+	'<td style="display: none">'+
 		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
 	'</td>'+
@@ -119,13 +119,18 @@ Matches.mask=
 	'<td>'+
 		'${dto.score}'+
 	'</td>'+
-	'<td class="bet">'+
-		'<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>'+
-	'</td>'+
 	'<td>'+
 		'${dto.opponent2}'+
 	'</td>'+
-	'<td>' +
+'</tr>' +
+'<tr>' +
+	'<td>'+
+		'<b>Bet : </b>'+
+	'</td>'+
+	'<td colspan="2" class="bet">'+
+		'<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>'+
+	'</td>'+
+	'<td colspan="3">' +
 		'<div class="progress">'+
 			'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote1}%;">'+
 				'${dto.quote1}%'+
