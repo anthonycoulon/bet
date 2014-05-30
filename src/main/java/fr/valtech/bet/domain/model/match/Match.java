@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,15 +27,15 @@ public class Match {
     @Column(name = "ID")
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MATCH_OPPONENT1_FK")
     private Opponent opponent1;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MATCH_OPPONENT2_FK")
     private Opponent opponent2;
 
-    @Column(name = "MATCH_DATE")
+    @Column(name = "MATCH_DATE", nullable = false)
     private Date matchDate;
 
     @Column(name = "MATCH_TIME")
@@ -48,6 +49,10 @@ public class Match {
 
     @Column(name = "QUOTE2", columnDefinition = "integer default 0")
     private Integer quote2;
+
+    @Column(name = "MATCH_LEVEL", nullable = false)
+    @Enumerated
+    private MatchLevel matchLevel;
 
     @OneToMany
     @ForeignKey(name = "FK_MATCH_BET", inverseName = "FK_BET_MATCH")
@@ -127,6 +132,14 @@ public class Match {
         this.quote2 = quote2;
     }
 
+    public MatchLevel getMatchLevel() {
+        return matchLevel;
+    }
+
+    public void setMatchLevel(MatchLevel matchLevel) {
+        this.matchLevel = matchLevel;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -168,6 +181,7 @@ public class Match {
         sb.append(", score='").append(score).append('\'');
         sb.append(", quote1=").append(quote1);
         sb.append(", quote2=").append(quote2);
+        sb.append(", matchLevel=").append(matchLevel);
         sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();

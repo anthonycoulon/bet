@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.match.Match;
+import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.domain.model.user.User;
@@ -33,7 +34,7 @@ public class MatchServiceImpl implements MatchService {
                 match.setBet1(Integer.valueOf(splitedBet[0]));
                 match.setBet2(Integer.valueOf(splitedBet[1]));
             }
-
+            match.setMatchLevel(MatchLevel.values()[match.getMatchLevelOrdinal()].getLabel());
             calculateQuote(match);
         }
 

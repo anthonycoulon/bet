@@ -80,6 +80,7 @@ Matches.prototype.refreshMatches = function() {
 			var time = this.extracteTime(d.matchTime);
 			var match = Matches.mask.replace('${dto.opponent1}', d.opponent1)
 				.replace('${dto.matchTime}', time)
+				.replace('${dto.matchLevel}', d.matchLevel)
 				.replace('${dto.matchTime.time}', d.matchTime)
 				.replace('${dto.betId}', d.betId == null ? '' : d.betId)
 				.replace('${dto.matchId}', d.matchId)
@@ -104,6 +105,9 @@ Matches.mask=
 	'<td>'+
 		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
+	'</td>'+
+	'<td>'+
+		'${dto.matchLevel}'+
 	'</td>'+
 	'<td>' +
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +

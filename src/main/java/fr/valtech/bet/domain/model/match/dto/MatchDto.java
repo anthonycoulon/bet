@@ -28,6 +28,10 @@ public class MatchDto {
 
     private int quote2;
 
+    private Integer matchLevelOrdinal;
+
+    private String matchLevel;
+
     public Long getBetId() {
         return betId;
     }
@@ -124,6 +128,22 @@ public class MatchDto {
         this.quote2 = quote2;
     }
 
+    public Integer getMatchLevelOrdinal() {
+        return matchLevelOrdinal;
+    }
+
+    public void setMatchLevelOrdinal(Integer matchLevelOrdinal) {
+        this.matchLevelOrdinal = matchLevelOrdinal;
+    }
+
+    public void setMatchLevel(String matchLevel) {
+        this.matchLevel = matchLevel;
+    }
+
+    public String getMatchLevel() {
+        return matchLevel;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
@@ -139,7 +159,10 @@ public class MatchDto {
         sb.append(", matchTime=").append(matchTime);
         sb.append(", quote1=").append(quote1);
         sb.append(", quote2=").append(quote2);
+        sb.append(", matchLevelOrdinal=").append(matchLevelOrdinal);
+        sb.append(", matchLevel=").append(matchLevel);
         sb.append('}');
         return sb.toString();
     }
+
 }
