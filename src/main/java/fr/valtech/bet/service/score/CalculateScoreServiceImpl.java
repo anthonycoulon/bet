@@ -60,7 +60,7 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
                 }
 
             }
-            user.setScore(user.getScore()+scoreBet);
+            user.addScore(scoreBet);
             userRepository.save(user);
         }
     }

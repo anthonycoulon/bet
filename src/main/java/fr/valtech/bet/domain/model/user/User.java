@@ -152,10 +152,17 @@ public class User {
     }
 
     public void addBet(Bet bet) {
-        if(bets==null) {
-            bets= Lists.newArrayList();
+        if (bets == null) {
+            bets = Lists.newArrayList();
         }
         bet.setGambler(this);
         bets.add(bet);
+    }
+
+    public void addScore(Integer scoreBet) {
+        if (score == null) {
+            score = 0;
+        }
+        score += scoreBet;
     }
 }
