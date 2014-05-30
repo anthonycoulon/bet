@@ -1,5 +1,6 @@
 package fr.valtech.bet.service.match;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +46,8 @@ public class MatchServiceImpl implements MatchService {
             match.setQuote1(50);
             match.setQuote2(50);
         } else {
-            match.setQuote1(match.getQuote1() * 100 / total);
-            match.setQuote2(match.getQuote2() * 100 / total);
+            match.setQuote1(percent(match.getQuote1(), total));
+            match.setQuote2(percent(match.getQuote2(), total));
         }
     }
 
@@ -71,17 +72,21 @@ public class MatchServiceImpl implements MatchService {
     }
 
     private QuotesDto transformQuotes(Match match) {
-        QuotesDto quoteDto=new QuotesDto();
+        QuotesDto quoteDto = new QuotesDto();
         quoteDto.setMatchId(match.getId());
         int total = match.getQuote1() + match.getQuote2();
         if (total == 0) {
             quoteDto.setQuote1(50);
             quoteDto.setQuote2(50);
         } else {
-            quoteDto.setQuote1(match.getQuote1() * 100 / total);
-            quoteDto.setQuote2(match.getQuote2() * 100 / total);
+            quoteDto.setQuote1(percent(match.getQuote1(), total));
+            quoteDto.setQuote2(percent(match.getQuote2(), total));
         }
         return quoteDto;
+    }
+
+    private int percent(Integer value, int total) {
+        return new BigDecimal(value * 100).divide(new BigDecimal(total), 0, BigDecimal.ROUND_HALF_EVEN).intValue();
     }
 
     @Override
