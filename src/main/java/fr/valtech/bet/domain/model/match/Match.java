@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import fr.valtech.bet.domain.model.stadium.Stadium;
 import org.hibernate.annotations.ForeignKey;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.bet.Bet;
@@ -39,6 +41,13 @@ public class Match {
 
     @Column(name = "MATCH_TIME")
     private Date timeDate;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="MATCH_STADIUM_FK")
+    private Stadium stadium;
+
+    @Column(name="MATCH_STAGE")
+    private byte stage;
 
     @Column(name = "SCORE")
     private String score;
@@ -104,6 +113,13 @@ public class Match {
     public void setTimeDate(Date timeDate) {
         this.timeDate = timeDate;
     }
+
+    public Stadium getStadium() {return stadium; }
+
+    public void setStadium(Stadium stadium) {this.stadium = stadium;}
+    public byte getStage() {return stage;}
+
+    public void setStage(byte stage) {this.stage = stage;}
 
     @Override
     public boolean equals(Object o) {

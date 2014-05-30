@@ -3,28 +3,37 @@ package fr.valtech.bet.domain.model.opponent;
 import javax.persistence.*;
 
 @Entity
-@Table(name =  "OPPONENT")
+@Table(name = "OPPONENT")
 public class Opponent {
 
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private long id;
 
-    @Column(name = "NAME", nullable = false, length = 80)
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name="GROUP",columnDefinition="char(1)")
+    @Column(name="GR") // don't put GROUP else there will be an SQL error
     private String group;
 
-    public String getGroup() {
-        return group;
-    }
+    @Column(name = "RANK")
+    private byte rank;
 
+    @Column(name="FLAG")
+    private String flag;
+
+    public String getFlag(){return flag;}
+    public void setFlag(String flag){this.flag = flag;}
+
+    public String getGroup() {return group;}
     public void setGroup(String group) {
         this.group = group;
     }
 
+    public byte getRank() {return rank;}
 
+    public void setRank(byte rank) {this.rank = rank;}
     public long getId() {
         return id;
     }
