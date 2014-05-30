@@ -8,4 +8,8 @@ public interface UserRepository {
     List<User> findUsersOrderedByScore();
 
     User findUser(String username);
+
+    List<User> findUsers();
+
+    void save(User user);
 }
