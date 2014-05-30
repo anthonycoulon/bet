@@ -1,5 +1,6 @@
 package fr.valtech.bet.service.score;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -33,35 +34,54 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     public void calculateScore() {
         Date yesterday = new DateTime().toDateMidnight().minusDays(1).toDate();
         log.info("calculate score for matches of {}", yesterday);
-        List<User> users= userRepository.findUsers();
+        List<User> users = userRepository.findUsers();
         for (User user : users) {
             List<Bet> bets = betRepository.findBetUser(yesterday, user);
-            Integer scoreBet=0;
+            Integer scoreBet = 0;
             for (Bet bet : bets) {
-                Integer bet1 = Integer.valueOf(bet.getBet().split("-",2)[0]);
+                Integer bet1 = Integer.valueOf(bet.getBet().split("-", 2)[0]);
                 Integer bet2 = Integer.valueOf(bet.getBet().split("-", 2)[1]);
 
                 Match match = bet.getMatch();
-                if(StringUtils.isBlank(match.getScore())){
+                if (StringUtils.isBlank(match.getScore())) {
                     continue;
                 }
                 Integer score1 = Integer.valueOf(match.getScore().split("-", 2)[0]);
-                Integer score2 = Integer.valueOf(match.getScore().split("-",2)[1]);
+                Integer score2 = Integer.valueOf(match.getScore().split("-", 2)[1]);
 
-                if(bet1>bet2 && score1>score2) {
+                int total = match.getQuote1() + match.getQuote2();
+                int p1 = percent(match.getQuote1(), total);
+                int p2 = percent(match.getQuote2(), total);
+                if (bet1 > bet2 && score1 > score2) {
                     scoreBet++;
-                }else if(bet1<bet2 && score1<score2) {
+                    if(p1<45) {
+                        scoreBet+=3;
+                    }
+                } else if (bet1 < bet2 && score1 < score2) {
                     scoreBet++;
-                }else if(bet1.equals(bet2) && score1.equals(score2)) {
+                    if(p2<45) {
+                        scoreBet+=3;
+                    }
+                } else if (bet1.equals(bet2) && score1.equals(score2)) {
                     scoreBet++;
+                    if(p1>60 || p2>60) {
+                        scoreBet+=3;
+                    }
                 }
-                if(bet1.equals(score1) && bet2.equals(score2)) {
-                    scoreBet+=2;
+                if (bet1.equals(score1) && bet2.equals(score2)) {
+                    scoreBet += 2;
                 }
 
             }
             user.addScore(scoreBet);
             userRepository.save(user);
         }
+    }
+
+    private int percent(Integer value, int total) {
+        if (total == 0) {
+            return 50;
+        }
+        return new BigDecimal(value * 100).divide(new BigDecimal(total), 0, BigDecimal.ROUND_HALF_EVEN).intValue();
     }
 }

@@ -42,13 +42,8 @@ public class MatchServiceImpl implements MatchService {
 
     private void calculateQuote(MatchDto match) {
         int total = match.getQuote1() + match.getQuote2();
-        if (total == 0) {
-            match.setQuote1(50);
-            match.setQuote2(50);
-        } else {
-            match.setQuote1(percent(match.getQuote1(), total));
-            match.setQuote2(percent(match.getQuote2(), total));
-        }
+        match.setQuote1(percent(match.getQuote1(), total));
+        match.setQuote2(percent(match.getQuote2(), total));
     }
 
     @Override
@@ -75,17 +70,15 @@ public class MatchServiceImpl implements MatchService {
         QuotesDto quoteDto = new QuotesDto();
         quoteDto.setMatchId(match.getId());
         int total = match.getQuote1() + match.getQuote2();
-        if (total == 0) {
-            quoteDto.setQuote1(50);
-            quoteDto.setQuote2(50);
-        } else {
-            quoteDto.setQuote1(percent(match.getQuote1(), total));
-            quoteDto.setQuote2(percent(match.getQuote2(), total));
-        }
+        quoteDto.setQuote1(percent(match.getQuote1(), total));
+        quoteDto.setQuote2(percent(match.getQuote2(), total));
         return quoteDto;
     }
 
     private int percent(Integer value, int total) {
+        if (total == 0) {
+            return 50;
+        }
         return new BigDecimal(value * 100).divide(new BigDecimal(total), 0, BigDecimal.ROUND_HALF_EVEN).intValue();
     }
 
