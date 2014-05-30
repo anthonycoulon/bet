@@ -3,16 +3,15 @@
 
 <html>
 <head>
-    <title>Portail iSIS</title>       
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/errors.css"/>" />  
+    <title>Valtech Bet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="container">
-	<div id="message">
-		<h1>Le service sollicit&eacute; est temporairement indisponible au niveau du serveur que vous essayez de contacter.</h1>
-		<p>Cliquez <a href="mailto:List.Par-Support-Isis@socgen.com">ici</a> pour prendre contact avec l'administrateur </p>
-	</div>
-	<img id="error" src="<c:url value='/resources/img/errors/503.png' />">
+	<h1>500</h1>
+	<h3>The service requested is temporarily unavailable</h3>
+	<p>Click <a href="mailto:anthony.coulon@valtech.fr">here</a> to contact the administrator.</p>
 </div>
 </body>
 </html>

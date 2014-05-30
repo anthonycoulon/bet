@@ -3,16 +3,15 @@
 
 <html>
 <head>
-    <title>Portail iSIS</title>       
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/errors.css"/>" />  
+    <title>Valtech Bet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="container">
-	<div id="message">
-		<h1>La page demand&eacute;e n'a pas &eacute;t&eacute; trouv&eacute;e.</h1>
-		<p>Cliquez <a href="/sis-portal/">ici</a> pour retourner sur le portail </p>
-	</div>
-	<img id="error" src="<c:url value='/resources/img/errors/404.png' />">
+	<h1>404</h1>
+	<h3>The page you requested was not found.</h3>
+	<p>Click <a href="/bet/">here</a> to return to the site.</p>
 </div>
 </body>
 </html>
