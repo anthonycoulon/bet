@@ -6,10 +6,10 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
+import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
@@ -24,22 +24,24 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     public List<MatchDto> findMatchByDateByUser(Date date, User currentUser) {
 
         Session session = (Session) getEntityManager().getDelegate();
-        SQLQuery query = session
-                .createSQLQuery("SELECT m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," +
-                        " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime" +
-                        " FROM bet.MATCHS m" +
-                        "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK" +
-                        "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK" +
-                        "  LEFT JOIN (SELECT b.ID, mb.MATCH_ID, b.BET FROM bet.BET b" +
-                        "    INNER JOIN bet.MATCH_BET mb on b.ID=mb.BET_ID" +
-                        "  WHERE b.BET_USER_FK=:userId) b on b.MATCH_ID=m.ID" +
-                        " WHERE m.MATCH_DATE=:date");//
+        SQLQuery query = session.createSQLQuery("SELECT m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," //
+                + " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime," //
+                + " m.QUOTE1 as quote1, m.QUOTE2 as quote2" //
+                + " FROM bet.MATCHS m" //
+                + "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK" //
+                + "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK" //
+                + "  LEFT JOIN (SELECT b.ID, mb.MATCH_ID, b.BET FROM bet.BET b" //
+                + "    INNER JOIN bet.MATCH_BET mb on b.ID=mb.BET_ID" //
+                + "  WHERE b.BET_USER_FK=:userId) b on b.MATCH_ID=m.ID" //
+                + " WHERE m.MATCH_DATE=:date");//
         query.setParameter("date", date);
         query.setParameter("userId", currentUser.getId());
 
         query.addScalar("matchId", LongType.INSTANCE).addScalar("betId", LongType.INSTANCE).addScalar("opponent1", StringType.INSTANCE)
                 .addScalar("opponent2", StringType.INSTANCE).addScalar("score", StringType.INSTANCE).addScalar("bet", StringType.INSTANCE)
-                .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE).setResultTransformer(Transformers.aliasToBean(MatchDto.class));
+                .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE)
+                .addScalar("quote1", IntegerType.INSTANCE).addScalar("quote2", IntegerType.INSTANCE)
+                .setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
 

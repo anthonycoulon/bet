@@ -21,7 +21,12 @@ public class MatchDto {
     private Integer bet2;
 
     private Date matchDate;
+
     private Date matchTime;
+
+    private int quote1;
+
+    private int quote2;
 
     public Long getBetId() {
         return betId;
@@ -103,6 +108,22 @@ public class MatchDto {
         this.matchTime = matchTime;
     }
 
+    public int getQuote1() {
+        return quote1;
+    }
+
+    public void setQuote1(int quote1) {
+        this.quote1 = quote1;
+    }
+
+    public int getQuote2() {
+        return quote2;
+    }
+
+    public void setQuote2(int quote2) {
+        this.quote2 = quote2;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
@@ -116,6 +137,8 @@ public class MatchDto {
         sb.append(", bet2=").append(bet2);
         sb.append(", matchDate=").append(matchDate);
         sb.append(", matchTime=").append(matchTime);
+        sb.append(", quote1=").append(quote1);
+        sb.append(", quote2=").append(quote2);
         sb.append('}');
         return sb.toString();
     }

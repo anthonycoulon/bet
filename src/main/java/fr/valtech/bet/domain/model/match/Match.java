@@ -27,11 +27,11 @@ public class Match {
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MATCH_OPPONENT1_FK")
+    @JoinColumn(name = "MATCH_OPPONENT1_FK")
     private Opponent opponent1;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MATCH_OPPONENT2_FK")
+    @JoinColumn(name = "MATCH_OPPONENT2_FK")
     private Opponent opponent2;
 
     @Column(name = "MATCH_DATE")
@@ -42,6 +42,12 @@ public class Match {
 
     @Column(name = "SCORE")
     private String score;
+
+    @Column(name = "QUOTE1", columnDefinition = "integer default 0")
+    private Integer quote1;
+
+    @Column(name = "QUOTE2", columnDefinition = "integer default 0")
+    private Integer quote2;
 
     @OneToMany
     @ForeignKey(name = "FK_MATCH_BET", inverseName = "FK_BET_MATCH")
@@ -105,17 +111,39 @@ public class Match {
         this.timeDate = timeDate;
     }
 
+    public Integer getQuote1() {
+        return quote1;
+    }
+
+    public void setQuote1(Integer quote1) {
+        this.quote1 = quote1;
+    }
+
+    public Integer getQuote2() {
+        return quote2;
+    }
+
+    public void setQuote2(Integer quote2) {
+        this.quote2 = quote2;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Match match = (Match) o;
 
-        if (id != match.id) return false;
-        if (matchDate != null ? !matchDate.equals(match.matchDate) : match.matchDate != null) return false;
-        if (opponent1 != null ? !opponent1.equals(match.opponent1) : match.opponent1 != null) return false;
-        if (opponent2 != null ? !opponent2.equals(match.opponent2) : match.opponent2 != null) return false;
+        if (id != match.id)
+            return false;
+        if (matchDate != null ? !matchDate.equals(match.matchDate) : match.matchDate != null)
+            return false;
+        if (opponent1 != null ? !opponent1.equals(match.opponent1) : match.opponent1 != null)
+            return false;
+        if (opponent2 != null ? !opponent2.equals(match.opponent2) : match.opponent2 != null)
+            return false;
 
         return true;
     }
@@ -138,14 +166,16 @@ public class Match {
         sb.append(", matchDate=").append(matchDate);
         sb.append(", timeDate=").append(timeDate);
         sb.append(", score='").append(score).append('\'');
+        sb.append(", quote1=").append(quote1);
+        sb.append(", quote2=").append(quote2);
         sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
     }
 
     public void addBet(Bet bet) {
-        if(bets==null) {
-            bets= Lists.newArrayList();
+        if (bets == null) {
+            bets = Lists.newArrayList();
         }
         bet.setMatch(this);
         bets.add(bet);
