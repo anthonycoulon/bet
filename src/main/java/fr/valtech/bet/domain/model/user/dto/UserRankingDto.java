@@ -2,11 +2,21 @@ package fr.valtech.bet.domain.model.user.dto;
 
 public class UserRankingDto {
 
+    private Long userId;
+
     private Integer rank;
 
     private String userName;
 
     private Integer score;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Integer getRank() {
         return rank;
@@ -35,7 +45,8 @@ public class UserRankingDto {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserRankingDto{");
-        sb.append("rank=").append(rank);
+        sb.append("userId=").append(userId);
+        sb.append(", rank=").append(rank);
         sb.append(", userName='").append(userName).append('\'');
         sb.append(", score=").append(score);
         sb.append('}');

@@ -11,21 +11,34 @@
 	</script>
 </head>
 <body>
+${userId}
 	<table id="rankins" class="table-responsive table table-striped">
 		<thead>
-			<th></th>
+			<th>#</th>
 			<th>Rank</th>
 			<th>User</th>
 			<th>Score</th>
 		</thead>
 		<tbody>
 			<c:forEach begin="0" end="${fn:length(users)-1}" varStatus="u">
-				<tr>
-					<td></td>
-					<td>${users[u.index].rank}</td>
-					<td>${users[u.index].userName}</td>
-					<td>${users[u.index].score}</td>
-				</tr>
+				<c:choose>
+					<c:when test="${users[u.index].userId==userId}">
+						<tr style="font-weight:bold; color: #5cb85c;">
+							<td>${users[u.index].userId}</td>
+							<td>${users[u.index].rank}</td>
+							<td>${users[u.index].userName}</td>
+							<td>${users[u.index].score}</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>${users[u.index].userId}</td>
+							<td>${users[u.index].rank}</td>
+							<td>${users[u.index].userName}</td>
+							<td>${users[u.index].score}</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</tbody>
 	</table>

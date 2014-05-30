@@ -27,6 +27,7 @@ public class RankingServiceImpl implements RankingService {
         int rank = 1;
         for (User user : users) {
             UserRankingDto dto = new UserRankingDto();
+            dto.setUserId(user.getId());
             dto.setRank(rank++);
             dto.setScore(user.getScore());
             dto.setUserName(user.getFirstName() + " " + user.getName());
