@@ -3,17 +3,16 @@
 
 <html>
 <head>
-    <title>Portail iSIS</title>       
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/errors.css"/>" />  
+    <title>Valtech Bet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="container">
-	<div id="message">
-		<h1>La page n&eacute;cessite une identification de l'utilisateur.</h1>
-		<p>Cela signifie que la page que vous demandez est prot&eacute;g&eacute;e par un mot de passe.</p>
-		<p>Cliquez <a href="mailto:List.Par-Support-Isis@socgen.com">ici</a> pour prendre contact avec l'administrateur </p>
-	</div>
-	<img id="error" src="<c:url value='/resources/img/errors/401.png' />">
+	<h1>401</h1>
+	<h3>The page requires a user identification.</h3>
+	<p>This means that the page you have requested is protected by a password.</p>
+	<p>Click <a href="mailto:anthony.coulon@valtech.fr">here</a> to contact the administrator.</p>
 </div>
 </body>
 </html>
