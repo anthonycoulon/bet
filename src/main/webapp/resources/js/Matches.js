@@ -39,7 +39,24 @@ Matches.prototype.saveBet = function() {
 		bets.push(bet);
 	}
 
-	new Ajax().postData(this.contextUrl, bets);
+	this.ajax = new Ajax();
+	this.ajax.postData(this.contextUrl, bets, bind(this, function(_data) {
+		this.ajax.success();
+		for(var i=0; i<_data.length; i++) {
+			console.log(_data);
+			var q = _data[i];
+			var progress = $('tr input[type=hidden][value='+ q.matchId+']').parent().parent().find('td div.progress');
+			progress.empty();
+			progress.append(Matches.maskQuote
+				.replace('${dto.quote1}', q.quote1)
+				.replace('${dto.quote1}', q.quote1)
+				.replace('${dto.quote1}', q.quote1)
+				.replace('${dto.quote2}', q.quote2)
+				.replace('${dto.quote2}', q.quote2)
+				.replace('${dto.quote2}', q.quote2)
+			);
+		}
+	}));
 };
 
 Matches.prototype.extracteTime = function (timestamp) {
@@ -115,3 +132,11 @@ Matches.mask=
 		'</div>'+
 	'</td>'+
 '</tr>';
+
+Matches.maskQuote=
+'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote1}%;">'+
+	'${dto.quote1}%'+
+'</div>'+
+'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.quote2}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote2}%;">'+
+	'${dto.quote2}%'+
+'</div>';

@@ -51,21 +51,61 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     }
 
     @Override
-    public void saveUserBet(MatchDto dto, User user) {
+    public Match saveUserBet(MatchDto dto, User user) {
         Bet bet;
+        Match match = getEntityManager().find(Match.class, dto.getMatchId());
         if (dto.getBetId() == null) {
             bet = new Bet();
-            Match match = getEntityManager().find(Match.class, dto.getMatchId());
             bet.setMatch(match);
             bet.setGambler(user);
             bet.setBet(constructBet(dto));
             getEntityManager().persist(bet);
+
+            updateMatchQuotes(dto, match, null, null);
+
         } else {
             bet = getEntityManager().find(Bet.class, dto.getBetId());
+
+            Integer bet1 = Integer.valueOf(bet.getBet().split("-", 2)[0]);
+            Integer bet2 = Integer.valueOf(bet.getBet().split("-", 2)[1]);
+
             bet.setBet(constructBet(dto));
             getEntityManager().merge(bet);
+
+            updateMatchQuotes(dto, match, bet1, bet2);
         }
         getEntityManager().flush();
+
+        return match;
+    }
+
+    private Match updateMatchQuotes(MatchDto dto, Match match, Integer bet1, Integer bet2) {
+        if (bet1 == null || bet2 == null) {
+            if (dto.getBet1() > dto.getBet2()) {
+                match.addQuote1(1);
+            } else if (dto.getBet1() < dto.getBet2()) {
+                match.addQuote2(1);
+            }
+        } else {
+            if (dto.getBet1() > dto.getBet2() && bet1 <= bet2) {
+                match.addQuote1(1);
+                if(!bet1.equals(bet2)) {
+                    match.addQuote2(-1);
+                }
+            } else if (dto.getBet1() < dto.getBet2() && bet1 >= bet2) {
+                match.addQuote2(1);
+                if(!bet1.equals(bet2)) {
+                    match.addQuote1(-1);
+                }
+            } else if (dto.getBet1().equals(dto.getBet2()) && bet1 < bet2) {
+                match.addQuote2(-1);
+            } else if (dto.getBet1().equals(dto.getBet2()) && bet1 > bet2) {
+                match.addQuote1(-1);
+            }
+        }
+        getEntityManager().merge(match);
+
+        return match;
     }
 
     private String constructBet(MatchDto dto) {

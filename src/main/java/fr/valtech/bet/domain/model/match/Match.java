@@ -180,4 +180,18 @@ public class Match {
         bet.setMatch(this);
         bets.add(bet);
     }
+
+    public void addQuote1(int value) {
+        if(quote1==null) {
+            quote1=0;
+        }
+        quote1+=value;
+    }
+
+    public void addQuote2(int value) {
+        if(quote2==null) {
+            quote2=0;
+        }
+        quote2+=value;
+    }
 }

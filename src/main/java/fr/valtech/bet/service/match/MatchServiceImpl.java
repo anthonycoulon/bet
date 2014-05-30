@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
+import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
+import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.match.MatchRepository;
 
@@ -56,14 +58,30 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     @Transactional
-    public void saveUserBets(List<MatchDto> dtos, User user) {
+    public List<QuotesDto> saveUserBets(List<MatchDto> dtos, User user) {
         DateTime today = new DateTime();
+        List<QuotesDto> quotes = Lists.newArrayList();
         for (MatchDto dto : dtos) {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
-                matchRepository.saveUserBet(dto, user);
+                Match match = matchRepository.saveUserBet(dto, user);
+                quotes.add(transformQuotes(match));
             }
         }
+        return quotes;
+    }
 
+    private QuotesDto transformQuotes(Match match) {
+        QuotesDto quoteDto=new QuotesDto();
+        quoteDto.setMatchId(match.getId());
+        int total = match.getQuote1() + match.getQuote2();
+        if (total == 0) {
+            quoteDto.setQuote1(50);
+            quoteDto.setQuote2(50);
+        } else {
+            quoteDto.setQuote1(match.getQuote1() * 100 / total);
+            quoteDto.setQuote2(match.getQuote2() * 100 / total);
+        }
+        return quoteDto;
     }
 
     @Override
