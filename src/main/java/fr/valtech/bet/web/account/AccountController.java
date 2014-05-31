@@ -30,6 +30,11 @@ public class AccountController {
         return mav;
     }
 
+    @RequestMapping(value = "new")
+    public ModelAndView newAccount() {
+        return new ModelAndView("newaccount");
+    }
+
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
