@@ -38,20 +38,22 @@
 			<span class="navbar-brand">Valtech Bet</span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li id="menu-match" class="menu-item">
-                    <a href="<c:url value="match"/>">Matches</a>
-                </li>
-                <li id="menu-ranking" class="menu-item">
-                    <a href="<c:url value="ranking"/>">Ranking</a>
-                </li>
-                <li id="menu-account" class="menu-item">
-                    <a href=<c:url value="/myaccount"/>>My account</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
-                </li>
-            </ul>
+	        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+		        <ul class="nav navbar-nav">
+		            <li id="menu-match" class="menu-item">
+		                <a href="<c:url value="match"/>">Matches</a>
+		            </li>
+		            <li id="menu-ranking" class="menu-item">
+		                <a href="<c:url value="ranking"/>">Ranking</a>
+		            </li>
+		            <li id="menu-account" class="menu-item">
+		                <a href=<c:url value="/myaccount"/>>My account</a>
+		            </li>
+		            <li>
+		                <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
+		            </li>
+		        </ul>
+	        </sec:authorize>
          </div>
 	</nav>
 		<div class="alert alert-success bet-alert">Successfully saved</div>
