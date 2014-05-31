@@ -11,7 +11,6 @@
 	</script>
 </head>
 <body>
-${userId}
 	<table id="rankins" class="table-responsive table table-striped">
 		<thead>
 			<th>#</th>

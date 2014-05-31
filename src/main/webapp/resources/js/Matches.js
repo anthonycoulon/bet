@@ -127,7 +127,7 @@ Matches.mask=
 		'<b>Bet : </b>'+
 	'</td>'+
 	'<td colspan="2" class="bet">'+
-		'<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>'+
+		'<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>'+
 	'</td>'+
 	'<td colspan="2">' +
 		'<div class="progress">'+

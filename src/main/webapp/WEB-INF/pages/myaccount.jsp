@@ -22,37 +22,37 @@
         <div class="control-group">
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
-                <input type="text" id="firstName" value="${user.firstName}">
+                <input type="text" class="form-control" id="firstName" value="${user.firstName}">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="name">Last Name</label>
             <div class="controls">
-                <input type="text" id="name" value="${user.name}">
+                <input type="text" class="form-control" id="name" value="${user.name}">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="username">Email</label>
             <div class="controls">
-                <input type="text" id="username" value="${user.username}" disabled>
+                <input type="text" class="form-control" id="username" value="${user.username}" disabled>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="currentPassword">Current Password</label>
             <div class="controls">
-                <input type="password" id="currentPassword" placeholder="Current Password">
+                <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="newPassword">New Password</label>
             <div class="controls">
-                <input type="password" id="newPassword" placeholder="New Password">
+                <input type="password" class="form-control" id="newPassword" placeholder="New Password">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="confirmation">Confirmation</label>
             <div class="controls">
-                <input type="password" id="confirmation" placeholder="Confirmation">
+                <input type="password" class="form-control" id="confirmation" placeholder="Confirmation">
             </div>
         </div>
     </form>
