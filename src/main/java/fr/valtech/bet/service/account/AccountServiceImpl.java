@@ -17,18 +17,14 @@ public class AccountServiceImpl implements AccountService{
     @Override
     @Transactional(readOnly = true)
     public void updateUser(UserDto userDto) {
-        userService.save(transformDtoToEntity(userDto));
-    }
-
-    private User transformDtoToEntity(UserDto userDto) {
         MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
 
-        User user = new User();
-        user.setId(userDto.getId());
+        User user = userService.findUserById(userDto.getId());
         user.setUsername(userDto.getUsername());
         user.setName(userDto.getName());
         user.setFirstName(userDto.getFirstName());
         user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
-        return user;
+
+        userService.save(user);
     }
 }

@@ -8,6 +8,9 @@ public interface UserService {
     User findUser(String username);
 
     @Transactional(readOnly = true)
+    User findUserById(Long id);
+
+    @Transactional(readOnly = true)
     void save(User user);
 
     User getConnectedUser();

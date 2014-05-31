@@ -2,6 +2,7 @@ package fr.valtech.bet.web.account;
 
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
+import fr.valtech.bet.service.account.AccountService;
 import fr.valtech.bet.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,9 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AccountService accountService;
+
     @RequestMapping
     public ModelAndView myAccount() {
         ModelAndView mav = new ModelAndView("myaccount");
@@ -27,9 +31,9 @@ public class AccountController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
-        System.out.println("dtos = " + userDto);
+        accountService.updateUser(userDto);
     }
 
     private User getUser() {
