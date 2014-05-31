@@ -21,8 +21,8 @@ public class Opponent {
     @Column(name = "GR")
     private String group;
 
-    @Column(name = "RANK")
-    private byte rank;
+    @Column(name = "RANK", columnDefinition = "tinyint")
+    private Integer rank;
 
     @Column(name = "FLAG")
     private String flag;
@@ -43,11 +43,11 @@ public class Opponent {
         this.group = group;
     }
 
-    public byte getRank() {
+    public Integer getRank() {
         return rank;
     }
 
-    public void setRank(byte rank) {
+    public void setRank(Integer rank) {
         this.rank = rank;
     }
 
