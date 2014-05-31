@@ -68,7 +68,7 @@
 					<td colspan="2" class="bet">
 						<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
 					</td>
-					<td colspan="3">
+					<td colspan="2">
 						<div class="progress">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100"
 							     style="width: ${dto.quote1}%;">
