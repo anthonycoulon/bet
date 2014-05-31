@@ -49,6 +49,11 @@
 		            <li id="menu-account" class="menu-item">
 		                <a href=<c:url value="/myaccount"/>>My account</a>
 		            </li>
+			        <sec:authorize access="hasRole('ROLE_ADMIN')">
+			            <li id="menu-admin" class="menu-item">
+			                <a href=<c:url value="/admin"/>>Administration</a>
+			            </li>
+			        </sec:authorize>
 		            <li>
 		                <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
 		            </li>

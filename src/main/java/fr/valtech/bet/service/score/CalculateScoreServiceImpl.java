@@ -48,6 +48,8 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
                 scoreBet = calculateScore(bet, scoreBet, match);
                 scoreBet = calculateBonusLevel(scoreBet, match);
                 scoreUser+=scoreBet;
+                bet.setConsidered(true);
+                betRepository.save(bet);
             }
             user.addScore(scoreUser);
             userRepository.save(user);
