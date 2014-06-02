@@ -47,7 +47,8 @@
     </form>
     <div class="control-group">
         <div class="controls">
-            <input type="button" value="Save" id="saveBtn" class="btn btn-large btn-primary"/>
+            <button type="submit" id="saveBtn" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn" id="cancelBtn">Cancel</button>
         </div>
     </div>
 </div>

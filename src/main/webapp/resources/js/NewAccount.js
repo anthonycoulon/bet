@@ -11,6 +11,7 @@ NewAccount.prototype.init = function() {
     });
 
     $('#saveBtn').click(bind(this, this.saveUser));
+    $('#cancelBtn').click(bind(this, this.getLastPage));
 };
 
 NewAccount.prototype.saveUser = function () {
@@ -30,4 +31,8 @@ NewAccount.prototype.saveUser = function () {
         $("#newPassword").empty();
         $("#confirmation").empty();
     }));
+};
+
+NewAccount.prototype.getLastPage = function () {
+    history.go(-1);
 };

@@ -1,14 +1,14 @@
 MyAccount = function() {
     this.contextUrl='/bet/myaccount/';
 };
+
 MyAccount.prototype.init = function() {
     $('#saveBtn').click(bind(this, this.saveUser));
+    $('#cancelBtn').click(bind(this, this.getLastPage));
 };
 
 MyAccount.prototype.saveUser = function () {
-
     var user={};
-
     user.id = $("#id").val();
     user.firstName = $("#firstName").val();
     user.name = $("#name").val();
@@ -24,4 +24,8 @@ MyAccount.prototype.saveUser = function () {
         $("#newPassword").empty();
         $("#confirmation").empty();
     }));
+};
+
+MyAccount.prototype.getLastPage = function () {
+    history.go(-1);
 };
