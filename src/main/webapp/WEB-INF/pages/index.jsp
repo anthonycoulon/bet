@@ -12,6 +12,7 @@
         <input type="password" id="j_password" name="j_password" class="input-block-level form-control" placeholder="Password"/>
         <input type="submit" value="Sign in"
                class="btn btn-large btn-primary"/>
+        <span><a href="<c:url value="/myaccount/new"/>">Create a new account</a></span>
         <c:if test="${error!=null}">
             <span class="error">${error}</span>
         </c:if>

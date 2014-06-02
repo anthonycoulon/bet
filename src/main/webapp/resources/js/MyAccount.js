@@ -9,7 +9,6 @@ MyAccount.prototype.saveUser = function () {
 
     var user={};
 
-    
     user.id = $("#id").val();
     user.firstName = $("#firstName").val();
     user.name = $("#name").val();
