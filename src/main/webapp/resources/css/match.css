@@ -2,7 +2,12 @@ input.bet {
     width: 30px;
 }
 
-input.form-control {
-    display: inherit !important;
-    padding: 0px 5px !important;
+.form-control {
+    display: inline-block !important;
+    padding: 0 5px !important;
+}
+
+select#dates {
+    width: 110px;
+    margin-bottom: 5px;
 }

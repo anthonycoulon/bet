@@ -39,7 +39,7 @@
 						${match.opponent1}
 					</td>
 					<td>
-						<input type="text" id="score" value="${match.score}" class="form-control" style="width:inherit"/>
+						<input type="text" id="score" value="${match.score}" class="form-control" style="width:70px"/>
 					</td>
 					<td>
 						${match.opponent2}
