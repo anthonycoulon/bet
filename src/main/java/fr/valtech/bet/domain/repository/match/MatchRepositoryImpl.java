@@ -33,7 +33,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
                 + "  LEFT JOIN (SELECT b.ID, mb.MATCH_ID, b.BET FROM bet.BET b" //
                 + "    INNER JOIN bet.MATCH_BET mb on b.ID=mb.BET_ID" //
                 + "  WHERE b.BET_USER_FK=:userId) b on b.MATCH_ID=m.ID" //
-                + " WHERE m.MATCH_DATE=:date");//
+                + " WHERE m.MATCH_DATE=:date ORDER BY m.MATCH_TIME");//
         query.setParameter("date", date);
         query.setParameter("userId", currentUser.getId());
 
