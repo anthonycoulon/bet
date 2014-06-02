@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand">Valtech Bet</span>
+			<span class="navbar-brand"><a href="/">Valtech Bet</a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
 	        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
@@ -45,6 +45,9 @@
 		            </li>
 		            <li id="menu-ranking" class="menu-item">
 		                <a href="<c:url value="ranking"/>">Ranking</a>
+		            </li>
+		            <li id="menu-rules" class="menu-item">
+		                <a href=<c:url value="/rules"/>>Rules</a>
 		            </li>
 		            <li id="menu-account" class="menu-item">
 		                <a href=<c:url value="/myaccount"/>>My account</a>

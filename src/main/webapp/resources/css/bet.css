@@ -16,3 +16,6 @@ body {
     margin-bottom: 0 !important;
 }
 
+.navbar-brand a:hover {
+    text-decoration: none;
+};
