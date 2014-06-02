@@ -17,4 +17,8 @@ public interface MatchService {
     List<fr.valtech.bet.domain.model.match.dto.QuotesDto> saveUserBets(List<MatchDto> dtos, User user);
 
     List<MatchDto> transform(List<Map<String, String>> dtos);
+
+    List<fr.valtech.bet.domain.model.match.dto.AdminMatchDto> findMatches();
+
+    void updateScoreMatch(List<Map<String,String>> dtos);
 }

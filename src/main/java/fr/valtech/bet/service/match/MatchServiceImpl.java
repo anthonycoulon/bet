@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
+import fr.valtech.bet.domain.model.match.dto.AdminMatchDto;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.domain.model.user.User;
@@ -97,6 +98,37 @@ public class MatchServiceImpl implements MatchService {
         }
 
         return matches;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AdminMatchDto> findMatches() {
+        return transformAdminMatch(matchRepository.findMatches());
+    }
+
+    @Override
+    @Transactional
+    public void updateScoreMatch(List<Map<String, String>> dtos) {
+        for (Map<String, String> dto : dtos) {
+            Match match= matchRepository.findMatche(Long.parseLong(dto.get("id")));
+            match.setScore(dto.get("score"));
+            matchRepository.updateScoreMatch(match);
+        }
+
+    }
+
+    private List<AdminMatchDto> transformAdminMatch(List<Match> matches) {
+        List<AdminMatchDto> dtos= Lists.newArrayList();
+        for (Match match : matches) {
+            AdminMatchDto dto=new AdminMatchDto();
+            dto.setId(match.getId());
+            dto.setMatchTime(match.getMatchDate());
+            dto.setOpponent1(match.getOpponent1().getName());
+            dto.setOpponent2(match.getOpponent2().getName());
+            dto.setScore(match.getScore());
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
     private Date dateValue(String val) {
