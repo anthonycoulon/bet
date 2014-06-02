@@ -69,18 +69,18 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
 
         if (bet1 > bet2 && score1 > score2) {
             scoreBet++;
-            if(p1<45) {
-                scoreBet+=3;
+            if(p1<40) {
+                scoreBet+=2;
             }
         } else if (bet1 < bet2 && score1 < score2) {
             scoreBet++;
-            if(p2<45) {
-                scoreBet+=3;
+            if(p2<40) {
+                scoreBet+=2;
             }
         } else if (bet1.equals(bet2) && score1.equals(score2)) {
             scoreBet++;
-            if(p1>60 || p2>60) {
-                scoreBet+=3;
+            if(p1>65 || p2>65) {
+                scoreBet+=2;
             }
         }
         if (bet1.equals(score1) && bet2.equals(score2)) {
