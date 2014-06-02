@@ -3,11 +3,11 @@ NewAccount = function() {
 };
 NewAccount.prototype.init = function() {
     $("#firstName").keyup(function(){
-        $("#usernameF").val(this.value);
+        $("#usernameF").val(this.value.toLowerCase());
     });
 
     $("#name").keyup(function(){
-        $("#usernameN").val(this.value);
+        $("#usernameN").val(this.value.toLowerCase());
     });
 
     $('#saveBtn').click(bind(this, this.saveUser));
@@ -30,6 +30,9 @@ NewAccount.prototype.saveUser = function () {
         this.ajax.success();
         $("#newPassword").empty();
         $("#confirmation").empty();
+	    setTimeout(function(){
+	        window.location='/bet/login';
+	    }, 2000);
     }));
 };
 

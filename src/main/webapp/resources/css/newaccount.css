@@ -1,3 +1,11 @@
 #saveBtn, #cancelBtn {
     margin-top: 20px;
 }
+
+input.form-control {
+    width: 160px !important;
+}
+
+input#usernameF, input#usernameN {
+    display: inline-block;
+}
