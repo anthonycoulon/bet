@@ -4,14 +4,11 @@ import fr.valtech.bet.domain.model.user.Role;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
 import fr.valtech.bet.service.user.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import fr.valtech.bet.domain.model.user.Role;
-import fr.valtech.bet.domain.model.user.User;
-import fr.valtech.bet.domain.model.user.dto.UserDto;
-import fr.valtech.bet.service.user.UserService;
 
 @Service
 public class AccountServiceImpl implements AccountService{

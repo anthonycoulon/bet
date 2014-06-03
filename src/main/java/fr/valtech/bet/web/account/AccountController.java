@@ -3,6 +3,7 @@ package fr.valtech.bet.web.account;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
 import fr.valtech.bet.service.account.AccountService;
 import fr.valtech.bet.service.user.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +37,14 @@ public class AccountController {
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
-        userDto.setUsername(userService.getConnectedUser().getUsername());
-        accountService.updateUser(userDto);
+        //TODO: To refactore
+        if(StringUtils.isBlank(userDto.getUsername())){
+            userDto.setUsername(userService.getConnectedUser().getUsername());
+            if(userDto.getNewPassword().equals(userDto.getConfirmation())){
+                accountService.updateUser(userDto);
+            }
+        }else {
+            accountService.updateUser(userDto);
+        }
     }
 }
