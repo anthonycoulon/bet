@@ -41,7 +41,7 @@ MyAccount.prototype.saveUser = function () {
             $('.error').text("Please type your current password.")
         }
     }else {
-        $('.error').text("Please type your firstname and your lastname")
+        $('.error').text("Please type your firstname and your lastname.")
     }
 };
 
