@@ -45,6 +45,32 @@
                 <li id="menu-ranking" class="menu-item">
                     <a href="<c:url value="ranking"/>">Ranking</a>
                 </li>
+                <li class="dropdown menu-item"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="menu-item">
+                            <ul class="list-inline">
+                                <li><a href="calendar?level=A">Group A</a></li>
+                                <li><a href="calendar?level=B">Group B</a></li>
+                                <li><a href="calendar?level=C">Group C</a></li>
+                                <li><a href="calendar?level=D">Group D</a></li>
+                                <li><a href="calendar?level=E">Group E</a></li>
+                                <li><a href="calendar?level=F">Group F</a></li>
+                                <li><a href="calendar?level=G">Group G</a></li>
+                                <li><a href="calendar?level=H">Group H</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="calendar?level=EF">Eighth Final</a></li>
+                        <li class="divider"></li>
+                        <li><a href="calendar?level=QF">Quarter Final</a></li>
+                        <li class="divider"></li>
+                        <li><a href="calendar?level=SF">Semi Final</a></li>
+                        <li class="divider"></li>
+                        <li><a href="calendar?level=TP">Third Place</a></li>
+                        <li class="divider"></li>
+                        <li><a href="calendar?level=Final">Final</a></li>
+                    </ul>
+                </li>
                 <li id="menu-account" class="menu-item">
                     <a href=<c:url value="/myaccount"/>>My account</a>
                 </li>

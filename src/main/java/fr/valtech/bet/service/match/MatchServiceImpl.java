@@ -67,6 +67,25 @@ public class MatchServiceImpl implements MatchService {
         return quotes;
     }
 
+
+    @Override
+    public List<Match> findByLevel(String level) {
+        switch (level) {
+            case "A":
+            case "B":
+            case "C":
+            case "D":
+            case "E":
+            case "F":
+            case "G":
+            case "H":
+                return matchRepository.findByGroup(level);
+
+            default:
+                return null;
+        }
+    }
+
     private QuotesDto transformQuotes(Match match) {
         QuotesDto quoteDto = new QuotesDto();
         quoteDto.setMatchId(match.getId());

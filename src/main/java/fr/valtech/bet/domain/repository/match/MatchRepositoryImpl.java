@@ -2,24 +2,18 @@ package fr.valtech.bet.domain.repository.match;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
-import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.internal.TypeLocatorImpl;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
-import org.hibernate.type.EnumType;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
-import org.hibernate.type.Type;
-import org.hibernate.type.TypeResolver;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
-import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
@@ -84,6 +78,18 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         getEntityManager().flush();
 
         return match;
+    }
+
+    @Override
+    public List<Match> findByGroup(String groupName) {
+        Session session = getSession();
+        if(!session.isOpen())
+            session = session.getSessionFactory().openSession();
+        Query query = session.createQuery("FROM Match m where m.matchLevel < 8 and m.opponent1.group = :group order by m.matchDate asc ");
+        query.setParameter("group",groupName);
+        List<Match> matches = query.list();
+        session.close();
+        return  matches;
     }
 
     private Match updateMatchQuotes(MatchDto dto, Match match, Integer bet1, Integer bet2) {

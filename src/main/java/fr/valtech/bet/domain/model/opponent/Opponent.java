@@ -23,8 +23,8 @@ public class Opponent {
     @Column(name="FLAG")
     private String flag;
 
-    public String getFlag(){return flag;}
-    public void setFlag(String flag){this.flag = flag;}
+    public String getFlag(){return flag.toLowerCase();}
+    public void setFlag(String flag){this.flag = flag.toLowerCase();}
 
     public String getGroup() {return group;}
     public void setGroup(String group) {
