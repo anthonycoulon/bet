@@ -38,8 +38,8 @@
 			<span class="navbar-brand"><a href="<c:url value="/"/>">Valtech Bet</a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		        <ul class="nav navbar-nav">
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		            <li id="menu-match" class="menu-item">
 		                <a href="<c:url value="match"/>">Matches</a>
 		            </li>
@@ -86,8 +86,8 @@
 		            <li>
 		                <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
 		            </li>
-                    </sec:authorize>
 		        </ul>
+                </sec:authorize>
          </div>
 	</nav>
 		<div class="alert alert-success bet-alert">Successfully saved</div>
