@@ -25,15 +25,20 @@ NewAccount.prototype.saveUser = function () {
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
 
-    this.ajax = new Ajax();
-    this.ajax.postData(this.contextUrl+"save", user, bind(this, function() {
-        this.ajax.success();
-        $("#newPassword").empty();
-        $("#confirmation").empty();
-	    setTimeout(function(){
-	        window.location='/bet/login';
-	    }, 2000);
-    }));
+    if(user.newPassword == user.confirmation) {
+        this.ajax = new Ajax();
+        this.ajax.postData(this.contextUrl + "save", user, bind(this, function () {
+            this.ajax.success();
+            $('.error').empty();
+            $("#newPassword").empty();
+            $("#confirmation").empty();
+            setTimeout(function () {
+                window.location = '/bet/login';
+            }, 2000);
+        }));
+    }else{
+        $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.")
+    }
 };
 
 NewAccount.prototype.getLastPage = function () {

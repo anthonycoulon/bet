@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService{
             role.setId(2L);
             role.setRole("ROLE_USER");
             user.setUsername(username);
-            userDto.setRole(role);
+            user.setRole(role);
             user.setName(userDto.getName());
             user.setFirstName(userDto.getFirstName());
             user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));

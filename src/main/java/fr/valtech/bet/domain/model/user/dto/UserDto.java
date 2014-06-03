@@ -92,9 +92,6 @@ public class UserDto {
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", role=").append(role);
-        sb.append(", currentPassword='").append(currentPassword).append('\'');
-        sb.append(", newPassword='").append(newPassword).append('\'');
-        sb.append(", confirmation='").append(confirmation).append('\'');
         sb.append('}');
         return sb.toString();
     }

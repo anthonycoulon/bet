@@ -45,6 +45,13 @@
                 <input type="password" id="newPassword" placeholder="New Password" class="form-control">
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label" for="confirmation">Confirmation</label>
+            <div class="controls">
+                <input type="password" id="confirmation" placeholder="Confirmation" class="form-control">
+            </div>
+        </div>
+        <span class="error"></span>
     </form>
     <div class="control-group">
         <div class="controls">
