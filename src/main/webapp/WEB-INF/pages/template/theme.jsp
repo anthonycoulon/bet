@@ -35,11 +35,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand"><a href="/">Valtech Bet</a></span>
+			<span class="navbar-brand"><a href="/bet">Valtech Bet</a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
-	        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		        <ul class="nav navbar-nav">
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		            <li id="menu-match" class="menu-item">
 		                <a href="<c:url value="match"/>">Matches</a>
 		            </li>
@@ -60,48 +60,34 @@
 		            <li>
 		                <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
 		            </li>
+                    </sec:authorize>
+                    <li class="dropdown menu-item"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item">
+                                <ul class="list-inline">
+                                    <li><a href="/bet/calendar?level=A">Group A</a></li>
+                                    <li><a href="/bet/calendar?level=B">Group B</a></li>
+                                    <li><a href="/bet/calendar?level=C">Group C</a></li>
+                                    <li><a href="/bet/calendar?level=D">Group D</a></li>
+                                    <li><a href="/bet/calendar?level=E">Group E</a></li>
+                                    <li><a href="/bet/calendar?level=F">Group F</a></li>
+                                    <li><a href="/bet/calendar?level=G">Group G</a></li>
+                                    <li><a href="/bet/calendar?level=H">Group H</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="/bet/calendar?level=EF">Eighth Final</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/bet/calendar?level=QF">Quarter Final</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/bet/calendar?level=SF">Semi Final</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/bet/calendar?level=TP">Third Place</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/bet/calendar?level=Final">Final</a></li>
+                        </ul>
+                    </li>
 		        </ul>
-	        </sec:authorize>
-            <ul class="nav navbar-nav">
-                <li id="menu-match" class="menu-item">
-                    <a href="<c:url value="match"/>">Matches</a>
-                </li>
-                <li id="menu-ranking" class="menu-item">
-                    <a href="<c:url value="ranking"/>">Ranking</a>
-                </li>
-                <li class="dropdown menu-item"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="menu-item">
-                            <ul class="list-inline">
-                                <li><a href="calendar?level=A">Group A</a></li>
-                                <li><a href="calendar?level=B">Group B</a></li>
-                                <li><a href="calendar?level=C">Group C</a></li>
-                                <li><a href="calendar?level=D">Group D</a></li>
-                                <li><a href="calendar?level=E">Group E</a></li>
-                                <li><a href="calendar?level=F">Group F</a></li>
-                                <li><a href="calendar?level=G">Group G</a></li>
-                                <li><a href="calendar?level=H">Group H</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="calendar?level=EF">Eighth Final</a></li>
-                        <li class="divider"></li>
-                        <li><a href="calendar?level=QF">Quarter Final</a></li>
-                        <li class="divider"></li>
-                        <li><a href="calendar?level=SF">Semi Final</a></li>
-                        <li class="divider"></li>
-                        <li><a href="calendar?level=TP">Third Place</a></li>
-                        <li class="divider"></li>
-                        <li><a href="calendar?level=Final">Final</a></li>
-                    </ul>
-                </li>
-                <li id="menu-account" class="menu-item">
-                    <a href=<c:url value="/myaccount"/>>My account</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
-                </li>
-            </ul>
          </div>
 	</nav>
 		<div class="alert alert-success bet-alert">Successfully saved</div>
