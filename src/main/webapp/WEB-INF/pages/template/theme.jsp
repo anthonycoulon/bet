@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand"><a href="/">Valtech Bet</a></span>
+			<span class="navbar-brand"><a href="<c:url value="/"/>">Valtech Bet</a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
 		        <ul class="nav navbar-nav">
