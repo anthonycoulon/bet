@@ -16,11 +16,6 @@
 <div class="container-fluid">
     <form class="form-horizontal">
         <div class="control-group">
-            <div class="controls">
-                <input type="hidden" id="id">
-            </div>
-        </div>
-        <div class="control-group">
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" id="firstName" placeholder="First Name" class="form-control">

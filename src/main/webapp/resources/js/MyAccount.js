@@ -21,7 +21,7 @@ MyAccount.prototype.saveUser = function () {
                 if (user.confirmation) {
                     if (user.newPassword == user.confirmation) {
                         this.ajax = new Ajax();
-                        this.ajax.postData(this.contextUrl + "save", user, bind(this, function () {
+                        this.ajax.postData(this.contextUrl + "update", user, bind(this, function () {
                             this.ajax.success();
                             $('.error').empty();
                             $("#currentPassword").empty();

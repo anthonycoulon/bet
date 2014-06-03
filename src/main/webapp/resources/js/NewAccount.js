@@ -21,7 +21,6 @@ NewAccount.prototype.saveUser = function () {
     user.id = $("#id").val();
     user.firstName = $("#firstName").val();
     user.name = $("#name").val();
-    user.username = $("#username").val();
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
 
