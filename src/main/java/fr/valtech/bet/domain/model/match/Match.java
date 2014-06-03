@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,12 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import fr.valtech.bet.domain.model.stadium.Stadium;
 import org.hibernate.annotations.ForeignKey;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.opponent.Opponent;
+import fr.valtech.bet.domain.model.stadium.Stadium;
 
 @Entity
 @Table(name = "MATCHS")
@@ -29,12 +27,12 @@ public class Match {
     @Column(name = "ID")
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER) // don't put optinal = false here else it generates unique contraint on the key
-    @JoinColumn(name = "MATCH_OPPONENT1_FK",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "MATCH_OPPONENT1_FK", nullable = false)
     private Opponent opponent1;
 
-    @OneToOne(fetch = FetchType.EAGER) // don't put optinal = false here else it generates unique contraint on the key
-    @JoinColumn(name = "MATCH_OPPONENT2_FK",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "MATCH_OPPONENT2_FK", nullable = false)
     private Opponent opponent2;
 
     @Column(name = "MATCH_DATE", nullable = false)
@@ -43,8 +41,8 @@ public class Match {
     @Column(name = "MATCH_TIME")
     private Date timeDate;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MATCH_STADIUM_FK", nullable = false)
+    @OneToOne
+    @JoinColumn(name="MATCH_STADIUM_FK")
     private Stadium stadium;
 
     @Column(name = "SCORE")

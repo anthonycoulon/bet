@@ -7,13 +7,17 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
+import org.hibernate.type.EnumType;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
+import org.hibernate.type.Type;
+import org.hibernate.type.TypeResolver;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
+import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
@@ -34,7 +38,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
                 + "  LEFT JOIN (SELECT b.ID, mb.MATCH_ID, b.BET FROM bet.BET b" //
                 + "    INNER JOIN bet.MATCH_BET mb on b.ID=mb.BET_ID" //
                 + "  WHERE b.BET_USER_FK=:userId) b on b.MATCH_ID=m.ID" //
-                + " WHERE m.MATCH_DATE=:date");//
+                + " WHERE m.MATCH_DATE=:date ORDER BY m.MATCH_TIME");//
         query.setParameter("date", date);
         query.setParameter("userId", currentUser.getId());
 
@@ -78,6 +82,22 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         getEntityManager().flush();
 
         return match;
+    }
+
+    @Override
+    public List<Match> findMatches() {
+        return getEntityManager().createQuery("FROM Match", Match.class).getResultList();
+    }
+
+    @Override
+    public Match findMatche(Long id) {
+        return getEntityManager().find(Match.class, id);
+    }
+
+    @Override
+    public void updateScoreMatch(Match match) {
+        getEntityManager().merge(match);
+        getEntityManager().flush();
     }
 
     @Override

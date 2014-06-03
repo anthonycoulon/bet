@@ -2,10 +2,6 @@
     color: #E40008;
 }
 
-input.bet {
-    width: 30px;
-}
-
 div.bet-alert {
     display: none;
 }
@@ -20,3 +16,6 @@ body {
     margin-bottom: 0 !important;
 }
 
+.navbar-brand a:hover {
+    text-decoration: none;
+};

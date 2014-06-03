@@ -20,5 +20,9 @@ public interface MatchService {
 
     List<MatchDto> transform(List<Map<String, String>> dtos);
 
+    List<fr.valtech.bet.domain.model.match.dto.AdminMatchDto> findMatches();
+
+    void updateScoreMatch(List<Map<String,String>> dtos);
+
     List<Match> findByLevel(String level);
 }

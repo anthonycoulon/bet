@@ -9,6 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.Type;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.user.User;
 
@@ -27,6 +28,10 @@ public class Bet {
 
     @Column(name = "BET")
     private String bet;
+
+    @Type(type = "true_false")
+    @Column(name = "CONSIDERED", columnDefinition = "varchar(1) default 'F'")
+    private boolean considered;
 
     @ManyToOne
     @ForeignKey(name = "FK_BET_MATCH", inverseName = "FK_MATCH_BET")
@@ -64,6 +69,14 @@ public class Bet {
 
     public void setMatch(Match match) {
         this.match = match;
+    }
+
+    public boolean isConsidered() {
+        return considered;
+    }
+
+    public void setConsidered(boolean considered) {
+        this.considered = considered;
     }
 
     @Override

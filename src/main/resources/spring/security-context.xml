@@ -8,9 +8,9 @@
 
     <sec:authentication-manager>
         <sec:authentication-provider>
-            <!--<sec:password-encoder hash="sha">-->
-            <!--<sec:salt-source system-wide="zlatan" />-->
-            <!--</sec:password-encoder>-->
+            <sec:password-encoder hash="sha">
+            <sec:salt-source system-wide="ZLaTaNSalt"/>
+            </sec:password-encoder>
             <sec:jdbc-user-service data-source-ref="betDataSource"
                                    users-by-username-query="SELECT u.USERNAME,u.PASSWORD,'TRUE' FROM USER u WHERE u.USERNAME = ?"
                                    authorities-by-username-query="

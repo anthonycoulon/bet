@@ -12,9 +12,14 @@ import fr.valtech.bet.domain.repository.BetRepository;
 public class BetUserRepositoryImpl extends BetRepository implements BetUserRepository {
     @Override
     public List<Bet> findBetUser(Date yesterday, User user) {
-        TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.gambler.id=:userId AND b.match.matchDate=:date", Bet.class);
+        TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.gambler.id=:userId AND b.match.matchDate=:date AND B.considered=false", Bet.class);
         query.setParameter("userId", user.getId());
         query.setParameter("date", yesterday);
         return query.getResultList();
+    }
+
+    @Override
+    public void save(Bet bet) {
+        getEntityManager().merge(bet);
     }
 }

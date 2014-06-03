@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.service.match.MatchService;
@@ -43,8 +44,11 @@ public class MatchController {
 
     @ResponseBody
     @RequestMapping("{date}")
-    public List<MatchDto> matches(@PathVariable Long date) {
-        return matchService.findMatchByDateByUser(new Date(date), userService.getConnectedUser());
+    public List<MatchDto> matches(@PathVariable String date) {
+        if("none".equals(date)) {
+            return Lists.newArrayList();
+        }
+        return matchService.findMatchByDateByUser(new Date(Long.valueOf(date)), userService.getConnectedUser());
     }
 
 

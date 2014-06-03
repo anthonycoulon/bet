@@ -15,7 +15,8 @@
 <body>
 	<section class="row">
 		<label for="dates">Day : </label>
-		<select name="dates" id="dates">
+		<select name="dates" id="dates" class="form-control">
+			<option value="none"></option>
 			<c:forEach items="${dates}" var="date">
 				<c:choose>
 					<c:when test="${date.time eq today.time}">
@@ -29,7 +30,7 @@
 			</c:forEach>
 		</select>
 	</section>
-	<table id="matches" class="table-responsive table table-striped">
+	<table id="matches" class="row table-responsive table table-striped">
 		<thead>
 			<th>Level</th>
 			<th>Time</th>
@@ -66,9 +67,9 @@
 						<b>Bet : </b>
 					</td>
 					<td colspan="2" class="bet">
-						<input type="text" class="bet1 bet" value="${dto.bet1}"/> - <input type="text" class="bet2 bet" value="${dto.bet2}"/>
+						<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>
 					</td>
-					<td colspan="3">
+					<td colspan="2">
 						<div class="progress">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100"
 							     style="width: ${dto.quote1}%;">

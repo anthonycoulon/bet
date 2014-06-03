@@ -1,16 +1,13 @@
-section.row div {
-    border-bottom: 1px solid #b1b1b1;
-    height: 35px;
-    width: 200px;
-    float: left;
-    text-align: center;
-    margin-bottom: 5px;
+input.bet {
+    width: 30px;
 }
 
-section.row div.bet {
-    border-right: 1px solid #b1b1b1;
+.form-control {
+    display: inline-block !important;
+    padding: 0 5px !important;
 }
-section.row div.score {
-    border-right: 1px solid #b1b1b1;
-    border-left: 1px solid #b1b1b1;
+
+select#dates {
+    width: 110px;
+    margin-bottom: 5px;
 }
