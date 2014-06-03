@@ -1,17 +1,8 @@
-/**
- * FAMFAMFAM flag icons CSS.
- *
- * Examples:
- * <i class="famfamfam-flag-fr"> France</i>
- * <i class="famfamfam-flag-us"> United States</i>
- */
-
 [class^="famfamfam-flag"] {
     display: inline-block;
     width: 20px;
     height: 15px;
     line-height: 11px;
-    /* vertical-align: text-top; */
     background-image: url("../img/famfamfam-flags.png");
     background-position: 0 0;
     background-repeat: no-repeat;

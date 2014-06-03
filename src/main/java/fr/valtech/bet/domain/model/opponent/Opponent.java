@@ -1,6 +1,10 @@
 package fr.valtech.bet.domain.model.opponent;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "OPPONENT")
@@ -23,9 +27,13 @@ public class Opponent {
     @Column(name = "FLAG")
     private String flag;
 
-    public String getFlag(){return flag;}
-    public void setFlag(String flag){this.flag = flag;}
+    public String getFlag() {
+        return flag;
+    }
 
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
 
     public String getGroup() {
         return group;
