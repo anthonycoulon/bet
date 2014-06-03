@@ -23,7 +23,7 @@
     <p>You just have to bet on the team which has the best chances to win the game during the world cup.</p>
     <p>First, go to the <a href="<c:url value="/match"/>">Matches</a> page to list the games available to bet : <a href="<c:url value="match"/>">Matches</a></p>
     <p>Then, bet for the team you think will win the game.</p>
-    <p>At the right of each game you can see a victory's prevision based on the collaborator's bet. This prevision could give you more bonus points if you doesn't follow it (see examples at the bottom of this page).</p>
+    <p>At the right of each game you can see a victory's prevision based on the collaborator's bet. This prevision could give you more bonus points if you don't follow it (see examples at the bottom of this page).</p>
 
     <h3 class="text-primary">How to win? The notation.</h3>
     <p>Each winner you find gives you : <strong>1 point.</strong></p>

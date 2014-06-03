@@ -20,7 +20,7 @@
         <tr>
             <th>
                 <fmt:formatDate value="${match.matchDate}"
-                                pattern="MM/dd/yyyy"/>
+                                pattern="dd/MM/yyyy"/>
             </th>
             <th> </th>
             <th> </th>
@@ -33,14 +33,14 @@
                     ${match.stadium.name}
             </td>
             <td>
-                    ${match.opponent1.name}&nbsp;<i class="famfamfam-flag-<c:out value="${match.opponent1.flag}"/>"></i>
+	            <span class="famfamfam-flag-<c:out value="${match.opponent1.flag}"/>"></span> &nbsp;${match.opponent1.name}
             </td>
             <td>
                 <fmt:formatDate value="${match.timeDate}"
-                                pattern="HH:mm"/>
+                                pattern="hh:mm a"/>
             </td>
             <td>
-                <i class="famfamfam-flag-<c:out value="${match.opponent2.flag}"/>"></i> &nbsp;${match.opponent2.name}
+                <span class="famfamfam-flag-<c:out value="${match.opponent2.flag}"/>"></span> &nbsp;${match.opponent2.name}
             </td>
         </tr>
     </c:forEach>
