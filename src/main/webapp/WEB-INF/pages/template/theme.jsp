@@ -45,18 +45,21 @@
 		            </li>
                     <li class="dropdown menu-item" id="menu-calendar"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<span class="caret"></span></a>
 	                    <ul class="dropdown-menu">
-		                    <li class="menu-item">
-			                    <ul class="list-inline">
-				                    <li><a href=<c:url value="/calendar?level=A"/>>Group A</a></li>
-				                    <li><a href=<c:url value="/calendar?level=B"/>>Group B</a></li>
-				                    <li><a href=<c:url value="/calendar?level=C"/>>Group C</a></li>
-				                    <li><a href=<c:url value="/calendar?level=D"/>>Group D</a></li>
-				                    <li><a href=<c:url value="/calendar?level=E"/>>Group E</a></li>
-				                    <li><a href=<c:url value="/calendar?level=F"/>>Group F</a></li>
-				                    <li><a href=<c:url value="/calendar?level=G"/>>Group G</a></li>
-				                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
-			                    </ul>
-		                    </li>
+		                    <li><a href=<c:url value="/calendar?level=A"/>>Group A</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=B"/>>Group B</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=C"/>>Group C</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=D"/>>Group D</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=E"/>>Group E</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=F"/>>Group F</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=G"/>>Group G</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
 		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=EF"/>>Eighth Final</a></li>
 		                    <li class="divider"></li>
