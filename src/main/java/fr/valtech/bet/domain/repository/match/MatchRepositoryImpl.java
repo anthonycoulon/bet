@@ -29,7 +29,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     public List<MatchDto> findMatchByDateByUser(Date date, User currentUser) {
 
         Session session = (Session) getEntityManager().getDelegate();
-        SQLQuery query = session.createSQLQuery("SELECT m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," //
+        SQLQuery query = session.createSQLQuery("SELECT distinct m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," //
                 + " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime," //
                 + " m.QUOTE1 as quote1, m.QUOTE2 as quote2, m.MATCH_LEVEL as matchLevelOrdinal" //
                 + " FROM bet.MATCHS m" //
