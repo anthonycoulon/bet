@@ -1,11 +1,9 @@
 package fr.valtech.bet.web.account;
 
-import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
 import fr.valtech.bet.service.account.AccountService;
 import fr.valtech.bet.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,7 @@ public class AccountController {
     @RequestMapping
     public ModelAndView myAccount() {
         ModelAndView mav = new ModelAndView("myaccount");
-        mav.addObject("user", getUser());
+        mav.addObject("user", userService.getConnectedUser());
         return mav;
     }
 
@@ -38,11 +36,7 @@ public class AccountController {
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
+        userDto.setUsername(userService.getConnectedUser().getUsername());
         accountService.updateUser(userDto);
-    }
-
-    private User getUser() {
-        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return userService.findUser(username);
     }
 }

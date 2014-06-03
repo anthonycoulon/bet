@@ -1,19 +1,12 @@
 package fr.valtech.bet.domain.model.user;
 
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.NaturalId;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.bet.Bet;
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "USER")
@@ -37,7 +30,7 @@ public class User {
     @Column(length = 80, name = "FIRSTNAME")
     private String firstName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @ForeignKey(name = "FK_USER_ROLE", inverseName = "FK_ROLE_USER")
     @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID", referencedColumnName = "ID") },
             inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })

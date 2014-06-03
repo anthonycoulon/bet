@@ -9,21 +9,25 @@ MyAccount.prototype.init = function() {
 
 MyAccount.prototype.saveUser = function () {
     var user={};
-    user.id = $("#id").val();
     user.firstName = $("#firstName").val();
     user.name = $("#name").val();
-    user.username = $("#username").val();
     user.currentPassword = $("#currentPassword").val();
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
 
-    this.ajax = new Ajax();
-    this.ajax.postData(this.contextUrl+"save", user, bind(this, function() {
-        this.ajax.success();
-        $("#currentPassword").empty();
-        $("#newPassword").empty();
-        $("#confirmation").empty();
-    }));
+    if(user.newPassword == user.confirmation){
+        this.ajax = new Ajax();
+        this.ajax.postData(this.contextUrl+"save", user, bind(this, function() {
+            this.ajax.success();
+            $('.error').empty();
+            $("#currentPassword").empty();
+            $("#newPassword").empty();
+            $("#confirmation").empty();
+        }));
+    }else{
+        $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.")
+    }
+
 };
 
 MyAccount.prototype.getLastPage = function () {

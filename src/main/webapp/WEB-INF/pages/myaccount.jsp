@@ -15,11 +15,6 @@
 <div class="container-fluid">
     <form class="form-horizontal">
         <div class="control-group">
-            <div class="controls">
-                <input type="hidden" id="id" value="${user.id}">
-            </div>
-        </div>
-        <div class="control-group">
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" class="form-control" id="firstName" value="${user.firstName}">
@@ -55,6 +50,7 @@
                 <input type="password" class="form-control" id="confirmation" placeholder="Confirmation">
             </div>
         </div>
+        <span class="error"></span>
     </form>
     <div class="form-actions">
         <div class="controls">
