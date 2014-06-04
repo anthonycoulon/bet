@@ -19,35 +19,31 @@
     <c:forEach items="${matches}" var="match">
         <tr>
             <th colspan="4">
-                <fmt:formatDate value="${match[2]}" pattern="dd/MM/yyyy"/>
-                <fmt:formatDate value="${match[3]}"
-                                pattern="hh:mm a"/>
+                <fmt:formatDate value="${match.matchDate}" pattern="dd/MM/yyyy"/>
+                <fmt:formatDate value="${match.timeDate}" pattern="hh:mm a"/>
             </th>
-            <th></th>
-            <th></th>
-            <th></th>
         </tr>
         <tr>
             <td>
-                   Group &nbsp; ${match[0].group}
-                   <br/>
-                    ${match[4].name}
+				Group&nbsp;${match.matchLevel}
+				<br/>
+				${match.stadium.name}
             </td>
-            <td style="text-align: right;">
-	            ${match[0].name}&nbsp;<span class="famfamfam-flag-<c:out value="${match[0].flag}"/>"></span>
+            <td class="opponent1">
+	            ${match.opponent1.name}&nbsp;<span class="famfamfam-flag-<c:out value="${match.opponent1.flag}"/>"></span>
             </td>
-            <td style="text-align: center;">
+            <td class="score">
 	            <c:choose>
-		            <c:when test="${empty match[5]}">
+		            <c:when test="${empty match.score}">
 			            -
 		            </c:when>
 		            <c:otherwise>
-			            ${match[5]}
+			            ${match.score}
 		            </c:otherwise>
 	            </c:choose>
             </td>
-            <td>
-                <span class="famfamfam-flag-<c:out value="${match[1].flag}"/>"></span> &nbsp;${match[1].name}
+            <td class="opponent2">
+                <span class="famfamfam-flag-<c:out value="${match.opponent2.flag}"/>"></span>&nbsp;${match.opponent2.name}
             </td>
         </tr>
     </c:forEach>

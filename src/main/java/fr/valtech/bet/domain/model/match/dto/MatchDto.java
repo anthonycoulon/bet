@@ -32,6 +32,10 @@ public class MatchDto {
 
     private String matchLevel;
 
+    private String flag1;
+
+    private String flag2;
+
     public Long getBetId() {
         return betId;
     }
@@ -144,6 +148,22 @@ public class MatchDto {
         return matchLevel;
     }
 
+    public String getFlag1() {
+        return flag1;
+    }
+
+    public void setFlag1(String flag1) {
+        this.flag1 = flag1;
+    }
+
+    public String getFlag2() {
+        return flag2;
+    }
+
+    public void setFlag2(String flag2) {
+        this.flag2 = flag2;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
@@ -160,7 +180,9 @@ public class MatchDto {
         sb.append(", odds1=").append(odds1);
         sb.append(", odds2=").append(odds2);
         sb.append(", matchLevelOrdinal=").append(matchLevelOrdinal);
-        sb.append(", matchLevel=").append(matchLevel);
+        sb.append(", matchLevel='").append(matchLevel).append('\'');
+        sb.append(", flag1='").append(flag1).append('\'');
+        sb.append(", flag2='").append(flag2).append('\'');
         sb.append('}');
         return sb.toString();
     }

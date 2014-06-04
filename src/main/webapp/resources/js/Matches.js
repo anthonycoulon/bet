@@ -78,15 +78,17 @@ Matches.prototype.refreshMatches = function() {
 			var d = _data[i];
 			var time = this.extracteTime(d.matchTime);
 			var match = Matches.mask.replace('${dto.opponent1}', d.opponent1)
+				.replace('${dto.flag1}', d.flag1)
 				.replace('${dto.matchTime}', time)
 				.replace('${dto.matchLevel}', d.matchLevel)
 				.replace('${dto.matchTime.time}', d.matchTime)
 				.replace('${dto.betId}', d.betId == null ? '' : d.betId)
 				.replace('${dto.matchId}', d.matchId)
-				.replace('${dto.score}', d.score == null ? '' : d.score)
+				.replace('${dto.score}', d.score == null ? '-' : d.score)
 				.replace('${dto.bet1}', d.bet1 == null ? '' : d.bet1)
 				.replace('${dto.bet2}', d.bet2 == null ? '' : d.bet2)
 				.replace('${dto.opponent2}', d.opponent2)
+				.replace('${dto.flag2}', d.flag2)
 				.replace('${dto.odds1}', d.odds1)
 				.replace('${dto.odds1}', d.odds1)
 				.replace('${dto.odds1}', d.odds1)
@@ -112,14 +114,14 @@ Matches.mask=
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
 		'${dto.matchTime}' +
 	'</td>'+
-	'<td>'+
-		'${dto.opponent1}'+
+	'<td class="opponent1">'+
+		'${dto.opponent1}&nbsp;<span class="famfamfam-flag-${dto.flag1}"></span>'+
 	'</td>'+
-	'<td>'+
+	'<td class="score">'+
 		'${dto.score}'+
 	'</td>'+
-	'<td>'+
-		'${dto.opponent2}'+
+	'<td class="opponent2">'+
+		'<span class="famfamfam-flag-${dto.flag2}"></span>&nbsp;${dto.opponent2}'+
 	'</td>'+
 '</tr>' +
 '<tr>' +

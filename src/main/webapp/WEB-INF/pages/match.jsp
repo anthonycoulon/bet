@@ -5,6 +5,7 @@
 <head>
 	<script type="text/javascript" src="<c:url value="/resources/js/Matches.js"/>"></script>
 	<link rel="stylesheet" href="<c:url value="/resources/css/match.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/flags.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -55,14 +56,21 @@
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
 						<fmt:formatDate value="${dto.matchTime}" pattern="hh:mm a"/>
 					</td>
-					<td>
-						${dto.opponent1}
+					<td class="opponent1">
+						${dto.opponent1}&nbsp;<span class="famfamfam-flag-<c:out value="${dto.flag1}"/>"></span>
 					</td>
-					<td>
-						${dto.score}
+					<td class="score">
+						<c:choose>
+							<c:when test="${empty match.score}">
+								-
+							</c:when>
+							<c:otherwise>
+								${match.score}
+							</c:otherwise>
+						</c:choose>
 					</td>
-					<td>
-						${dto.opponent2}
+					<td class="opponent2">
+						<span class="famfamfam-flag-<c:out value="${dto.flag2}"/>"></span>&nbsp;${dto.opponent2}
 					</td>
 				</tr>
 				<tr>

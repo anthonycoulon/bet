@@ -1,6 +1,6 @@
 package fr.valtech.bet.domain.model.match.dto;
 
-public class QuotesDto {
+public class OddsDto {
 
     private Long matchId;
 

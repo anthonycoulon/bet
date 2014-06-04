@@ -36,7 +36,7 @@ public class Match {
     private Date timeDate;
 
     @OneToOne
-    @JoinColumn(name="MATCH_STADIUM_FK")
+    @JoinColumn(name = "MATCH_STADIUM_FK")
     private Stadium stadium;
 
     @Column(name = "SCORE")
@@ -100,9 +100,13 @@ public class Match {
         this.timeDate = timeDate;
     }
 
-    public Stadium getStadium() {return stadium; }
+    public Stadium getStadium() {
+        return stadium;
+    }
 
-    public void setStadium(Stadium stadium) {this.stadium = stadium;}
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
+    }
 
     public Integer getOdds1() {
         return odds1;
@@ -175,16 +179,16 @@ public class Match {
     }
 
     public void addOdds1(int value) {
-        if(odds1 ==null) {
-            odds1 =0;
+        if (odds1 == null) {
+            odds1 = 0;
         }
-        odds1 +=value;
+        odds1 += value;
     }
 
     public void addOdds2(int value) {
-        if(odds2 ==null) {
-            odds2 =0;
+        if (odds2 == null) {
+            odds2 = 0;
         }
-        odds2 +=value;
+        odds2 += value;
     }
 }

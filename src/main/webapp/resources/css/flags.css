@@ -264,3 +264,13 @@
 .famfamfam-flag-ad { background-position: -208px -121px; width: 16px; height: 11px; }
 .famfamfam-flag-np { background-position: -208px -132px; width: 9px; height: 11px; }
 .famfamfam-flag-ch { background-position: -208px -143px; width: 11px; height: 11px; }
+
+td.opponent1 {
+    text-align: right;
+}
+td.opponent2 {
+    text-align: left;
+}
+td.score {
+    text-align: center;
+}

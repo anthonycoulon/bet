@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
+import fr.valtech.bet.domain.model.match.dto.OddsDto;
 import fr.valtech.bet.domain.model.user.User;
 
 public interface MatchService {
@@ -15,7 +16,7 @@ public interface MatchService {
 
     List<Date> findDates();
 
-    List<fr.valtech.bet.domain.model.match.dto.QuotesDto> saveUserBets(List<MatchDto> dtos, User user);
+    List<OddsDto> saveUserBets(List<MatchDto> dtos, User user);
 
     List<MatchDto> transform(List<Map<String, String>> dtos);
 

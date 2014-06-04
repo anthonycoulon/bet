@@ -2,9 +2,8 @@ package fr.valtech.bet.domain.repository.match;
 
 import java.util.Date;
 import java.util.List;
-
+import javax.persistence.TypedQuery;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.ProjectionList;
@@ -17,8 +16,10 @@ import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
+import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
@@ -32,7 +33,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         Session session = (Session) getEntityManager().getDelegate();
         SQLQuery query = session.createSQLQuery("SELECT distinct m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," //
                 + " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime," //
-                + " m.ODDS1 as odds1, m.ODDS2 as odds2, m.MATCH_LEVEL as matchLevelOrdinal" //
+                + " m.ODDS1 as odds1, m.ODDS2 as odds2, m.MATCH_LEVEL as matchLevelOrdinal, o1.FLAG as flag1, o2.FLAG as flag2" //
                 + " FROM bet.MATCHS m" //
                 + "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK" //
                 + "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK" //
@@ -47,6 +48,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
                 .addScalar("opponent2", StringType.INSTANCE).addScalar("score", StringType.INSTANCE).addScalar("bet", StringType.INSTANCE)
                 .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE)
                 .addScalar("odds1", IntegerType.INSTANCE).addScalar("odds2", IntegerType.INSTANCE).addScalar("matchLevelOrdinal", IntegerType.INSTANCE)
+                .addScalar("flag1", StringType.INSTANCE).addScalar("flag2", StringType.INSTANCE)
                 .setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
@@ -103,22 +105,10 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
     @Override
     public List<Match> findByLevel(MatchLevel level) {
-        Session session = getSession();
-        if(!session.isOpen())
-            session = session.getSessionFactory().openSession();
-        List<Match> matches;
-        Criteria criteria = session.createCriteria(Match.class);
-        ProjectionList properties = Projections.projectionList();
-        properties.add(Projections.property("opponent1"));
-        properties.add(Projections.property("opponent2"));
-        properties.add(Projections.property("matchDate"));
-        properties.add(Projections.property("timeDate"));
-        properties.add(Projections.property("stadium"));
-        properties.add(Projections.property("score"));
-        criteria.setProjection(properties).add(Restrictions.eq("matchLevel",level));
-        matches = criteria.list();
-        session.close();
-        return  matches;
+        TypedQuery<Match> query = getEntityManager().createQuery("FROM Match m WHERE m.matchLevel=:level", Match.class);
+        query.setParameter("level", level);
+
+        return query.getResultList();
     }
 
     private Match updateMatchQuotes(MatchDto dto, Match match, Integer bet1, Integer bet2) {

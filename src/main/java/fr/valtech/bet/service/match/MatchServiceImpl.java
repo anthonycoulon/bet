@@ -15,7 +15,7 @@ import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.AdminMatchDto;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
-import fr.valtech.bet.domain.model.match.dto.QuotesDto;
+import fr.valtech.bet.domain.model.match.dto.OddsDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.match.MatchRepository;
 import fr.valtech.bet.service.exception.BetException;
@@ -58,36 +58,28 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     @Transactional
-    public List<QuotesDto> saveUserBets(List<MatchDto> dtos, User user) {
+    public List<OddsDto> saveUserBets(List<MatchDto> dtos, User user) {
         DateTime today = new DateTime();
-        List<QuotesDto> quotes = Lists.newArrayList();
+        List<OddsDto> quotes = Lists.newArrayList();
         for (MatchDto dto : dtos) {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 Match match = matchRepository.saveUserBet(dto, user);
                 quotes.add(transformQuotes(match));
-            } else if(!(dto.getBet1()==null && dto.getBet2()==null) || today.isAfter(dto.getMatchTime().getTime())) {
+            } else if (!(dto.getBet1() == null && dto.getBet2() == null) || today.isAfter(dto.getMatchTime().getTime())) {
                 Throwables.propagate(new BetException(String.format("THe user %s entered a wrong score", user.getUsername())));
             }
         }
         return quotes;
     }
 
-
     @Override
+    @Transactional(readOnly = true)
     public List<Match> findByLevel(String level) {
-        try
-        {
-            return matchRepository.findByLevel(MatchLevel.valueOf(level));
-        }
-        catch(IllegalArgumentException e)
-        {
-            e.printStackTrace();
-            return null;
-        }
+        return matchRepository.findByLevel(MatchLevel.valueOf(level));
     }
 
-    private QuotesDto transformQuotes(Match match) {
-        QuotesDto quoteDto = new QuotesDto();
+    private OddsDto transformQuotes(Match match) {
+        OddsDto quoteDto = new OddsDto();
         quoteDto.setMatchId(match.getId());
         int total = match.getOdds1() + match.getOdds2();
         quoteDto.setOdds1(percent(match.getOdds1(), total));
@@ -128,7 +120,7 @@ public class MatchServiceImpl implements MatchService {
     @Transactional
     public void updateScoreMatch(List<Map<String, String>> dtos) {
         for (Map<String, String> dto : dtos) {
-            Match match= matchRepository.findMatche(Long.parseLong(dto.get("id")));
+            Match match = matchRepository.findMatche(Long.parseLong(dto.get("id")));
             match.setScore(dto.get("score"));
             matchRepository.updateScoreMatch(match);
         }
@@ -136,9 +128,9 @@ public class MatchServiceImpl implements MatchService {
     }
 
     private List<AdminMatchDto> transformAdminMatch(List<Match> matches) {
-        List<AdminMatchDto> dtos= Lists.newArrayList();
+        List<AdminMatchDto> dtos = Lists.newArrayList();
         for (Match match : matches) {
-            AdminMatchDto dto=new AdminMatchDto();
+            AdminMatchDto dto = new AdminMatchDto();
             dto.setId(match.getId());
             dto.setMatchTime(match.getMatchDate());
             dto.setOpponent1(match.getOpponent1().getName());
