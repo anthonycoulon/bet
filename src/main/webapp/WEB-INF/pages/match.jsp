@@ -46,10 +46,10 @@
 	<table id="matches" class="row table-responsive table table-striped">
 		<thead>
 			<th>Level</th>
-			<th>Time</th>
-			<th>#1</th>
-			<th>Score</th>
-			<th>#2</th>
+			<th>Time (fr)</th>
+			<th colspan="2" style="text-align: right;">#1</th>
+			<th style="text-align: center;">Score</th>
+			<th colspan="2">#2</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
@@ -66,7 +66,10 @@
 						<fmt:formatDate value="${dto.matchTime}" pattern="hh:mm a"/>
 					</td>
 					<td class="opponent1">
-						${dto.opponent1}&nbsp;<span class="famfamfam-flag-<c:out value="${dto.flag1}"/>"></span>
+						${dto.opponent1}
+					</td>
+					<td class="flagM">
+						<span class="famfamfam-flag-${dto.flag1}"></span>
 					</td>
 					<td class="score">
 						<c:choose>
@@ -74,12 +77,15 @@
 								-
 							</c:when>
 							<c:otherwise>
-								${match.score}
+								<b>${match.score}</b>
 							</c:otherwise>
 						</c:choose>
 					</td>
+					<td class="flagM">
+						<span class="famfamfam-flag-${dto.flag2}"></span>
+					</td>
 					<td class="opponent2">
-						<span class="famfamfam-flag-<c:out value="${dto.flag2}"/>"></span>&nbsp;${dto.opponent2}
+						${dto.opponent2}
 					</td>
 				</tr>
 				<tr>
