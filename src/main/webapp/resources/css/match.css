@@ -11,3 +11,13 @@ select#dates {
     width: 110px;
     margin-bottom: 5px;
 }
+
+.hero-unit {
+    text-align: center;
+    line-height: 30px;
+    color: inherit;
+    background-color: #EEEEEE;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
