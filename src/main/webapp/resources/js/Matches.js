@@ -74,6 +74,11 @@ Matches.prototype.extracteTime = function (timestamp) {
 Matches.prototype.refreshMatches = function() {
 	$('table#matches tbody').empty();
 	new Ajax().get(this.contextUrl+$('#dates').val(), bind(this,function(_data){
+		if(_data.length==0) {
+			$('#no-match').show();
+		}else {
+			$('#no-match').hide();
+		}
 		for(var i=0; i<_data.length; i++) {
 			var d = _data[i];
 			var time = this.extracteTime(d.matchTime);

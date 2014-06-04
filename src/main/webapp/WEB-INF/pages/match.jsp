@@ -34,6 +34,15 @@
 			</c:forEach>
 		</select>
 	</section>
+	<c:choose>
+		<c:when test="${empty dtos}">
+			<span id="no-match"><b>There is no match today!</b></span>
+		</c:when>
+		<c:otherwise>
+			<span id="no-match" style="display: none"><b>There is no match today!</b></span>
+		</c:otherwise>
+	</c:choose>
+
 	<table id="matches" class="row table-responsive table table-striped">
 		<thead>
 			<th>Level</th>
