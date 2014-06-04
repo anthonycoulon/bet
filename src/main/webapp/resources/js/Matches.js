@@ -25,6 +25,14 @@ Matches.prototype.disabledBet = function () {
 	}
 };
 
+Matches.prototype.checkBetValue = function (bet1, bet2) {
+	if ((bet2.val().match(/[0-9]+/g) && bet1.val().match(/[0-9]+/g)) || (bet2.val()=='' && bet1.val()=='')) {
+		bet1.parent().removeClass('has-error');
+	} else {
+		bet1.parent().addClass('has-error');
+	}
+};
+
 Matches.prototype.saveBet = function() {
 	var matches = $('#matches tbody tr');
 	var bets=[];
@@ -33,6 +41,7 @@ Matches.prototype.saveBet = function() {
 		var bet={};
 		bet.betId = $(m).find('.betId').val();
 		bet.matchId = $(m).find('.matchId').val();
+		this.checkBetValue($(m).next().find('.bet1'), $(m).next().find('.bet2'));
 		bet.bet1 = $(m).next().find('.bet1').val();
 		bet.bet2 = $(m).next().find('.bet2').val();
 		bet.matchTime = $(m).find('.matchTime').val();
