@@ -19,7 +19,7 @@
     <c:forEach items="${matches}" var="match">
         <tr>
             <th>
-                <fmt:formatDate value="${match.matchDate}"
+                <fmt:formatDate value="${match[2]}"
                                 pattern="dd/MM/yyyy"/>
             </th>
             <th> </th>
@@ -28,19 +28,19 @@
         </tr>
         <tr>
             <td>
-                   Group &nbsp; ${match.opponent1.group}
+                   Group &nbsp; ${match[0].group}
                    <br/>
-                    ${match.stadium.name}
+                    ${match[4].name}
             </td>
             <td>
-	            <span class="famfamfam-flag-<c:out value="${match.opponent1.flag}"/>"></span> &nbsp;${match.opponent1.name}
+	            <span class="famfamfam-flag-<c:out value="${match[0].flag}"/>"></span> &nbsp;${match[0].name}
             </td>
             <td>
-                <fmt:formatDate value="${match.timeDate}"
+                <fmt:formatDate value="${match[3]}"
                                 pattern="hh:mm a"/>
             </td>
             <td>
-                <span class="famfamfam-flag-<c:out value="${match.opponent2.flag}"/>"></span> &nbsp;${match.opponent2.name}
+                <span class="famfamfam-flag-<c:out value="${match[1].flag}"/>"></span> &nbsp;${match[1].name}
             </td>
         </tr>
     </c:forEach>

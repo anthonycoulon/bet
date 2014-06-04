@@ -71,19 +71,14 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<Match> findByLevel(String level) {
-        switch (level) {
-            case "A":
-            case "B":
-            case "C":
-            case "D":
-            case "E":
-            case "F":
-            case "G":
-            case "H":
-                return matchRepository.findByGroup(level);
-
-            default:
-                return null;
+        try
+        {
+            return matchRepository.findByLevel(MatchLevel.valueOf(level));
+        }
+        catch(IllegalArgumentException e)
+        {
+            e.printStackTrace();
+            return null;
         }
     }
 

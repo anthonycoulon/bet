@@ -2,9 +2,14 @@ package fr.valtech.bet.domain.repository.match;
 
 import java.util.Date;
 import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
 import org.hibernate.type.EnumType;
@@ -101,13 +106,21 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     }
 
     @Override
-    public List<Match> findByGroup(String groupName) {
+    public List<Match> findByLevel(MatchLevel level) {
         Session session = getSession();
         if(!session.isOpen())
             session = session.getSessionFactory().openSession();
-        Query query = session.createQuery("FROM Match m where m.matchLevel < 8 and m.opponent1.group = :group order by m.matchDate asc ");
-        query.setParameter("group",groupName);
-        List<Match> matches = query.list();
+        List<Match> matches;
+        Criteria criteria = session.createCriteria(Match.class);
+        ProjectionList properties = Projections.projectionList();
+        properties.add(Projections.property("opponent1"));
+        properties.add(Projections.property("opponent2"));
+        properties.add(Projections.property("matchDate"));
+        properties.add(Projections.property("timeDate"));
+        properties.add(Projections.property("stadium"));
+        properties.add(Projections.property("score"));
+        criteria.setProjection(properties).add(Restrictions.eq("matchLevel",level));
+        matches = criteria.list();
         session.close();
         return  matches;
     }

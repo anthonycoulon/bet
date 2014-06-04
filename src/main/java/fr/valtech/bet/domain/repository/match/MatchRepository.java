@@ -4,6 +4,7 @@ import fr.valtech.bet.domain.model.match.Match;
 import java.util.Date;
 import java.util.List;
 import fr.valtech.bet.domain.model.match.Match;
+import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 
@@ -23,5 +24,5 @@ public interface MatchRepository {
 
     void updateScoreMatch(Match match);
 
-    List<Match> findByGroup(String groupName);
+    List<Match> findByLevel(MatchLevel level);
 }
