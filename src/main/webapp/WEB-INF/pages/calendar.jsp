@@ -19,13 +19,13 @@
     <c:forEach items="${matches}" var="match">
         <tr>
             <th colspan="4">
-                <fmt:formatDate value="${match.matchDate}"
-            <th>
-                <fmt:formatDate value="${match[2]}"
-                                pattern="dd/MM/yyyy"/>
-                <fmt:formatDate value="${match.timeDate}"
+                <fmt:formatDate value="${match[2]}" pattern="dd/MM/yyyy"/>
+                <fmt:formatDate value="${match[3]}"
                                 pattern="hh:mm a"/>
             </th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
             <td>
@@ -34,26 +34,19 @@
                     ${match[4].name}
             </td>
             <td style="text-align: right;">
-	            ${match.opponent1.name}&nbsp;<span class="famfamfam-flag-<c:out value="${match.opponent1.flag}"/>"></span>
-            <td>
-	            <span class="famfamfam-flag-<c:out value="${match[0].flag}"/>"></span> &nbsp;${match[0].name}
+	            ${match[0].name}&nbsp;<span class="famfamfam-flag-<c:out value="${match[0].flag}"/>"></span>
             </td>
             <td style="text-align: center;">
 	            <c:choose>
-		            <c:when test="${empty match.score}">
+		            <c:when test="${empty match[5]}">
 			            -
 		            </c:when>
 		            <c:otherwise>
-			            ${match.score}
+			            ${match[5]}
 		            </c:otherwise>
 	            </c:choose>
-
-            <td>
-                <fmt:formatDate value="${match[3]}"
-                                pattern="hh:mm a"/>
             </td>
             <td>
-                <span class="famfamfam-flag-<c:out value="${match.opponent2.flag}"/>"></span>&nbsp;${match.opponent2.name}
                 <span class="famfamfam-flag-<c:out value="${match[1].flag}"/>"></span> &nbsp;${match[1].name}
             </td>
         </tr>

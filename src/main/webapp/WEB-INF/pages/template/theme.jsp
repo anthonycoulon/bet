@@ -61,15 +61,15 @@
 		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=EF"/>>Eighth Final</a></li>
+		                    <li><a href=<c:url value="/calendar?level=eighth"/>>Eighth Final</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=QF"/>>Quarter Final</a></li>
+		                    <li><a href=<c:url value="/calendar?level=quarter"/>>Quarter Final</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=SF"/>>Semi Final</a></li>
+		                    <li><a href=<c:url value="/calendar?level=semi"/>>Semi Final</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=TP"/>>Third Place</a></li>
+		                    <li><a href=<c:url value="/calendar?level=final2"/>>Third Place</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=Final"/>>Final</a></li>
+		                    <li><a href=<c:url value="/calendar?level=final1"/>>Final</a></li>
 	                    </ul>
                     </li>
 		            <li id="menu-ranking" class="menu-item">
