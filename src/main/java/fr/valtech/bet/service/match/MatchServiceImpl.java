@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
@@ -17,6 +18,7 @@ import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.match.dto.QuotesDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.match.MatchRepository;
+import fr.valtech.bet.service.exception.BetException;
 
 @Service
 public class MatchServiceImpl implements MatchService {
@@ -63,6 +65,8 @@ public class MatchServiceImpl implements MatchService {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 Match match = matchRepository.saveUserBet(dto, user);
                 quotes.add(transformQuotes(match));
+            } else {
+                Throwables.propagate(new BetException(String.format("THe user %s entered a wrong score", user.getUsername())));
             }
         }
         return quotes;

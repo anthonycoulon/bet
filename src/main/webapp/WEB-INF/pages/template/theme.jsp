@@ -35,28 +35,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand"><a href="/">Valtech Bet</a></span>
+			<span class="navbar-brand"><a href="<c:url value="/"/>">Valtech Bet</a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		        <ul class="nav navbar-nav">
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		            <li id="menu-match" class="menu-item">
 		                <a href="<c:url value="match"/>">Matches</a>
 		            </li>
                     <li class="dropdown menu-item" id="menu-calendar"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<span class="caret"></span></a>
 	                    <ul class="dropdown-menu">
-		                    <li class="menu-item">
-			                    <ul class="list-inline">
-				                    <li><a href=<c:url value="/calendar?level=A"/>>Group A</a></li>
-				                    <li><a href=<c:url value="/calendar?level=B"/>>Group B</a></li>
-				                    <li><a href=<c:url value="/calendar?level=C"/>>Group C</a></li>
-				                    <li><a href=<c:url value="/calendar?level=D"/>>Group D</a></li>
-				                    <li><a href=<c:url value="/calendar?level=E"/>>Group E</a></li>
-				                    <li><a href=<c:url value="/calendar?level=F"/>>Group F</a></li>
-				                    <li><a href=<c:url value="/calendar?level=G"/>>Group G</a></li>
-				                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
-			                    </ul>
-		                    </li>
+		                    <li><a href=<c:url value="/calendar?level=A"/>>Group A</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=B"/>>Group B</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=C"/>>Group C</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=D"/>>Group D</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=E"/>>Group E</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=F"/>>Group F</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=G"/>>Group G</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
 		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=EF"/>>Eighth Final</a></li>
 		                    <li class="divider"></li>
@@ -86,8 +89,8 @@
 		            <li>
 		                <a href="<c:url value="/j_spring_security_logout"/>">Sign out</a>
 		            </li>
-                    </sec:authorize>
 		        </ul>
+                </sec:authorize>
          </div>
 	</nav>
 		<div class="alert alert-success bet-alert">Successfully saved</div>

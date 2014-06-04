@@ -1,17 +1,21 @@
 package fr.valtech.bet.service.user;
 
-import fr.valtech.bet.domain.model.user.User;
-import fr.valtech.bet.domain.repository.user.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import fr.valtech.bet.domain.model.user.User;
+import fr.valtech.bet.domain.repository.user.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     @Transactional(readOnly = true)
@@ -33,8 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getConnectedUser() {
-        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal()).getUsername();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.debug("principal : ", principal);
+        String username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
         return findUser(username);
     }
 }
