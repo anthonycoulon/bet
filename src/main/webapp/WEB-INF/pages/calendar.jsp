@@ -20,7 +20,7 @@
         <tr>
             <th colspan="6">
                 <fmt:formatDate value="${match.matchDate}" pattern="dd/MM/yyyy"/>
-                <fmt:formatDate value="${match.timeDate}" pattern="hh:mm a"/>
+                <fmt:formatDate value="${match.timeDate}" pattern="KK:mm a"/>
             </th>
         </tr>
         <tr>

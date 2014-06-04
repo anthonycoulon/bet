@@ -63,7 +63,7 @@
 					</td>
 					<td>
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
-						<fmt:formatDate value="${dto.matchTime}" pattern="hh:mm a"/>
+						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
 					<td class="opponent1">
 						${dto.opponent1}
