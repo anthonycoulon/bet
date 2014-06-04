@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="newPassword">New Password</label>
+            <label class="control-label" for="newPassword">Password</label>
             <div class="controls">
-                <input type="password" id="newPassword" placeholder="New Password" class="form-control">
+                <input type="password" id="newPassword" placeholder="Password" class="form-control">
             </div>
         </div>
         <div class="control-group">
