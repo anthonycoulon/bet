@@ -24,9 +24,9 @@ public class MatchDto {
 
     private Date matchTime;
 
-    private int quote1;
+    private int odds1;
 
-    private int quote2;
+    private int odds2;
 
     private Integer matchLevelOrdinal;
 
@@ -112,20 +112,20 @@ public class MatchDto {
         this.matchTime = matchTime;
     }
 
-    public int getQuote1() {
-        return quote1;
+    public int getOdds1() {
+        return odds1;
     }
 
-    public void setQuote1(int quote1) {
-        this.quote1 = quote1;
+    public void setOdds1(int odds1) {
+        this.odds1 = odds1;
     }
 
-    public int getQuote2() {
-        return quote2;
+    public int getOdds2() {
+        return odds2;
     }
 
-    public void setQuote2(int quote2) {
-        this.quote2 = quote2;
+    public void setOdds2(int odds2) {
+        this.odds2 = odds2;
     }
 
     public Integer getMatchLevelOrdinal() {
@@ -157,8 +157,8 @@ public class MatchDto {
         sb.append(", bet2=").append(bet2);
         sb.append(", matchDate=").append(matchDate);
         sb.append(", matchTime=").append(matchTime);
-        sb.append(", quote1=").append(quote1);
-        sb.append(", quote2=").append(quote2);
+        sb.append(", odds1=").append(odds1);
+        sb.append(", odds2=").append(odds2);
         sb.append(", matchLevelOrdinal=").append(matchLevelOrdinal);
         sb.append(", matchLevel=").append(matchLevel);
         sb.append('}');

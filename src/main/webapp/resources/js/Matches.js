@@ -46,13 +46,13 @@ Matches.prototype.saveBet = function() {
 			var q = _data[i];
 			var progress = $('tr input.matchId[type=hidden][value='+ q.matchId+']').parent().parent().next().find('td div.progress');
 			progress.empty();
-			progress.append(Matches.maskQuote
-				.replace('${dto.quote1}', q.quote1)
-				.replace('${dto.quote1}', q.quote1)
-				.replace('${dto.quote1}', q.quote1)
-				.replace('${dto.quote2}', q.quote2)
-				.replace('${dto.quote2}', q.quote2)
-				.replace('${dto.quote2}', q.quote2)
+			progress.append(Matches.maskOdds
+				.replace('${dto.odds1}', q.odds1)
+				.replace('${dto.odds1}', q.odds1)
+				.replace('${dto.odds1}', q.odds1)
+				.replace('${dto.odds2}', q.odds2)
+				.replace('${dto.odds2}', q.odds2)
+				.replace('${dto.odds2}', q.odds2)
 			);
 		}
 	}));
@@ -87,12 +87,12 @@ Matches.prototype.refreshMatches = function() {
 				.replace('${dto.bet1}', d.bet1 == null ? '' : d.bet1)
 				.replace('${dto.bet2}', d.bet2 == null ? '' : d.bet2)
 				.replace('${dto.opponent2}', d.opponent2)
-				.replace('${dto.quote1}', d.quote1)
-				.replace('${dto.quote1}', d.quote1)
-				.replace('${dto.quote1}', d.quote1)
-				.replace('${dto.quote2}', d.quote2)
-				.replace('${dto.quote2}', d.quote2)
-				.replace('${dto.quote2}', d.quote2);
+				.replace('${dto.odds1}', d.odds1)
+				.replace('${dto.odds1}', d.odds1)
+				.replace('${dto.odds1}', d.odds1)
+				.replace('${dto.odds2}', d.odds2)
+				.replace('${dto.odds2}', d.odds2)
+				.replace('${dto.odds2}', d.odds2);
 			$('table#matches tbody').append(match);
 		}
 		this.disabledBet();
@@ -131,20 +131,20 @@ Matches.mask=
 	'</td>'+
 	'<td colspan="2">' +
 		'<div class="progress">'+
-			'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote1}%;">'+
-				'${dto.quote1}%'+
+			'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.odds1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.odds1}%;">'+
+				'${dto.odds1}%'+
 			'</div>'+
-			'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.quote2}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote2}%;">'+
-				'${dto.quote2}%'+
+			'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.odds2}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.odds2}%;">'+
+				'${dto.odds2}%'+
 			'</div>'+
 		'</div>'+
 	'</td>'+
 '</tr>';
 
-Matches.maskQuote=
-'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.quote1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote1}%;">'+
-	'${dto.quote1}%'+
+Matches.maskOdds=
+'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.odds1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.odds1}%;">'+
+	'${dto.odds1}%'+
 '</div>'+
-'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.quote2}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.quote2}%;">'+
-	'${dto.quote2}%'+
+'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${dto.odds2}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.odds2}%;">'+
+	'${dto.odds2}%'+
 '</div>';

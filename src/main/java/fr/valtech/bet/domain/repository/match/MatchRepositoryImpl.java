@@ -12,17 +12,13 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
-import org.hibernate.type.EnumType;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
-import org.hibernate.type.Type;
-import org.hibernate.type.TypeResolver;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
-import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
@@ -36,7 +32,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         Session session = (Session) getEntityManager().getDelegate();
         SQLQuery query = session.createSQLQuery("SELECT distinct m.ID as matchId, b.ID as betId, o1.NAME as opponent1, o2.NAME opponent2," //
                 + " m.SCORE as score, b.BET as bet, m.MATCH_DATE as matchDate, m.MATCH_TIME as matchTime," //
-                + " m.QUOTE1 as quote1, m.QUOTE2 as quote2, m.MATCH_LEVEL as matchLevelOrdinal" //
+                + " m.ODDS1 as odds1, m.ODDS2 as odds2, m.MATCH_LEVEL as matchLevelOrdinal" //
                 + " FROM bet.MATCHS m" //
                 + "  INNER JOIN bet.OPPONENT o1 on o1.id=m.MATCH_OPPONENT1_FK" //
                 + "  INNER JOIN bet.OPPONENT o2 on o2.id=m.MATCH_OPPONENT2_FK" //
@@ -50,7 +46,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         query.addScalar("matchId", LongType.INSTANCE).addScalar("betId", LongType.INSTANCE).addScalar("opponent1", StringType.INSTANCE)
                 .addScalar("opponent2", StringType.INSTANCE).addScalar("score", StringType.INSTANCE).addScalar("bet", StringType.INSTANCE)
                 .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE)
-                .addScalar("quote1", IntegerType.INSTANCE).addScalar("quote2", IntegerType.INSTANCE).addScalar("matchLevelOrdinal", IntegerType.INSTANCE)
+                .addScalar("odds1", IntegerType.INSTANCE).addScalar("odds2", IntegerType.INSTANCE).addScalar("matchLevelOrdinal", IntegerType.INSTANCE)
                 .setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
@@ -128,25 +124,25 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     private Match updateMatchQuotes(MatchDto dto, Match match, Integer bet1, Integer bet2) {
         if (bet1 == null || bet2 == null) {
             if (dto.getBet1() > dto.getBet2()) {
-                match.addQuote1(1);
+                match.addOdds1(1);
             } else if (dto.getBet1() < dto.getBet2()) {
-                match.addQuote2(1);
+                match.addOdds2(1);
             }
         } else {
             if (dto.getBet1() > dto.getBet2() && bet1 <= bet2) {
-                match.addQuote1(1);
+                match.addOdds1(1);
                 if(!bet1.equals(bet2)) {
-                    match.addQuote2(-1);
+                    match.addOdds2(-1);
                 }
             } else if (dto.getBet1() < dto.getBet2() && bet1 >= bet2) {
-                match.addQuote2(1);
+                match.addOdds2(1);
                 if(!bet1.equals(bet2)) {
-                    match.addQuote1(-1);
+                    match.addOdds1(-1);
                 }
             } else if (dto.getBet1().equals(dto.getBet2()) && bet1 < bet2) {
-                match.addQuote2(-1);
+                match.addOdds2(-1);
             } else if (dto.getBet1().equals(dto.getBet2()) && bet1 > bet2) {
-                match.addQuote1(-1);
+                match.addOdds1(-1);
             }
         }
         getEntityManager().merge(match);

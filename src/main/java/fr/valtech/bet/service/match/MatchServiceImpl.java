@@ -45,9 +45,9 @@ public class MatchServiceImpl implements MatchService {
     }
 
     private void calculateQuote(MatchDto match) {
-        int total = match.getQuote1() + match.getQuote2();
-        match.setQuote1(percent(match.getQuote1(), total));
-        match.setQuote2(percent(match.getQuote2(), total));
+        int total = match.getOdds1() + match.getOdds2();
+        match.setOdds1(percent(match.getOdds1(), total));
+        match.setOdds2(percent(match.getOdds2(), total));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class MatchServiceImpl implements MatchService {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 Match match = matchRepository.saveUserBet(dto, user);
                 quotes.add(transformQuotes(match));
-            } else {
+            } else if(!(dto.getBet1()==null && dto.getBet2()==null) || today.isAfter(dto.getMatchTime().getTime())) {
                 Throwables.propagate(new BetException(String.format("THe user %s entered a wrong score", user.getUsername())));
             }
         }
@@ -89,9 +89,9 @@ public class MatchServiceImpl implements MatchService {
     private QuotesDto transformQuotes(Match match) {
         QuotesDto quoteDto = new QuotesDto();
         quoteDto.setMatchId(match.getId());
-        int total = match.getQuote1() + match.getQuote2();
-        quoteDto.setQuote1(percent(match.getQuote1(), total));
-        quoteDto.setQuote2(percent(match.getQuote2(), total));
+        int total = match.getOdds1() + match.getOdds2();
+        quoteDto.setOdds1(percent(match.getOdds1(), total));
+        quoteDto.setOdds2(percent(match.getOdds2(), total));
         return quoteDto;
     }
 

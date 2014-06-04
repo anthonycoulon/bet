@@ -1,20 +1,14 @@
 package fr.valtech.bet.domain.model.match;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.ForeignKey;
-import com.google.common.collect.Lists;
-import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.opponent.Opponent;
 import fr.valtech.bet.domain.model.stadium.Stadium;
 
@@ -48,21 +42,15 @@ public class Match {
     @Column(name = "SCORE")
     private String score;
 
-    @Column(name = "QUOTE1", columnDefinition = "integer default 0")
-    private Integer quote1;
+    @Column(name = "ODDS1", columnDefinition = "integer default 0")
+    private Integer odds1;
 
-    @Column(name = "QUOTE2", columnDefinition = "integer default 0")
-    private Integer quote2;
+    @Column(name = "ODDS2", columnDefinition = "integer default 0")
+    private Integer odds2;
 
     @Column(name = "MATCH_LEVEL", nullable = false)
     @Enumerated
     private MatchLevel matchLevel;
-
-    @OneToMany
-    @ForeignKey(name = "FK_MATCH_BET", inverseName = "FK_BET_MATCH")
-    @JoinTable(name = "MATCH_BET", joinColumns = { @JoinColumn(name = "MATCH_ID", referencedColumnName = "ID") },
-            inverseJoinColumns = { @JoinColumn(name = "BET_ID", referencedColumnName = "ID") })
-    private List<Bet> bets;
 
     public long getId() {
         return id;
@@ -104,14 +92,6 @@ public class Match {
         this.score = score;
     }
 
-    public List<Bet> getBets() {
-        return bets;
-    }
-
-    public void setBets(List<Bet> bets) {
-        this.bets = bets;
-    }
-
     public Date getTimeDate() {
         return timeDate;
     }
@@ -124,20 +104,20 @@ public class Match {
 
     public void setStadium(Stadium stadium) {this.stadium = stadium;}
 
-    public Integer getQuote1() {
-        return quote1;
+    public Integer getOdds1() {
+        return odds1;
     }
 
-    public void setQuote1(Integer quote1) {
-        this.quote1 = quote1;
+    public void setOdds1(Integer odds1) {
+        this.odds1 = odds1;
     }
 
-    public Integer getQuote2() {
-        return quote2;
+    public Integer getOdds2() {
+        return odds2;
     }
 
-    public void setQuote2(Integer quote2) {
-        this.quote2 = quote2;
+    public void setOdds2(Integer odds2) {
+        this.odds2 = odds2;
     }
 
     public MatchLevel getMatchLevel() {
@@ -187,33 +167,24 @@ public class Match {
         sb.append(", matchDate=").append(matchDate);
         sb.append(", timeDate=").append(timeDate);
         sb.append(", score='").append(score).append('\'');
-        sb.append(", quote1=").append(quote1);
-        sb.append(", quote2=").append(quote2);
+        sb.append(", odds1=").append(odds1);
+        sb.append(", odds2=").append(odds2);
         sb.append(", matchLevel=").append(matchLevel);
-        sb.append(", bets=").append(bets);
         sb.append('}');
         return sb.toString();
     }
 
-    public void addBet(Bet bet) {
-        if (bets == null) {
-            bets = Lists.newArrayList();
+    public void addOdds1(int value) {
+        if(odds1 ==null) {
+            odds1 =0;
         }
-        bet.setMatch(this);
-        bets.add(bet);
+        odds1 +=value;
     }
 
-    public void addQuote1(int value) {
-        if(quote1==null) {
-            quote1=0;
+    public void addOdds2(int value) {
+        if(odds2 ==null) {
+            odds2 =0;
         }
-        quote1+=value;
-    }
-
-    public void addQuote2(int value) {
-        if(quote2==null) {
-            quote2=0;
-        }
-        quote2+=value;
+        odds2 +=value;
     }
 }

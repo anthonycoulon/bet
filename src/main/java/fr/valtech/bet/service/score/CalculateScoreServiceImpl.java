@@ -61,9 +61,9 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
         Integer score1 = Integer.valueOf(match.getScore().split("-", 2)[0]);
         Integer score2 = Integer.valueOf(match.getScore().split("-", 2)[1]);
 
-        int total = match.getQuote1() + match.getQuote2();
-        int p1 = percent(match.getQuote1(), total);
-        int p2 = percent(match.getQuote2(), total);
+        int total = match.getOdds1() + match.getOdds2();
+        int p1 = percent(match.getOdds1(), total);
+        int p2 = percent(match.getOdds2(), total);
 
         if (bet1 > bet2 && score1 > score2) {
             scoreBet++;
