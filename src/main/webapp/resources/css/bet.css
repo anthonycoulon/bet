@@ -7,8 +7,6 @@ div.bet-alert {
 }
 
 body {
-    padding-top: 15px;
-    padding-bottom: 10px;
     background-color: #f5f5f5;
 }
 
@@ -18,4 +16,30 @@ body {
 
 .navbar-brand a:hover {
     text-decoration: none;
-};
+}
+
+.navbar {
+    border-radius: 0 !important;
+}
+
+.navbar-inverse {
+    border-bottom: 6px #009cda solid !important;
+}
+
+.dropdown-menu {
+    background-color: #222 !important;
+    border-color: #080808 !important;
+}
+.dropdown-menu li a {
+    color: #999 !important;
+}
+.dropdown-menu li a:hover, .dropdown-menu li a:focus {
+    color: #fff !important;
+    background: #222 !important;
+}
+.dropdown-menu li:hover {
+    background: #222 !important;
+}
+.dropdown-menu .divider {
+    background: #696969 !important;
+}

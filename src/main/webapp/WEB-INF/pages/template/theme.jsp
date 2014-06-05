@@ -26,7 +26,6 @@
 </head>
 
 <body>
-<div class="container">
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-navbar-collapse">
@@ -35,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand"><a href="<c:url value="/"/>">Valtech Bet</a></span>
+			<span class="navbar-brand"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/logo_valtech.png"/>" alt="valtech logo" class="img-responsive"/></a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
@@ -93,11 +92,12 @@
                 </sec:authorize>
          </div>
 	</nav>
+	<div class="container">
 		<div class="alert alert-success bet-alert">Successfully saved</div>
 		<div class="alert alert-danger bet-alert">An error occured on the site. Please try again or make sure you provided the right information.</div>
-	<section id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<decorator:body/>
-	</section>
-</div>
+		<section id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<decorator:body/>
+		</section>
+	</div>
 </body>
 </html>

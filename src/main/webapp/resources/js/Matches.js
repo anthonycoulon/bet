@@ -122,9 +122,7 @@ Matches.mask=
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
 	'</td>'+
 	'<td>'+
-		'${dto.matchLevel}'+
-	'</td>'+
-	'<td>' +
+		'${dto.matchLevel}<br/>'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
 		'${dto.matchTime}' +
 	'</td>'+
@@ -148,10 +146,10 @@ Matches.mask=
 	'<td>'+
 		'<b>Bet : </b>'+
 	'</td>'+
-	'<td colspan="2" class="bet">'+
+	'<td colspan="3" class="bet">'+
 		'<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>'+
 	'</td>'+
-	'<td colspan="4">' +
+	'<td colspan="3">' +
 		'<div class="progress">'+
 			'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.odds1}" aria-valuemin="0" aria-valuemax="100" style="width: ${dto.odds1}%;">'+
 				'${dto.odds1}%'+

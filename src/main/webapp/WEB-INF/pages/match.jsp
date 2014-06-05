@@ -44,13 +44,6 @@
 	</c:choose>
 
 	<table id="matches" class="row table-responsive table table-striped">
-		<thead>
-			<th>Level</th>
-			<th>Time (fr)</th>
-			<th colspan="2" style="text-align: right;">#1</th>
-			<th style="text-align: center;">Score</th>
-			<th colspan="2">#2</th>
-		</thead>
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
 				<tr>
@@ -59,9 +52,7 @@
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
 					</td>
 					<td>
-						${dto.matchLevel}
-					</td>
-					<td>
+						${dto.matchLevel}<br/>
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
 						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
@@ -92,10 +83,10 @@
 					<td>
 						<b>Bet : </b>
 					</td>
-					<td colspan="2" class="bet">
+					<td colspan="3" class="bet">
 						<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>
 					</td>
-					<td colspan="2">
+					<td colspan="3">
 						<div class="progress">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${dto.odds1}" aria-valuemin="0" aria-valuemax="100"
 							     style="width: ${dto.odds1}%;">
