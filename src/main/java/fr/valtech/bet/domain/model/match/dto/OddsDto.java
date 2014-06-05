@@ -4,6 +4,8 @@ public class OddsDto {
 
     private Long matchId;
 
+    private Long betId;
+
     private Integer odds1;
 
     private Integer odds2;
@@ -14,6 +16,14 @@ public class OddsDto {
 
     public void setMatchId(Long matchId) {
         this.matchId = matchId;
+    }
+
+    public Long getBetId() {
+        return betId;
+    }
+
+    public void setBetId(Long betId) {
+        this.betId = betId;
     }
 
     public Integer getOdds1() {

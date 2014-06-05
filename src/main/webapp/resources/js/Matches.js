@@ -34,6 +34,10 @@ Matches.prototype.checkBetValue = function (bet1, bet2) {
 };
 
 Matches.prototype.saveBet = function() {
+	$('#save_button').attr('disabled', 'disabled');
+	if($.active!=0) {
+		return;
+	}
 	var matches = $('#matches tbody tr');
 	var bets=[];
 	for(var i=0; i<matches.length; i+=2){
@@ -54,6 +58,7 @@ Matches.prototype.saveBet = function() {
 		for(var i=0; i<_data.length; i++) {
 			var q = _data[i];
 			var progress = $('tr input.matchId[type=hidden][value='+ q.matchId+']').parent().parent().next().find('td div.progress');
+			$('tr input.matchId[type=hidden][value='+ q.matchId +']').parent().find('input.betId[type=hidden]').val(q.betId);
 			progress.empty();
 			progress.append(Matches.maskOdds
 				.replace('${dto.odds1}', q.odds1)
@@ -64,6 +69,7 @@ Matches.prototype.saveBet = function() {
 				.replace('${dto.odds2}', q.odds2)
 			);
 		}
+		$('#save_button').removeAttr('disabled');
 	}));
 };
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
+import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.AdminMatchDto;
@@ -63,8 +64,7 @@ public class MatchServiceImpl implements MatchService {
         List<OddsDto> quotes = Lists.newArrayList();
         for (MatchDto dto : dtos) {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
-                Match match = matchRepository.saveUserBet(dto, user);
-                quotes.add(transformQuotes(match));
+                quotes.add(transformQuotes(matchRepository.saveUserBet(dto, user)));
             } else if (!(dto.getBet1() == null && dto.getBet2() == null) || today.isAfter(dto.getMatchTime().getTime())) {
                 Throwables.propagate(new BetException(String.format("THe user %s entered a wrong score", user.getUsername())));
             }
@@ -78,12 +78,14 @@ public class MatchServiceImpl implements MatchService {
         return matchRepository.findByLevel(MatchLevel.valueOf(level));
     }
 
-    private OddsDto transformQuotes(Match match) {
+    private OddsDto transformQuotes(Bet bet) {
+        Match match = bet.getMatch();
         OddsDto quoteDto = new OddsDto();
         quoteDto.setMatchId(match.getId());
         int total = match.getOdds1() + match.getOdds2();
         quoteDto.setOdds1(percent(match.getOdds1(), total));
         quoteDto.setOdds2(percent(match.getOdds2(), total));
+        quoteDto.setBetId(bet.getId());
         return quoteDto;
     }
 

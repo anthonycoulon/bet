@@ -3,12 +3,8 @@ package fr.valtech.bet.domain.repository.match;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
-import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.DateType;
 import org.hibernate.type.IntegerType;
@@ -16,7 +12,6 @@ import org.hibernate.type.LongType;
 import org.hibernate.type.StringType;
 import org.hibernate.type.TimestampType;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
@@ -59,15 +54,16 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
     }
 
     @Override
-    public Match saveUserBet(MatchDto dto, User user) {
+    public Bet saveUserBet(MatchDto dto, User user) {
         Bet bet;
+        Bet merged;
         Match match = getEntityManager().find(Match.class, dto.getMatchId());
         if (dto.getBetId() == null) {
             bet = new Bet();
             bet.setMatch(match);
             bet.setGambler(user);
             bet.setBet(constructBet(dto));
-            getEntityManager().persist(bet);
+            merged = getEntityManager().merge(bet);
 
             updateMatchQuotes(dto, match, null, null);
 
@@ -78,13 +74,13 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
             Integer bet2 = Integer.valueOf(bet.getBet().split("-", 2)[1]);
 
             bet.setBet(constructBet(dto));
-            getEntityManager().merge(bet);
+            merged=getEntityManager().merge(bet);
 
             updateMatchQuotes(dto, match, bet1, bet2);
         }
         getEntityManager().flush();
 
-        return match;
+        return merged;
     }
 
     @Override
