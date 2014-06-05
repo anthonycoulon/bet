@@ -21,3 +21,7 @@ select#dates {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
+.first-cell {
+    max-width: 100px;
+}

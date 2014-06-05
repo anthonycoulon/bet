@@ -43,18 +43,16 @@
 		</c:otherwise>
 	</c:choose>
 
-	<table id="matches" class="row table-responsive table table-striped">
+	<table id="matches" class="table-responsive table table-striped">
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
 				<tr>
-					<td style="display: none;">
+					<td class="first-cell">
 						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
-					</td>
-					<td>
 						${dto.matchLevel}<br/>
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
-						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
+						&nbsp;-&nbsp;<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
 					<td class="opponent1">
 						<c:choose>

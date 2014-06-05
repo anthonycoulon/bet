@@ -125,14 +125,12 @@ Matches.prototype.refreshMatches = function() {
 
 Matches.mask=
 '<tr>'+
-	'<td style="display: none">'+
+	'<td class="first-cell">'+
 		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
-	'</td>'+
-	'<td>'+
-		'${dto.matchLevel}<br/>'+
+		'${dto.matchLevel}'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
-		'${dto.matchTime}' +
+		'&nbsp;-&nbsp;${dto.matchTime}' +
 	'</td>'+
 	'<td class="opponent1">'+
 		'${dto.opponent1}'+
