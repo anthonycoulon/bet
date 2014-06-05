@@ -14,9 +14,16 @@
 	</script>
 </head>
 <body>
-<div class="hero-unit">
-    <p>Hello ${user.firstName}! Your <b>score</b> is <b>${user.score}</b>.</p>
-</div>
+	<div class="hero-unit">
+		<c:choose>
+			<c:when test="${empty user.score}">
+				<p>Hello ${user.firstName}! Your <b>score</b> is <b>0</b>.</p>
+			</c:when>
+			<c:otherwise>
+				<p>Hello ${user.firstName}! Your <b>score</b> is <b>${user.score}</b>.</p>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	<section class="row">
 		<label for="dates">Day : </label>
 		<select name="dates" id="dates" class="form-control">

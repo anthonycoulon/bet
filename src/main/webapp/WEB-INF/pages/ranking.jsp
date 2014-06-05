@@ -31,7 +31,16 @@
 						<tr>
 							<td>${users[u.index].rank}</td>
 							<td>${users[u.index].userName}</td>
-							<td>${users[u.index].score}</td>
+							<td>
+								<c:choose>
+									<c:when test="${empty users[u.index].score}">
+										0
+									</c:when>
+									<c:otherwise>
+										${users[u.index].score}
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
