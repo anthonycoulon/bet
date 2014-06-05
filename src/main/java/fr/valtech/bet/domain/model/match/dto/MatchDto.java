@@ -1,6 +1,7 @@
 package fr.valtech.bet.domain.model.match.dto;
 
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
 public class MatchDto {
 
@@ -162,6 +163,21 @@ public class MatchDto {
 
     public void setFlag2(String flag2) {
         this.flag2 = flag2;
+    }
+
+    public int getWinner() {
+        if (StringUtils.isBlank(score)) {
+            return 0;
+        }
+        Integer s1 = Integer.valueOf(score.split("-", 2)[0]);
+        Integer s2 = Integer.valueOf(score.split("-", 2)[1]);
+
+        if (s1 > s2) {
+            return 1;
+        } else if (s2 > s1) {
+            return 2;
+        }
+        return 0;
     }
 
     @Override

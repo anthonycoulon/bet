@@ -91,7 +91,15 @@ Matches.prototype.refreshMatches = function() {
 		for(var i=0; i<_data.length; i++) {
 			var d = _data[i];
 			var time = this.extracteTime(d.matchTime);
-			var match = Matches.mask.replace('${dto.opponent1}', d.opponent1)
+			var o1=d.opponent1;
+			var o2=d.opponent2;
+			if(d.winner==1) {
+				o1='<b>'+d.opponent1+'</b>';
+			}
+			if(d.winner==2) {
+				o2='<b>'+d.opponent2+'</b>';
+			}
+			var match = Matches.mask.replace('${dto.opponent1}', o1)
 				.replace('${dto.flag1}', d.flag1)
 				.replace('${dto.matchTime}', time)
 				.replace('${dto.matchLevel}', d.matchLevel)
@@ -101,7 +109,7 @@ Matches.prototype.refreshMatches = function() {
 				.replace('${dto.score}', d.score ? '<b>' + d.score + '</b>' : '-')
 				.replace('${dto.bet1}', d.bet1==null ? '' : d.bet1)
 				.replace('${dto.bet2}', d.bet2==null ? '' : d.bet2)
-				.replace('${dto.opponent2}', d.opponent2)
+				.replace('${dto.opponent2}', o2)
 				.replace('${dto.flag2}', d.flag2)
 				.replace('${dto.odds1}', d.odds1)
 				.replace('${dto.odds1}', d.odds1)

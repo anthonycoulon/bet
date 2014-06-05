@@ -57,7 +57,14 @@
 						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
 					<td class="opponent1">
-						${dto.opponent1}
+						<c:choose>
+							<c:when test="${match.winner==1}">
+								<b>${dto.opponent1}</b>
+							</c:when>
+							<c:otherwise>
+								${dto.opponent1}
+							</c:otherwise>
+						</c:choose>
 					</td>
 					<td class="flagM">
 						<span class="famfamfam-flag-${dto.flag1}"></span>
@@ -76,7 +83,14 @@
 						<span class="famfamfam-flag-${dto.flag2}"></span>
 					</td>
 					<td class="opponent2">
-						${dto.opponent2}
+						<c:choose>
+							<c:when test="${match.winner==2}">
+								<b>${dto.opponent2}</b>
+							</c:when>
+							<c:otherwise>
+								${dto.opponent2}
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 				<tr>

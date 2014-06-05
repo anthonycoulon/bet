@@ -30,7 +30,14 @@
 				${match.stadium.name}
             </td>
             <td class="opponent1">
-	            ${match.opponent1.name}
+	            <c:choose>
+		            <c:when test="${match.winner==1}">
+			            <b>${match.opponent1.name}</b>
+		            </c:when>
+		            <c:otherwise>
+			            ${match.opponent1.name}
+		            </c:otherwise>
+	            </c:choose>
             </td>
 	        <td class="flag">
 		        <span class="famfamfam-flag-${match.opponent1.flag}"></span>
@@ -49,7 +56,14 @@
 		        <span class="famfamfam-flag-${match.opponent2.flag}"></span>
 	        </td>
             <td class="opponent2">
-                ${match.opponent2.name}
+	            <c:choose>
+		            <c:when test="${match.winner==2}">
+			            <b>${match.opponent2.name}</b>
+		            </c:when>
+		            <c:otherwise>
+			            ${match.opponent2.name}
+		            </c:otherwise>
+	            </c:choose>
             </td>
         </tr>
     </c:forEach>

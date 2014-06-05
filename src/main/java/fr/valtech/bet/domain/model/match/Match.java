@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.apache.commons.lang3.StringUtils;
 import fr.valtech.bet.domain.model.opponent.Opponent;
 import fr.valtech.bet.domain.model.stadium.Stadium;
 
@@ -130,6 +131,21 @@ public class Match {
 
     public void setMatchLevel(MatchLevel matchLevel) {
         this.matchLevel = matchLevel;
+    }
+
+    public int getWinner() {
+        if (StringUtils.isBlank(score)) {
+            return 0;
+        }
+        Integer s1 = Integer.valueOf(score.split("-", 2)[0]);
+        Integer s2 = Integer.valueOf(score.split("-", 2)[1]);
+
+        if (s1 > s2) {
+            return 1;
+        } else if (s2 > s1) {
+            return 2;
+        }
+        return 0;
     }
 
     @Override
