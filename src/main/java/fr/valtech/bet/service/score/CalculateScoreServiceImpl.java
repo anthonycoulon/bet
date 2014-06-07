@@ -30,11 +30,11 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     @Transactional
     @Override
     public void calculateScore() {
-        Date yesterday = new DateTime().toDateMidnight().minusDays(1).toDate();
-        log.info("calculate score for matches of {}", yesterday);
+        Date today = new DateTime().toDateMidnight().toDate();
+        log.info("calculate score for matches before {}", today);
         List<User> users = userRepository.findUsers();
         for (User user : users) {
-            List<Bet> bets = betRepository.findBetUser(yesterday, user);
+            List<Bet> bets = betRepository.findBetUser(today, user);
             Integer scoreUser = 0;
             for (Bet bet : bets) {
                 Integer scoreBet = 0;

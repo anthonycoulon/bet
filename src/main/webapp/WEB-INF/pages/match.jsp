@@ -57,7 +57,7 @@
 					<td class="first-cell">
 						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
-						${dto.matchLevel}<br/>
+						${dto.matchLevel}
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
 						&nbsp;-&nbsp;<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
