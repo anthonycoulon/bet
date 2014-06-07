@@ -99,7 +99,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td class="first-cell">
 						<b>Bet : </b>
 					</td>
 					<td colspan="3" class="bet">

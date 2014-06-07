@@ -22,6 +22,6 @@ select#dates {
     border-radius: 6px;
 }
 
-.first-cell {
-    max-width: 100px;
+td.first-cell {
+    max-width: 70px;
 }

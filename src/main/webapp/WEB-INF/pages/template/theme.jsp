@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span class="navbar-brand"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/logo_valtech.png"/>" alt="valtech logo" class="img-responsive"/></a></span>
+			<span class="navbar-brand"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/logo_valtech_bet.png"/>" alt="valtech logo" class="img-responsive"/></a></span>
 		</div>
         <div class="collapse navbar-collapse" id="menu-navbar-collapse">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
