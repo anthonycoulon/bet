@@ -50,7 +50,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
     @Override
     public List<Date> findDates() {
-        return getEntityManager().createQuery("SELECT distinct m.matchDate FROM Match m", Date.class).getResultList();
+        return getEntityManager().createQuery("SELECT distinct m.matchDate FROM Match m ORDER BY m.matchDate", Date.class).getResultList();
     }
 
     @Override
