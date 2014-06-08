@@ -38,7 +38,9 @@ public class MatchServiceImpl implements MatchService {
                 match.setBet1(Integer.valueOf(splitedBet[0]));
                 match.setBet2(Integer.valueOf(splitedBet[1]));
             }
-            match.setMatchLevel(MatchLevel.values()[match.getMatchLevelOrdinal()].getLabel());
+            MatchLevel matchLevel = MatchLevel.values()[match.getMatchLevelOrdinal()];
+            match.setMatchLevel(matchLevel.getLabel());
+            match.setMatchLevelShort(matchLevel.getShortLabel());
             calculateQuote(match);
         }
 

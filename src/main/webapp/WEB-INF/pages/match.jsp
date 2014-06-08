@@ -43,10 +43,10 @@
 	</section>
 	<c:choose>
 		<c:when test="${empty dtos}">
-			<span id="no-match"><b>There is no match today!</b></span>
+			<span id="no-match"><b>There is no match today! Select another date in list box.</b></span>
 		</c:when>
 		<c:otherwise>
-			<span id="no-match" style="display: none"><b>There is no match today!</b></span>
+			<span id="no-match" style="display: none"><b>There is no match today! Select another date in list box.</b></span>
 		</c:otherwise>
 	</c:choose>
 
@@ -54,12 +54,16 @@
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
 				<tr>
-					<td class="first-cell">
+					<td class="first-cell col-xs-1 col-md-2 col-lg-2">
 						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
-						${dto.matchLevel}
+						<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
-						&nbsp;-&nbsp;<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
+						<span class="visible-xs"></span>
+						<span class="hidden-xs">
+							&nbsp;-&nbsp;
+						</span>
+						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
 					<td class="opponent1">
 						<c:choose>
@@ -98,8 +102,8 @@
 						</c:choose>
 					</td>
 				</tr>
-				<tr>
-					<td class="first-cell">
+				<tr class="line-bet">
+					<td class="first-cell col-xs-1 col-md-2 col-lg-2">
 						<b>Bet : </b>
 					</td>
 					<td colspan="3" class="bet">

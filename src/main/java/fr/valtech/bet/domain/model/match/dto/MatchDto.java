@@ -36,6 +36,7 @@ public class MatchDto {
     private String flag1;
 
     private String flag2;
+    private String matchLevelShort;
 
     public Long getBetId() {
         return betId;
@@ -165,6 +166,14 @@ public class MatchDto {
         this.flag2 = flag2;
     }
 
+    public void setMatchLevelShort(String matchLevelShort) {
+        this.matchLevelShort = matchLevelShort;
+    }
+
+    public String getMatchLevelShort() {
+        return matchLevelShort;
+    }
+
     public int getWinner() {
         if (StringUtils.isBlank(score)) {
             return 0;
@@ -199,6 +208,7 @@ public class MatchDto {
         sb.append(", matchLevel='").append(matchLevel).append('\'');
         sb.append(", flag1='").append(flag1).append('\'');
         sb.append(", flag2='").append(flag2).append('\'');
+        sb.append(", matchLevelShort='").append(matchLevelShort).append('\'');
         sb.append('}');
         return sb.toString();
     }

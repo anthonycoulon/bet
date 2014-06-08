@@ -18,7 +18,7 @@ Matches.prototype.disabledBet = function () {
 			$(matches[i]).next().find('td input.bet').attr('disabled','disabled')
 		}
 	}
-	if(matches.length==$('input.bet[disabled=disabled]').length/2) {
+	if($('#matches tbody tr.line-bet').length==$('input.bet[disabled=disabled]').length/2) {
 		$('#save_button').attr('disabled', 'disabled');
 	}else {
 		$('#save_button').removeAttr('disabled');
@@ -109,6 +109,7 @@ Matches.prototype.refreshMatches = function() {
 				.replace('${dto.flag1}', d.flag1)
 				.replace('${dto.matchTime}', time)
 				.replace('${dto.matchLevel}', d.matchLevel)
+				.replace('${dto.matchLevelShort}', d.matchLevelShort)
 				.replace('${dto.matchTime.time}', d.matchTime)
 				.replace('${dto.betId}', d.betId ? d.betId : '')
 				.replace('${dto.matchId}', d.matchId)
@@ -131,12 +132,18 @@ Matches.prototype.refreshMatches = function() {
 
 Matches.mask=
 '<tr>'+
-	'<td class="first-cell">'+
+	'<td class="first-cell col-xs-1 col-md-2 col-lg-2">'+
 		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
-		'${dto.matchLevel}'+
+		'<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
-		'&nbsp;-&nbsp;${dto.matchTime}' +
+		'<span class="visible-xs">'+
+			''+
+		'</span>'+
+		'<span class="hidden-xs">'+
+			'&nbsp;&nbsp;-&nbsp;&nbsp;'+
+		'</span>'+
+		'${dto.matchTime}' +
 	'</td>'+
 	'<td class="opponent1">'+
 		'${dto.opponent1}'+
@@ -154,8 +161,8 @@ Matches.mask=
 		'${dto.opponent2}'+
 	'</td>'+
 '</tr>' +
-'<tr>' +
-	'<td class="first-cell">'+
+'<tr class="line-bet">' +
+	'<td class="first-cell col-xs-1 col-md-2 col-lg-2">'+
 		'<b>Bet : </b>'+
 	'</td>'+
 	'<td colspan="3" class="bet">'+

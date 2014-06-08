@@ -22,6 +22,6 @@ select#dates {
     border-radius: 6px;
 }
 
-td.first-cell {
-    max-width: 70px;
+td.score, td.bet{
+    white-space: nowrap;
 }

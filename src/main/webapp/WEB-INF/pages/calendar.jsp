@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td>
-				Group&nbsp;${match.matchLevel}
+				${match.matchLevel.label}
 				<br/>
 				${match.stadium.name}
             </td>
