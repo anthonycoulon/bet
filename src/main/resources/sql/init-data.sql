@@ -1,17 +1,9 @@
 insert into bet.ROLE (ID, ROLE) values (1, 'ROLE_ADMIN');
 insert into bet.ROLE (ID, ROLE) values (2, 'ROLE_USER');
 
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (1, 'Anthony', 'Coulon', 'cfd67247b128ee77fb48638ca5095019cf9dc697', 'anthony.coulon@valtech.fr', 25);
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (2, 'Fabrice', 'Tavilla', 'c8f7878120e876bb08ce96c4d24535ca3e7a1397', 'fabrice.tavilla@valtech.fr', 15);
-INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (3, 'Antho', 'Coulon', 'd607361608e7d09a0a7d00e989cf325943f312ca', 'admin', 0);
-INSERT INTO bet.USER (ID,FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (4, 'Lyazid', 'Selmi', 'c79bb6af4401f0fc763bac4016f9826a223754ed', 'lyazid.selmi@valtech.fr', 20);
-INSERT INTO bet.USER (ID,FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (5, 'André', 'Desousa', '59a9316cac72c42005f1462c130887118dc23ebc', 'andre.desousa@valtech.fr', 8);
+INSERT INTO bet.USER (ID, FIRSTNAME, NAME, PASSWORD, USERNAME, SCORE) VALUES (1, 'Antho', 'Coulon', '2ef7c59bc143a40e30ea3a7844341ea9104c104d', 'admin', 0);
 
-insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (1, 2);
-insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (2, 2);
-insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (3, 1);
-insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (4, 2);
-insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (5, 2);
+insert into bet.USER_ROLE (USER_ID, ROLE_ID) values (1, 1);
 
 INSERT INTO bet.STADIUM(ID, NAME) VALUES (1, 'Arena Corinthians');
 INSERT INTO bet.STADIUM(ID, NAME) VALUES (2, 'Estadio das Dunas');
