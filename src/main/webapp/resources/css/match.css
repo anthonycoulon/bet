@@ -21,7 +21,3 @@ select#dates {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
-
-td.score, td.bet{
-    white-space: nowrap;
-}
