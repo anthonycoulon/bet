@@ -63,15 +63,21 @@ public class MatchServiceImpl implements MatchService {
     @Transactional
     public List<OddsDto> saveUserBets(List<MatchDto> dtos, User user) {
         DateTime today = new DateTime();
-        List<OddsDto> quotes = Lists.newArrayList();
+        List<OddsDto> oddsDtos = Lists.newArrayList();
+        int wrongDate = 0;
         for (MatchDto dto : dtos) {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
-                quotes.add(transformQuotes(matchRepository.saveUserBet(dto, user)));
-            } else if (!(dto.getBet1() == null && dto.getBet2() == null) || today.isAfter(dto.getMatchTime().getTime())) {
-                Throwables.propagate(new BetException(String.format("THe user %s entered a wrong score", user.getUsername())));
+                oddsDtos.add(transformOdds(matchRepository.saveUserBet(dto, user)));
+            } else if (dto.getBet1() == null || dto.getBet2() == null) {
+                Throwables.propagate(new BetException(String.format("The user %s entered a wrong score", user.getUsername())));
+            } else if (today.isAfter(dto.getMatchTime().getTime())) {
+                wrongDate++;
             }
         }
-        return quotes;
+        if(wrongDate!=0 && wrongDate==dtos.size()) {
+            Throwables.propagate(new BetException(String.format("The user %s entered a wrong score", user.getUsername())));
+        }
+        return oddsDtos;
     }
 
     @Override
@@ -80,7 +86,7 @@ public class MatchServiceImpl implements MatchService {
         return matchRepository.findByLevel(MatchLevel.valueOf(level));
     }
 
-    private OddsDto transformQuotes(Bet bet) {
+    private OddsDto transformOdds(Bet bet) {
         Match match = bet.getMatch();
         OddsDto quoteDto = new OddsDto();
         quoteDto.setMatchId(match.getId());
