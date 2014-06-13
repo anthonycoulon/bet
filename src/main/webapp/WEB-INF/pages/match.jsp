@@ -67,7 +67,7 @@
 					</td>
 					<td class="opponent1">
 						<c:choose>
-							<c:when test="${match.winner==1}">
+							<c:when test="${dto.winner==1}">
 								<b>${dto.opponent1}</b>
 							</c:when>
 							<c:otherwise>
@@ -80,11 +80,11 @@
 					</td>
 					<td class="score">
 						<c:choose>
-							<c:when test="${empty match.score}">
+							<c:when test="${empty dto.score}">
 								-
 							</c:when>
 							<c:otherwise>
-								<b>${match.score}</b>
+								<b>${dto.score}</b>
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -93,7 +93,7 @@
 					</td>
 					<td class="opponent2">
 						<c:choose>
-							<c:when test="${match.winner==2}">
+							<c:when test="${dto.winner==2}">
 								<b>${dto.opponent2}</b>
 							</c:when>
 							<c:otherwise>
