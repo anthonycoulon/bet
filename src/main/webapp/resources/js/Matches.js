@@ -69,8 +69,8 @@ Matches.prototype.saveBet = function() {
 				.replace('${dto.odds2}', q.odds2)
 			);
 		}
-		$('#save_button').removeAttr('disabled');
 	}));
+	$('#save_button').removeAttr('disabled');
 };
 
 Matches.prototype.extracteTime = function (timestamp) {

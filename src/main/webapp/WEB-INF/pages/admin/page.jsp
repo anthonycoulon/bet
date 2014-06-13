@@ -33,7 +33,7 @@
 						<input type="hidden" id="id" value="${match.id}"/>
 					</td>
 					<td>
-						<fmt:formatDate value="${match.matchTime}" pattern="dd/MM/yyyy hh:mm a"/>
+						<fmt:formatDate value="${match.matchTime}" pattern="dd/MM/yyyy"/>
 					</td>
 					<td>
 						${match.opponent1}
