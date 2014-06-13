@@ -12,7 +12,7 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository 
 
     @Override
     public List<User> findUsersOrderedByScore() {
-        TypedQuery<User> query = getEntityManager().createQuery("FROM User u WHERE u.role.role='ROLE_USER' ORDER BY u.score DESC",
+        TypedQuery<User> query = getEntityManager().createQuery("FROM User u WHERE u.role.role='ROLE_USER' ORDER BY u.score DESC, u.firstName ASC, u.name ASC",
                 User.class);
         return query.getResultList();
     }
