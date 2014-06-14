@@ -24,13 +24,22 @@
 						<tr style="font-weight:bold; color: #5cb85c;">
 							<td>${users[u.index].rank}</td>
 							<td>${users[u.index].userName}</td>
-							<td>${users[u.index].score}</td>
+							<td>
+								<c:choose>
+									<c:when test="${empty users[u.index].score}">
+										0
+									</c:when>
+									<c:otherwise>
+										${users[u.index].score}
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
 							<td>${users[u.index].rank}</td>
-							<td>${users[u.index].userName}</td>
+							<td><a href="<c:url value="/ranking/user/detail/${users[u.index].userId}/${users[u.index].rank}"/>">${users[u.index].userName}</a></td>
 							<td>
 								<c:choose>
 									<c:when test="${empty users[u.index].score}">

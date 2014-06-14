@@ -27,6 +27,7 @@
     <sec:http auto-config='true' use-expressions="true">
         <sec:intercept-url pattern="/match**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
         <sec:intercept-url pattern="/ranking**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+        <sec:intercept-url pattern="/ranking/user/detail**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
         <sec:intercept-url pattern="/myaccount**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
         <sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
         <sec:form-login login-page="/login"

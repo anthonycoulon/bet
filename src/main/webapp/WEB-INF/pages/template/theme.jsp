@@ -40,7 +40,7 @@
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 		        <ul class="nav navbar-nav">
 		            <li id="menu-match" class="menu-item">
-		                <a href="<c:url value="match"/>">Matches</a>
+		                <a href="<c:url value="/match"/>">Matches</a>
 		            </li>
                     <li class="dropdown menu-item" id="menu-calendar"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Calendar<span class="caret"></span></a>
 	                    <ul class="dropdown-menu">
@@ -72,7 +72,7 @@
 	                    </ul>
                     </li>
 		            <li id="menu-ranking" class="menu-item">
-		                <a href="<c:url value="ranking"/>">Ranking</a>
+		                <a href="<c:url value="/ranking"/>">Ranking</a>
 		            </li>
 		            <li id="menu-rules" class="menu-item">
 		                <a href=<c:url value="/rules"/>>Rules</a>

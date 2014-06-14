@@ -1,11 +1,11 @@
 package fr.valtech.bet.domain.repository.user;
 
+import java.util.List;
+import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
+import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 @Repository
 public class UserRepositoryImpl extends BetRepository implements UserRepository {
@@ -29,6 +29,13 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository 
         TypedQuery<User> query = getEntityManager().createQuery("FROM User u WHERE u.id=:id", User.class);
         query.setParameter("id", id);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<Bet> findUserConsideredBet(Long userId) {
+        TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.considered=true AND b.gambler.id=:userId", Bet.class);
+        query.setParameter("userId", userId);
+        return query.getResultList();
     }
 
     @Override
