@@ -3,6 +3,7 @@ package fr.valtech.bet.service.account;
 import fr.valtech.bet.domain.model.user.Role;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
+import fr.valtech.bet.service.exception.BetException;
 import fr.valtech.bet.service.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AccountServiceImpl implements AccountService{
 
+    public static final String SALT_KEY = "ZLaTaNSalt";
+
     @Autowired
     UserService userService;
 
     @Override
     @Transactional(readOnly = true)
-    public void updateUser(UserDto userDto) {
+    public void updateUser(UserDto userDto) throws BetException {
         MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
 
-            User user = userService.findUser(userDto.getUsername());
-            user.setName(userDto.getName());
-            user.setFirstName(userDto.getFirstName());
-            user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
-            if(userDto.getUsername() == user.getUsername() && userDto.getCurrentPassword().equals(user.getPassword())){
-                userService.save(user);
+        User user = userService.findUser(userDto.getUsername());
+        String currentPwd = encoder.encodePassword(userDto.getCurrentPassword(), SALT_KEY);
+        user.setName(userDto.getName());
+        user.setFirstName(userDto.getFirstName());
+        if(userDto.getUsername().equals(user.getUsername()) && StringUtils.isNotBlank(userDto.getNewPassword())){
+            if(currentPwd.equals(user.getPassword())){
+                user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
+            }else{
+                throw new BetException("Wrong Current Password");
             }
         }
+        userService.save(user);
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -44,7 +52,7 @@ public class AccountServiceImpl implements AccountService{
         user.setRole(role);
         user.setName(userDto.getName());
         user.setFirstName(userDto.getFirstName());
-        user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
+        user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
         userService.save(user);
     }
 }
