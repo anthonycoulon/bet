@@ -17,6 +17,7 @@ MyAccount.prototype.saveUser = function () {
     user.confirmation = $("#confirmation").val();
     user.modifyPwd = $("#changePwd").is(":checked");
 
+    this.initErrors();
     if(user.modifyPwd) {
         bind(this, this.modfifyUserWithNewPassword(user));
     }else{
@@ -47,14 +48,17 @@ MyAccount.prototype.modfifyUserWithoutNewPassword = function (_user) {
         var hasAnError = false;
         if (!_user.firstName) {
             $('.error').text("Please type your firstname.");
+            $('#firstNameGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.name) {
             $('.error').text("Please type your lastname.");
+            $('#nameGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.currentPassword) {
             $('.error').text("Please type your current password.");
+            $('#currentPasswordGroup').addClass("has-error");
         }
     }
 };
@@ -74,28 +78,43 @@ MyAccount.prototype.modfifyUserWithNewPassword = function (_user) {
         var hasAnError = false;
         if (!_user.firstName) {
             $('.error').text("Please type your firstname.");
+            $('#firstNameGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.name) {
             $('.error').text("Please type your lastname.");
+            $('#nameGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.currentPassword) {
             $('.error').text("Please type your current password.");
+            $('#currentPasswordGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.newPassword) {
             $('.error').text("Please type a new password.");
+            $('#newPasswordGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && !_user.confirmation) {
             $('.error').text("Please type the password confirmation.");
+            $('#confirmationGroup').addClass("has-error");
             hasAnError = true;
         }
         if (hasAnError == false && _user.newPassword != _user.confirmation) {
             $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.");
+            $('#newPasswordGroup').addClass("has-error");
+            $('#confirmationGroup').addClass("has-error");
         }
     }
+};
+
+MyAccount.prototype.initErrors = function () {
+    $('#firstNameGroup').removeClass("has-error");
+    $('#nameGroup').removeClass("has-error");
+    $('#currentPasswordGroup').removeClass("has-error");
+    $('#newPasswordGroup').removeClass("has-error");
+    $('#confirmationGroup').removeClass("has-error");
 };
 
 MyAccount.prototype.getLastPage = function () {

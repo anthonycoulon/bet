@@ -14,25 +14,25 @@
 <body>
 <div class="container-fluid">
     <form class="form-horizontal">
-        <div class="control-group">
+        <div class="control-group" id="firstNameGroup">
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" class="form-control" id="firstName" value="${user.firstName}">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="nameGroup">
             <label class="control-label" for="name">Last Name</label>
             <div class="controls">
                 <input type="text" class="form-control" id="name" value="${user.name}">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="usernameGroup">
             <label class="control-label" for="username">Your Valtech Email</label>
             <div class="controls">
                 <input type="text" class="form-control" id="username" value="${user.username}" disabled>
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="currentPasswordGroup">
             <label class="control-label" for="currentPassword">Current Password</label>
             <div class="controls">
                 <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
@@ -43,13 +43,13 @@
                 <input type="checkbox" class="" id="changePwd"><label id="changePwdLabel" for="changePwd">Change Password</label>
             </div>
         </div>
-        <div class="control-group showPwd" hidden="hidden">
+        <div class="control-group showPwd" id="newPasswordGroup" hidden="hidden">
             <label class="control-label" for="newPassword">New Password</label>
             <div class="controls">
                 <input type="password" class="form-control" id="newPassword" placeholder="New Password">
             </div>
         </div>
-        <div class="control-group showPwd" hidden="hidden">
+        <div class="control-group showPwd" id="confirmationGroup" hidden="hidden">
             <label class="control-label" for="confirmation">Confirmation</label>
             <div class="controls">
                 <input type="password" class="form-control" id="confirmation" placeholder="Confirmation">
