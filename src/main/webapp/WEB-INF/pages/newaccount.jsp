@@ -28,10 +28,9 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Email</label>
+            <label class="control-label" for="name">Your Valtech Email</label>
             <div class="controls">
-                <input type="text" id="usernameF" disabled class="form-control">.
-                <input type="text" id="usernameN" disabled class="form-control">@valtech.fr
+                <input type="text" id="username" placeholder="Your Valtech Email" class="form-control">
             </div>
         </div>
         <div class="control-group">

@@ -20,6 +20,8 @@ public class UserDto {
 
     private String confirmation;
 
+    private Boolean isEmailGood;
+
     public Long getId() {
         return id;
     }
@@ -84,6 +86,14 @@ public class UserDto {
         this.confirmation = confirmation;
     }
 
+    public Boolean getIsEmailGood() {
+        return isEmailGood;
+    }
+
+    public void setIsEmailGood(Boolean isEmailGood) {
+        this.isEmailGood = isEmailGood;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserDto{");
@@ -92,6 +102,10 @@ public class UserDto {
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", currentPassword='").append(currentPassword).append('\'');
+        sb.append(", newPassword='").append(newPassword).append('\'');
+        sb.append(", confirmation='").append(confirmation).append('\'');
+        sb.append(", isEmailGood=").append(isEmailGood);
         sb.append('}');
         return sb.toString();
     }

@@ -6,4 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AccountService {
     @Transactional(readOnly = true)
     void updateUser(UserDto userDto);
+
+    @Transactional(readOnly = true)
+    void saveNewUser(UserDto userDto);
 }
