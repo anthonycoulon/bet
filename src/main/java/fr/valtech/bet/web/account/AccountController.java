@@ -41,27 +41,25 @@ public class AccountController {
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
-        if(StringUtils.isBlank(userDto.getUsername())) {
-            if (createFormValidated(userDto)) {
-                accountService.updateUser(userDto);
-            }
+        if (createFormValidated(userDto)) {
+            accountService.saveNewUser(userDto);
         }
     }
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public void update(@RequestBody UserDto userDto) {
-            userDto.setUsername(userService.getConnectedUser().getUsername());
-            if (updateFormValidated(userDto)) {
-                accountService.updateUser(userDto);
-            }
+        userDto.setUsername(userService.getConnectedUser().getUsername());
+        if (updateFormValidated(userDto)) {
+            accountService.updateUser(userDto);
+        }
     }
 
     private boolean updateFormValidated(UserDto userDto) {
-        return userDto.getNewPassword().equals(userDto.getConfirmation()) || StringUtils.isNotBlank(userDto.getFirstName()) || StringUtils.isNotBlank(userDto.getName()) || StringUtils.isNotBlank(userDto.getCurrentPassword());
+        return userDto.getNewPassword().equals(userDto.getConfirmation()) || StringUtils.isNotBlank(userDto.getFirstName()) || StringUtils.isNotBlank(userDto.getName()) || StringUtils.isNotBlank(userDto.getCurrentPassword()) || userDto.getIsEmailGood();
     }
 
     private boolean createFormValidated(UserDto userDto) {
-        return userDto.getNewPassword().equals(userDto.getConfirmation()) || StringUtils.isNotBlank(userDto.getFirstName()) || StringUtils.isNotBlank(userDto.getName());
+        return userDto.getNewPassword().equals(userDto.getConfirmation()) || StringUtils.isNotBlank(userDto.getFirstName()) || StringUtils.isNotBlank(userDto.getName()) || userDto.getIsEmailGood();
     }
 }

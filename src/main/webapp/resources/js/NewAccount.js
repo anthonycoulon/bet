@@ -21,10 +21,15 @@ NewAccount.prototype.saveUser = function () {
     user.id = $("#id").val();
     user.firstName = $("#firstName").val();
     user.name = $("#name").val();
+    user.username = $("#username").val();
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
 
-    if(user.firstName && user.name && user.newPassword && user.confirmation && user.newPassword == user.confirmation) {
+    var emailChecker = new RegExp("[a-z\-]+\.[a-z\-]+@valtech\.(fr|de|uk|dk|se|com|us)");
+    var isEmailGood = emailChecker.test(user.username);
+    user.isEmailGood = isEmailGood;
+
+    if(user.firstName && user.name && user.newPassword && user.confirmation && user.newPassword == user.confirmation && isEmailGood) {
         this.ajax = new Ajax();
         this.ajax.postData(this.contextUrl + "save", user, bind(this, function () {
             this.ajax.success();
@@ -45,6 +50,10 @@ NewAccount.prototype.saveUser = function () {
             $('.error').text("Please type your lastname.");
             hasAnError = true;
         }
+        if(hasAnError == false && !isEmailGood){
+            $('.error').text("Please check your email. (example: john.doe@valtech.fr)");
+            hasAnError = true;
+        }
         if (hasAnError == false && !user.newPassword) {
             $('.error').text("Please type a new password.");
             hasAnError = true;
@@ -55,7 +64,6 @@ NewAccount.prototype.saveUser = function () {
         }
         if (hasAnError == false && user.newPassword != user.confirmation) {
             $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.");
-            hasAnError = true;
         }
     }
 };

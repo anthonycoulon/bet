@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="username">Email</label>
+            <label class="control-label" for="username">Your Valtech Email</label>
             <div class="controls">
                 <input type="text" class="form-control" id="username" value="${user.username}" disabled>
             </div>

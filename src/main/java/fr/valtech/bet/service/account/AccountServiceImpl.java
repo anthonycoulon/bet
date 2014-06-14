@@ -21,28 +21,30 @@ public class AccountServiceImpl implements AccountService{
     public void updateUser(UserDto userDto) {
         MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
 
-        //TODO: Refactore this part
-        User user = new User();
-        if(StringUtils.isNotBlank(userDto.getUsername())){
-            user = userService.findUser(userDto.getUsername());
+            User user = userService.findUser(userDto.getUsername());
             user.setName(userDto.getName());
             user.setFirstName(userDto.getFirstName());
             user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
-            if(userDto.getUsername() == user.getUsername()){
+            if(userDto.getUsername() == user.getUsername() && userDto.getCurrentPassword().equals(user.getPassword())){
                 userService.save(user);
             }
-        }else{
-            String username = String.format("%s.%s@valtech.fr", userDto.getFirstName(), userDto.getName()).toLowerCase();
-            Role role = new Role();
-            role.setId(2L);
-            role.setRole("ROLE_USER");
-            user.setUsername(username);
-            user.setRole(role);
-            user.setName(userDto.getName());
-            user.setFirstName(userDto.getFirstName());
-            user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
-            userService.save(user);
         }
 
+    @Override
+    @Transactional(readOnly = true)
+    public void saveNewUser(UserDto userDto) {
+        MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
+
+        Role role = new Role();
+        role.setId(2L);
+        role.setRole("ROLE_USER");
+
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setRole(role);
+        user.setName(userDto.getName());
+        user.setFirstName(userDto.getFirstName());
+        user.setPassword(encoder.encodePassword(userDto.getNewPassword(), "ZLaTaNSalt"));
+        userService.save(user);
     }
 }
