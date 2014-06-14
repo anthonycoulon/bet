@@ -22,6 +22,8 @@ public class UserDto {
 
     private Boolean isEmailGood;
 
+    private Boolean modifyPwd;
+
     public Long getId() {
         return id;
     }
@@ -94,6 +96,14 @@ public class UserDto {
         this.isEmailGood = isEmailGood;
     }
 
+    public Boolean getModifyPwd() {
+        return modifyPwd;
+    }
+
+    public void setModifyPwd(Boolean modifyPwd) {
+        this.modifyPwd = modifyPwd;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserDto{");
@@ -106,6 +116,7 @@ public class UserDto {
         sb.append(", newPassword='").append(newPassword).append('\'');
         sb.append(", confirmation='").append(confirmation).append('\'');
         sb.append(", isEmailGood=").append(isEmailGood);
+        sb.append(", modifyPwd=").append(modifyPwd);
         sb.append('}');
         return sb.toString();
     }

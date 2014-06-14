@@ -39,12 +39,17 @@
             </div>
         </div>
         <div class="control-group">
+            <div class="controls">
+                <input type="checkbox" class="" id="changePwd"><label id="changePwdLabel" for="changePwd">Change Password</label>
+            </div>
+        </div>
+        <div class="control-group showPwd" hidden="hidden">
             <label class="control-label" for="newPassword">New Password</label>
             <div class="controls">
                 <input type="password" class="form-control" id="newPassword" placeholder="New Password">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group showPwd" hidden="hidden">
             <label class="control-label" for="confirmation">Confirmation</label>
             <div class="controls">
                 <input type="password" class="form-control" id="confirmation" placeholder="Confirmation">
