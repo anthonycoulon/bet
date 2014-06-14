@@ -16,19 +16,24 @@
                 <hr />
                 <div class="login-form">
                     <form action="j_spring_security_check" method="post">
-                        <input type="text" id="j_username" name="j_username" placeholder="Email" required/>
-                        <input type="password" id="j_password" name="j_password" placeholder="Password" required/>
+                        <input type="text" id="j_username" name="j_username" class="form-control" placeholder="Email" required/>
+                        <input type="password" id="j_password" name="j_password" class="form-control" placeholder="Password" required/>
                         <button type="submit" class="btn btn-blue">Login</button>
                     </form>
                     <c:if test="${error!=null}">
                         <div class="error">${error}</<div>
                     </c:if>
                     <div class="login-links">
+                        <a href="<c:url value="/myaccount/forgotpwd"/>">
+                            Forgot password?
+                        </a>
+                        <br />
                         <a href="<c:url value="/myaccount/new"/>">
                             Don't have an account? <strong>Sign Up</strong>
                         </a>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
