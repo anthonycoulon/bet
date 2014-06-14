@@ -16,31 +16,31 @@
 <body>
 <div class="container-fluid">
     <form class="form-horizontal">
-        <div class="control-group">
+        <div class="control-group" id="firstNameGroup">
             <label class="control-label" for="firstName">First Name</label>
             <div class="controls">
                 <input type="text" id="firstName" placeholder="First Name" class="form-control">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="nameGroup">
             <label class="control-label" for="name">Last Name</label>
             <div class="controls">
                 <input type="text" id="name" placeholder="Last Name" class="form-control">
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="name">Your Valtech Email</label>
+        <div class="control-group" id="usernameGroup">
+            <label class="control-label" for="username">Your Valtech Email</label>
             <div class="controls">
                 <input type="text" id="username" placeholder="Your Valtech Email" class="form-control">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="newPasswordGroup">
             <label class="control-label" for="newPassword">Password</label>
             <div class="controls">
                 <input type="password" id="newPassword" placeholder="Password" class="form-control">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="confirmationGroup">
             <label class="control-label" for="confirmation">Confirmation</label>
             <div class="controls">
                 <input type="password" id="confirmation" placeholder="Confirmation" class="form-control">
