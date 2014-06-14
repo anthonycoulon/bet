@@ -18,65 +18,9 @@ MyAccount.prototype.saveUser = function () {
     user.modifyPwd = $("#changePwd").is(":checked");
 
     if(user.modifyPwd) {
-        if (user.firstName && user.name && user.currentPassword && user.newPassword && user.confirmation && user.newPassword == user.confirmation) {
-            this.ajax = new Ajax();
-            this.ajax.postData(this.contextUrl + "update", user, bind(this, function () {
-                this.ajax.success();
-                $('.error').empty();
-                $("#currentPassword").empty();
-                $("#newPassword").empty();
-                $("#confirmation").empty();
-            }));
-        } else {
-            var hasAnError = false;
-            if (!user.firstName) {
-                $('.error').text("Please type your firstname.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.name) {
-                $('.error').text("Please type your lastname.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.currentPassword) {
-                $('.error').text("Please type your current password.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.newPassword) {
-                $('.error').text("Please type a new password.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.confirmation) {
-                $('.error').text("Please type the password confirmation.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && user.newPassword != user.confirmation) {
-                $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.");
-            }
-        }
+        bind(this, this.modfifyUserWithNewPassword(user));
     }else{
-        if (user.firstName && user.name && user.currentPassword) {
-            this.ajax = new Ajax();
-            this.ajax.postData(this.contextUrl + "update", user, bind(this, function () {
-                this.ajax.success();
-                $('.error').empty();
-                $("#currentPassword").empty();
-                $("#newPassword").empty();
-                $("#confirmation").empty();
-            }));
-        } else {
-            var hasAnError = false;
-            if (!user.firstName) {
-                $('.error').text("Please type your firstname.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.name) {
-                $('.error').text("Please type your lastname.");
-                hasAnError = true;
-            }
-            if (hasAnError == false && !user.currentPassword) {
-                $('.error').text("Please type your current password.");
-            }
-        }
+        bind((this, this.modfifyUserWithoutNewPassword(user)));
     }
 };
 
@@ -86,6 +30,71 @@ MyAccount.prototype.showPwd = function () {
         $(".showPwd").removeAttr("hidden");
     }else{
         $(".showPwd").attr("hidden", "hidden");
+    }
+};
+
+MyAccount.prototype.modfifyUserWithoutNewPassword = function (_user) {
+    if (_user.firstName && _user.name && _user.currentPassword) {
+        this.ajax = new Ajax();
+        this.ajax.postData(this.contextUrl + "update", _user, bind(this, function () {
+            this.ajax.success();
+            $('.error').empty();
+            $("#currentPassword").empty();
+            $("#newPassword").empty();
+            $("#confirmation").empty();
+        }));
+    } else {
+        var hasAnError = false;
+        if (!_user.firstName) {
+            $('.error').text("Please type your firstname.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.name) {
+            $('.error').text("Please type your lastname.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.currentPassword) {
+            $('.error').text("Please type your current password.");
+        }
+    }
+};
+
+MyAccount.prototype.modfifyUserWithNewPassword = function (_user) {
+
+    if (_user.firstName && _user.name && _user.currentPassword && _user.newPassword && _user.confirmation && _user.newPassword == _user.confirmation) {
+        this.ajax = new Ajax();
+        this.ajax.postData(this.contextUrl + "update", _user, bind(this, function () {
+            this.ajax.success();
+            $('.error').empty();
+            $("#currentPassword").empty();
+            $("#newPassword").empty();
+            $("#confirmation").empty();
+        }));
+    } else {
+        var hasAnError = false;
+        if (!_user.firstName) {
+            $('.error').text("Please type your firstname.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.name) {
+            $('.error').text("Please type your lastname.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.currentPassword) {
+            $('.error').text("Please type your current password.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.newPassword) {
+            $('.error').text("Please type a new password.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && !_user.confirmation) {
+            $('.error').text("Please type the password confirmation.");
+            hasAnError = true;
+        }
+        if (hasAnError == false && _user.newPassword != _user.confirmation) {
+            $('.error').text("The new password and the confirmation are not the same! Please type a new password and confirmation again.");
+        }
     }
 };
 
