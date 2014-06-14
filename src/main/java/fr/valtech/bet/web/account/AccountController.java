@@ -1,18 +1,19 @@
 package fr.valtech.bet.web.account;
 
+import com.google.common.collect.Maps;
 import fr.valtech.bet.domain.model.user.dto.UserDto;
 import fr.valtech.bet.service.account.AccountService;
+import fr.valtech.bet.service.exception.BetException;
 import fr.valtech.bet.service.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("myaccount")
@@ -48,12 +49,21 @@ public class AccountController {
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public void update(@RequestBody UserDto userDto) {
+    public void update(@RequestBody UserDto userDto) throws BetException {
         userDto.setUsername(userService.getConnectedUser().getUsername());
         if (updateFormValidated(userDto)) {
             accountService.updateUser(userDto);
         }
     }
+
+    @ResponseBody
+    @ExceptionHandler
+    public Map<String, String> handler() {
+
+        Map<String, String> errors = Maps.newHashMap();
+        return errors;
+    }
+
 
     private boolean updateFormValidated(UserDto userDto) {
         return userDto.getNewPassword().equals(userDto.getConfirmation()) || StringUtils.isNotBlank(userDto.getFirstName()) || StringUtils.isNotBlank(userDto.getName()) || StringUtils.isNotBlank(userDto.getCurrentPassword()) || userDto.getIsEmailGood();
