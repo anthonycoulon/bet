@@ -26,16 +26,18 @@ public class AccountServiceImpl implements AccountService{
 
         User user = userService.findUser(userDto.getUsername());
         String currentPwd = encoder.encodePassword(userDto.getCurrentPassword(), SALT_KEY);
-        user.setName(userDto.getName());
-        user.setFirstName(userDto.getFirstName());
-        if(userDto.getUsername().equals(user.getUsername()) && StringUtils.isNotBlank(userDto.getNewPassword())){
-            if(currentPwd.equals(user.getPassword())){
+
+        if(userDto.getUsername().equals(user.getUsername()) && currentPwd.equals(user.getPassword())){
+            user.setName(userDto.getName());
+            user.setFirstName(userDto.getFirstName());
+
+            if(StringUtils.isNotBlank(userDto.getNewPassword())){
                 user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
-            }else{
-                throw new BetException("Wrong Current Password");
             }
+            userService.save(user);
+        }else {
+            throw new BetException("Wrong Current Password or Username is not equals to the one in database!");
         }
-        userService.save(user);
     }
 
     @Override
