@@ -1,3 +1,12 @@
 #saveBtn, #cancelBtn {
     margin-top: 20px;
 }
+
+#changePwd{
+    margin-top: 15px;
+}
+
+#changePwdLabel{
+    font-weight: normal !important;
+    margin-left: 5px;
+}
