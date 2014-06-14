@@ -3,20 +3,35 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="container">
-    <form action="j_spring_security_check" class="form-signin"  method="post" id="form_login">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" id="j_username" name="j_username" class="input-block-level form-control" placeholder="Email"/>
-        <input type="password" id="j_password" name="j_password" class="input-block-level form-control" placeholder="Password"/>
-        <input type="submit" value="Sign in"
-               class="btn btn-large btn-primary"/>
-        <span><a href="<c:url value="/myaccount/new"/>">Create a new account</a></span>
-        <c:if test="${error!=null}">
-            <span class="error">${error}</span>
-        </c:if>
-    </form>
+<div class="container" id="login-block">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+            <div class="login-box">
+                <div class="login-logo">
+                    <a href="#" class="img-responsive"><img src="<c:url value="/resources/img/logo-valtech-brazil-gf.png"/>"/></a>
+                </div>
+                <hr />
+                <div class="login-form">
+                    <form action="j_spring_security_check" method="post">
+                        <input type="text" id="j_username" name="j_username" placeholder="Email" required/>
+                        <input type="password" id="j_password" name="j_password" placeholder="Password" required/>
+                        <button type="submit" class="btn btn-blue">Login</button>
+                    </form>
+                    <c:if test="${error!=null}">
+                        <div class="error">${error}</<div>
+                    </c:if>
+                    <div class="login-links">
+                        <a href="<c:url value="/myaccount/new"/>">
+                            Don't have an account? <strong>Sign Up</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
