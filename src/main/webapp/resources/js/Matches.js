@@ -4,6 +4,11 @@ Matches = function() {
 
 Matches.prototype.init = function() {
 
+	if($(document).width()<360) {
+		$('#matches').css('margin-left','-30px');
+		$('#matches').css('margin-right','-30px');
+	}
+
 	this.disabledBet();
 	$('#dates').change(bind(this, this.refreshMatches));
 	$('#save_button').click(bind(this, this.saveBet));
