@@ -25,6 +25,9 @@
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
           p:defaultLocale="fr" />
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:maxUploadSize="150000"/>
+
 	<import resource="classpath:/spring/context.xml"/>
     <import resource="classpath:/spring/repository-context.xml"/>
     <import resource="classpath:/spring/service-context.xml"/>

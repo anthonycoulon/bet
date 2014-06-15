@@ -1,15 +1,17 @@
 package fr.valtech.bet.service.account;
 
-import fr.valtech.bet.domain.model.user.Role;
-import fr.valtech.bet.domain.model.user.User;
-import fr.valtech.bet.domain.model.user.dto.UserDto;
-import fr.valtech.bet.service.exception.BetException;
-import fr.valtech.bet.service.user.UserService;
+import java.io.IOException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import fr.valtech.bet.domain.model.user.Role;
+import fr.valtech.bet.domain.model.user.User;
+import fr.valtech.bet.domain.model.user.dto.UserDto;
+import fr.valtech.bet.service.exception.BetException;
+import fr.valtech.bet.service.user.UserService;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -20,7 +22,7 @@ public class AccountServiceImpl implements AccountService{
     UserService userService;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void updateUser(UserDto userDto) throws BetException {
         MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
 
@@ -41,7 +43,7 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void saveNewUser(UserDto userDto) {
         MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
 
@@ -56,5 +58,17 @@ public class AccountServiceImpl implements AccountService{
         user.setFirstName(userDto.getFirstName());
         user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
         userService.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void saveUserAvatar(MultipartFile file, User connectedUser) {
+        try {
+            connectedUser.setAvatar(file.getBytes());
+            connectedUser.setContentType(file.getContentType());
+            userService.save(connectedUser);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

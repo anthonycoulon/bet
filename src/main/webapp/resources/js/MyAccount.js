@@ -3,6 +3,9 @@ MyAccount = function() {
 };
 
 MyAccount.prototype.init = function() {
+
+	$('input[type=file]').bootstrapFileInput();
+
     $('#saveBtn').click(bind(this, this.saveUser));
     $('#cancelBtn').click(bind(this, this.getLastPage));
     $('#changePwd').click(bind(this, this.showPwd));
@@ -34,6 +37,29 @@ MyAccount.prototype.showPwd = function () {
     }
 };
 
+MyAccount.prototype.postAvatar = function () {
+	if ($('input[type=file]').prop("files").length != 0) {
+		var formData = new FormData();
+		formData.append("file", $('input[type=file]').prop("files")[0]);
+
+		$.ajax({
+			url: this.contextUrl + "avatar",
+			type: 'POST',
+			data: formData,
+			dataType: 'text',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (_data) {
+				$('#avatar-result').html(_data)
+			},
+			error: function () {
+				$('#avatar-result').html('<div class="error">A error occurred. Please try again or change image.</div>')
+			}
+		});
+	}
+};
+
 MyAccount.prototype.modfifyUserWithoutNewPassword = function (_user) {
     if (_user.firstName && _user.name && _user.currentPassword) {
         this.ajax = new Ajax();
@@ -43,6 +69,8 @@ MyAccount.prototype.modfifyUserWithoutNewPassword = function (_user) {
             $("#currentPassword").empty();
             $("#newPassword").empty();
             $("#confirmation").empty();
+
+	        this.postAvatar();
         }));
     } else {
         var hasAnError = false;
@@ -73,6 +101,8 @@ MyAccount.prototype.modfifyUserWithNewPassword = function (_user) {
             $("#currentPassword").empty();
             $("#newPassword").empty();
             $("#confirmation").empty();
+
+	        this.postAvatar();
         }));
     } else {
         var hasAnError = false;

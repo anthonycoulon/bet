@@ -22,6 +22,11 @@ body {
     border-radius: 0 !important;
 }
 
+img.avatar {
+    height: 75px;
+    width: 75px;
+}
+
 .navbar-inverse {
     border-bottom: 6px #009cda solid !important;
 }

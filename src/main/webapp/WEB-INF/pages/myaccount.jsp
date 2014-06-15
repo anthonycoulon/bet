@@ -3,6 +3,7 @@
 <html>
 <head>
     <script type="text/javascript" src="<c:url value="/resources/js/MyAccount.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.file-input.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/myaccount.css"/>" />
 	<script type="text/javascript">
 		$(function() {
@@ -30,6 +31,13 @@
             <label class="control-label" for="username">Your Valtech Email</label>
             <div class="controls">
                 <input type="text" class="form-control" id="username" value="${user.username}" disabled>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="avatar">Avatar :</label>
+            <div class="controls">
+                <input type="file" class="btn btn-primary" id="avatar" value="">
+	            <section id="avatar-result"><img src="/bet/myaccount/download/avatar" alt="avatar" class="img-responsive avatar"/></section>
             </div>
         </div>
         <div class="control-group" id="currentPasswordGroup">

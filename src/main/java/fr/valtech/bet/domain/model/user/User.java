@@ -50,6 +50,12 @@ public class User {
     @Column(name = "SCORE")
     private Integer score;
 
+    @Column(name = "AVATAR", columnDefinition = "longblob")
+    private byte[] avatar;
+
+    @Column(name = "CONTENT_TYPE", length = 15)
+    private String contentType;
+
     public Long getId() {
         return id;
     }
@@ -112,6 +118,22 @@ public class User {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getContentType() {
+        return contentType;
     }
 
     @Override
