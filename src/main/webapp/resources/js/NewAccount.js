@@ -1,6 +1,7 @@
 NewAccount = function() {
     this.contextUrl='/bet/myaccount/';
 };
+
 NewAccount.prototype.init = function() {
     $("#firstName").keyup(function(){
         $("#usernameF").val(this.value.toLowerCase());

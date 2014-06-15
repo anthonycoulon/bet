@@ -24,17 +24,15 @@ public class AccountServiceImpl implements AccountService{
     @Override
     @Transactional
     public void updateUser(UserDto userDto) throws BetException {
-        MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
-
         User user = userService.findUser(userDto.getUsername());
-        String currentPwd = encoder.encodePassword(userDto.getCurrentPassword(), SALT_KEY);
+        String currentPwd = encodePassword(userDto.getCurrentPassword());
 
         if(userDto.getUsername().equals(user.getUsername()) && currentPwd.equals(user.getPassword())){
             user.setName(userDto.getName());
             user.setFirstName(userDto.getFirstName());
 
             if(StringUtils.isNotBlank(userDto.getNewPassword())){
-                user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
+                user.setPassword(encodePassword(userDto.getNewPassword()));
             }
             userService.save(user);
         }else {
@@ -45,8 +43,6 @@ public class AccountServiceImpl implements AccountService{
     @Override
     @Transactional
     public void saveNewUser(UserDto userDto) {
-        MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
-
         Role role = new Role();
         role.setId(2L);
         role.setRole("ROLE_USER");
@@ -56,8 +52,28 @@ public class AccountServiceImpl implements AccountService{
         user.setRole(role);
         user.setName(userDto.getName());
         user.setFirstName(userDto.getFirstName());
-        user.setPassword(encoder.encodePassword(userDto.getNewPassword(), SALT_KEY));
+        user.setPassword(encodePassword(userDto.getNewPassword()));
         userService.save(user);
+    }
+
+    @Override
+    public void resetPwd(String email) {
+        User user = userService.findUser(email);
+        String newPassword = generatePwd(user);
+        user.setPassword(newPassword);
+        userService.save(user);
+    }
+
+    private String generatePwd(User user) {
+        StringBuilder newPassword = new StringBuilder();
+        newPassword.append(StringUtils.lowerCase(user.getFirstName().substring(0, 1)));
+        newPassword.append(StringUtils.lowerCase(user.getName()));
+        return encodePassword(newPassword.toString());
+    }
+
+    private String encodePassword(String password){
+        MessageDigestPasswordEncoder encoder = new MessageDigestPasswordEncoder("SHA-1");
+        return encoder.encodePassword(password, SALT_KEY);
     }
 
     @Override

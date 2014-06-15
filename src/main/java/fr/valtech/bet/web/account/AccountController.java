@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
@@ -52,6 +53,11 @@ public class AccountController {
         return new ModelAndView("newaccount");
     }
 
+    @RequestMapping(value = "forgotpwd")
+    public ModelAndView forgottenPassword() {
+        return new ModelAndView("forgottenpwd");
+    }
+
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public void save(@RequestBody UserDto userDto) {
@@ -66,6 +72,14 @@ public class AccountController {
         userDto.setUsername(userService.getConnectedUser().getUsername());
         if (updateFormValidated(userDto)) {
             accountService.updateUser(userDto);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "forgotpwd/reset/{email:.+}")
+    public void resetPwd(@PathVariable("email") String email){
+        if (StringUtils.isNotBlank(email)) {
+            accountService.resetPwd(email);
         }
     }
 

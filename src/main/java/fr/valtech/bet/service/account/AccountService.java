@@ -13,5 +13,8 @@ public interface AccountService {
     @Transactional
     void saveNewUser(UserDto userDto);
 
+    @Transactional(readOnly = true)
+    void resetPwd(String email);
+
     void saveUserAvatar(MultipartFile file, User connectedUser);
 }
