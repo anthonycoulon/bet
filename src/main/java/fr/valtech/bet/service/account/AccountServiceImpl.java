@@ -1,5 +1,12 @@
 package fr.valtech.bet.service.account;
 
+import fr.valtech.bet.domain.model.user.Role;
+import fr.valtech.bet.domain.model.user.User;
+import fr.valtech.bet.domain.model.user.dto.UserDto;
+import fr.valtech.bet.service.exception.BetException;
+import fr.valtech.bet.service.mail.MailService;
+import fr.valtech.bet.service.user.UserService;
+import org.apache.commons.lang3.RandomStringUtils;
 import java.io.IOException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +26,10 @@ public class AccountServiceImpl implements AccountService{
     public static final String SALT_KEY = "ZLaTaNSalt";
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private MailService mailService;
 
     @Override
     @Transactional
@@ -59,16 +69,31 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void resetPwd(String email) {
         User user = userService.findUser(email);
-        String newPassword = generatePwd(user);
-        user.setPassword(newPassword);
+        String newPassword = generatePwd();
+        sendMail(user, newPassword);
+        user.setPassword(encodePassword(newPassword));
         userService.save(user);
     }
 
-    private String generatePwd(User user) {
-        StringBuilder newPassword = new StringBuilder();
-        newPassword.append(StringUtils.lowerCase(user.getFirstName().substring(0, 1)));
-        newPassword.append(StringUtils.lowerCase(user.getName()));
-        return encodePassword(newPassword.toString());
+    private void sendMail(User user, String newPassword) {
+        String body = buildMessage(user, newPassword);
+        String subject = "Valtech Bet :  Your password has been reset";
+        mailService.send(subject, body, user.getUsername());
+    }
+
+    private String generatePwd() {
+        return RandomStringUtils.randomAlphanumeric(8);
+    }
+
+    private String buildMessage(User user, String generatedPwd) {
+        StringBuilder body = new StringBuilder();
+        body.append("Hello ")//
+                .append(user.getFirstName())//
+                .append("!\n\n").append("Here is your new password: ")//
+                .append(generatedPwd).append("\n\n")//
+                .append("Please don't forget to modify you password in \"My account\" tab.\n\n")//
+                .append("The Valtech Bet Team");//
+        return body.toString();
     }
 
     private String encodePassword(String password){
