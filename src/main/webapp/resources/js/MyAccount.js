@@ -9,6 +9,8 @@ MyAccount.prototype.init = function() {
     $('#saveBtn').click(bind(this, this.saveUser));
     $('#cancelBtn').click(bind(this, this.getLastPage));
     $('#changePwd').click(bind(this, this.showPwd));
+
+	$('#uploadAvatar').click(bind(this, this.postAvatar));
 };
 
 MyAccount.prototype.saveUser = function () {
@@ -69,8 +71,6 @@ MyAccount.prototype.modfifyUserWithoutNewPassword = function (_user) {
             $("#currentPassword").empty();
             $("#newPassword").empty();
             $("#confirmation").empty();
-
-	        this.postAvatar();
         }));
     } else {
         var hasAnError = false;
@@ -101,8 +101,6 @@ MyAccount.prototype.modfifyUserWithNewPassword = function (_user) {
             $("#currentPassword").empty();
             $("#newPassword").empty();
             $("#confirmation").empty();
-
-	        this.postAvatar();
         }));
     } else {
         var hasAnError = false;

@@ -10,3 +10,7 @@
     font-weight: normal !important;
     margin-left: 5px;
 }
+
+section#avatar-result {
+    margin-bottom: 5px;
+}

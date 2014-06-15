@@ -13,7 +13,17 @@
 	</script>
 </head>
 <body>
-<div class="container-fluid">
+	<div class="control-group">
+		<section id="avatar-result">
+			<c:if test="${!empty user.contentType}">
+				<img src="/bet/myaccount/download/avatar" alt="avatar" class="img-responsive avatar"/>
+			</c:if>
+		</section>
+		<div class="controls">
+			<input type="file" class="btn btn-primary" id="avatar" data-filename-placement="inside" value="">
+			<button type="submit" id="uploadAvatar" class="btn btn-primary">Upload avatar</button>
+		</div>
+	</div>
     <form class="form-horizontal">
         <div class="control-group" id="firstNameGroup">
             <label class="control-label" for="firstName">First Name</label>
@@ -31,13 +41,6 @@
             <label class="control-label" for="username">Your Valtech Email</label>
             <div class="controls">
                 <input type="text" class="form-control" id="username" value="${user.username}" disabled>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="avatar">Avatar :</label>
-            <div class="controls">
-                <input type="file" class="btn btn-primary" id="avatar" value="">
-	            <section id="avatar-result"><img src="/bet/myaccount/download/avatar" alt="avatar" class="img-responsive avatar"/></section>
             </div>
         </div>
         <div class="control-group" id="currentPasswordGroup">
@@ -71,7 +74,6 @@
             <button type="button" class="btn" id="cancelBtn">Cancel</button>
         </div>
     </div>
-</div>
 <script type="text/javascript">
     new MyAccount().init();
 </script>
