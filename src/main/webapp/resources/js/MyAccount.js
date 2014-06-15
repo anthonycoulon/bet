@@ -54,7 +54,7 @@ MyAccount.prototype.postAvatar = function () {
 				$('#avatar-result').html(_data)
 			},
 			error: function () {
-				$('#avatar-result').html('<div class="error">A error occurred. Please try again or change image.</div>')
+				$('#avatar-result').html('<div class="error">An error occurred. Please try again or change image (max 150 ko).</div>')
 			}
 		});
 	}

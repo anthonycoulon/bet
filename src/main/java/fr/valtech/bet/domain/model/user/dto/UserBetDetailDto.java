@@ -12,6 +12,8 @@ public class UserBetDetailDto {
 
     private List<UserBetDto> userBets;
 
+    private boolean hasAvatar;
+
     public Integer getRank() {
         return rank;
     }
@@ -53,5 +55,13 @@ public class UserBetDetailDto {
         sb.append(", userBets=").append(userBets);
         sb.append('}');
         return sb.toString();
+    }
+
+    public void setHasAvatar(boolean hasAvatar) {
+        this.hasAvatar = hasAvatar;
+    }
+
+    public boolean isHasAvatar() {
+        return hasAvatar;
     }
 }
