@@ -55,7 +55,7 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository 
 
     @Override
     public List<Bet> findUserConsideredBet(Long userId) {
-        TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.considered=true AND b.gambler.id=:userId", Bet.class);
+        TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.considered=true AND b.gambler.id=:userId ORDER BY b.match.timeDate", Bet.class);
         query.setParameter("userId", userId);
         return query.getResultList();
     }
