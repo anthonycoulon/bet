@@ -44,7 +44,7 @@ public class AccountController {
     @RequestMapping
     public ModelAndView myAccount() {
         ModelAndView mav = new ModelAndView("myaccount");
-        mav.addObject("user", userService.getConnectedUser());
+        mav.addObject("user", userService.getConnectedUserWithAvatar());
         return mav;
     }
 
@@ -92,16 +92,16 @@ public class AccountController {
         if (file.getSize() > MAX_SIZE) {
             return "<div class=\"error\">Size of image too long</div>";
         }
-        accountService.saveUserAvatar(file, userService.getConnectedUser());
+        accountService.saveUserAvatar(file, userService.getConnectedUserWithAvatar());
         return "<img src=\"/bet/myaccount/download/avatar\" alt=\"avatar\" class=\"img-responsive avatar\"/>";
     }
 
     @RequestMapping("download/avatar")
     public void downloadAvatar(HttpServletResponse response) {
-        User connectedUser = userService.getConnectedUser();
-        response.setContentType(connectedUser.getContentType());
+        User connectedUser = userService.getConnectedUserWithAvatar();
+        response.setContentType(connectedUser.getAvatar().getContentType()); //TODO fix lazy
         try {
-            FileCopyUtils.copy(connectedUser.getAvatar(), response.getOutputStream());
+            FileCopyUtils.copy(connectedUser.getAvatar().getFile(), response.getOutputStream());
         } catch (IOException e) {
             Throwables.propagate(e);
         }

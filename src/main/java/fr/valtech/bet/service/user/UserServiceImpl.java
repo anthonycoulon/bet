@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import fr.valtech.bet.domain.model.user.Avatar;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.user.UserRepository;
 
@@ -41,5 +42,31 @@ public class UserServiceImpl implements UserService {
         log.debug("principal : ", principal);
         String username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
         return findUser(username);
+    }
+
+    @Override
+    public Avatar saveAvatar(Avatar avatar) {
+        return userRepository.saveAvatar(avatar);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User getConnectedUserWithAvatar() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.debug("principal : ", principal);
+        String username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
+        return findUserWithAvatar(username);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findUserWithAvatar(String username) {
+        return userRepository.findUserWithAvatar(username);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findUserByIdWithAvatar(Long userId) {
+        return userRepository.findUserByIdWithAvatar(userId);
     }
 }

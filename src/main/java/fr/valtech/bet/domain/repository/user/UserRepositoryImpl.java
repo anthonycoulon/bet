@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import fr.valtech.bet.domain.model.bet.Bet;
+import fr.valtech.bet.domain.model.user.Avatar;
 import fr.valtech.bet.domain.model.user.User;
 import fr.valtech.bet.domain.repository.BetRepository;
 
@@ -28,6 +29,27 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository 
     public User findUserById(Long id) {
         TypedQuery<User> query = getEntityManager().createQuery("FROM User u WHERE u.id=:id", User.class);
         query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Avatar saveAvatar(Avatar avatar) {
+        Avatar merged = getEntityManager().merge(avatar);
+        getEntityManager().flush();
+        return merged;
+    }
+
+    @Override
+    public User findUserWithAvatar(String username) {
+        TypedQuery<User> query = getEntityManager().createQuery("FROM User u left join fetch u.avatar WHERE u.username=:username", User.class);
+        query.setParameter("username", username);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public User findUserByIdWithAvatar(Long userId) {
+        TypedQuery<User> query = getEntityManager().createQuery("FROM User u left join fetch u.avatar WHERE u.id=:id", User.class);
+        query.setParameter("id", userId);
         return query.getSingleResult();
     }
 

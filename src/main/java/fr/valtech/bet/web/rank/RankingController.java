@@ -41,10 +41,10 @@ public class RankingController {
 
     @RequestMapping("user/detail/avatar/{userId}")
     public void userAvatar(HttpServletResponse response, @PathVariable Long userId) {
-        User user = userService.findUserById(userId);
-        response.setContentType(user.getContentType());
+        User user = userService.findUserByIdWithAvatar(userId);
+        response.setContentType(user.getAvatar().getContentType()); //TODO fix lazy
         try {
-            FileCopyUtils.copy(user.getAvatar(), response.getOutputStream());
+            FileCopyUtils.copy(user.getAvatar().getFile(), response.getOutputStream());
         } catch (IOException e) {
             Throwables.propagate(e);
         }

@@ -1,7 +1,8 @@
 package fr.valtech.bet.service.user;
 
-import fr.valtech.bet.domain.model.user.User;
 import org.springframework.transaction.annotation.Transactional;
+import fr.valtech.bet.domain.model.user.Avatar;
+import fr.valtech.bet.domain.model.user.User;
 
 public interface UserService {
 
@@ -10,8 +11,16 @@ public interface UserService {
     @Transactional(readOnly = true)
     User findUserById(Long id);
 
-    @Transactional(readOnly = true)
+    @Transactional()
     void save(User user);
 
     User getConnectedUser();
+
+    Avatar saveAvatar(Avatar avatar);
+
+    User getConnectedUserWithAvatar();
+
+    User findUserWithAvatar(String username);
+
+    User findUserByIdWithAvatar(Long userId);
 }

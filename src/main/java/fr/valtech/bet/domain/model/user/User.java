@@ -4,12 +4,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
@@ -50,11 +52,9 @@ public class User {
     @Column(name = "SCORE")
     private Integer score;
 
-    @Column(name = "AVATAR", columnDefinition = "longblob")
-    private byte[] avatar;
-
-    @Column(name = "CONTENT_TYPE", length = 15)
-    private String contentType;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AVATAR_ID")
+    private Avatar avatar;
 
     public Long getId() {
         return id;
@@ -120,20 +120,12 @@ public class User {
         this.score = score;
     }
 
-    public byte[] getAvatar() {
+    public Avatar getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    public String getContentType() {
-        return contentType;
     }
 
     @Override
@@ -169,6 +161,7 @@ public class User {
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", score=").append(score);
         sb.append('}');
         return sb.toString();
     }

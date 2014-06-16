@@ -15,13 +15,13 @@
 <body>
 	<div class="control-group">
 		<section id="avatar-result">
-			<c:if test="${!empty user.contentType}">
+			<c:if test="${!empty user.avatar.contentType}">
 				<img src="/bet/myaccount/download/avatar" alt="avatar" class="img-responsive avatar"/>
 			</c:if>
 		</section>
 		<div class="controls">
-			<input type="file" class="btn btn-primary" id="avatar" data-filename-placement="inside" value="">
-			<button type="submit" id="uploadAvatar" class="btn btn-primary">Upload avatar</button>
+			<input type="file" class="btn btn-primary" id="file" data-filename-placement="inside" value="">
+			<button type="submit" id="uploadAvatar" class="btn btn-primary">Upload file</button>
 		</div>
 	</div>
     <form class="form-horizontal">

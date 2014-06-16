@@ -1,9 +1,9 @@
 package fr.valtech.bet.domain.repository.user;
 
-import fr.valtech.bet.domain.model.bet.Bet;
-import fr.valtech.bet.domain.model.user.User;
-
 import java.util.List;
+import fr.valtech.bet.domain.model.bet.Bet;
+import fr.valtech.bet.domain.model.user.Avatar;
+import fr.valtech.bet.domain.model.user.User;
 
 public interface UserRepository {
 
@@ -19,4 +19,9 @@ public interface UserRepository {
 
     User findUserById(Long id);
 
+    Avatar saveAvatar(Avatar avatar);
+
+    User findUserWithAvatar(String username);
+
+    User findUserByIdWithAvatar(Long userId);
 }

@@ -53,7 +53,7 @@ public class RankingServiceImpl implements RankingService {
         userDto.setRank(userRank);
         userDto.setScore(user.getScore());
         userDto.setUserName(String.format("%s %s", user.getFirstName(), user.getName()));
-        userDto.setHasAvatar(StringUtils.isNotBlank(user.getContentType()));
+        userDto.setHasAvatar(user.getAvatar()!=null && StringUtils.isNotBlank(user.getAvatar().getContentType())); //TODO fix lazy
 
         List<UserBetDto> bets= Lists.newArrayList();
         List<Bet> userBets=userRepository.findUserConsideredBet(userId);
