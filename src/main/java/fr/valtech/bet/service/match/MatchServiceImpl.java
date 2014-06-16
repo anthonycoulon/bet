@@ -68,7 +68,7 @@ public class MatchServiceImpl implements MatchService {
         for (MatchDto dto : dtos) {
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 oddsDtos.add(transformOdds(matchRepository.saveUserBet(dto, user)));
-            } else if (dto.getBet1() == null || dto.getBet2() == null) {
+            } else if ((dto.getBet1() == null && dto.getBet2() != null) || (dto.getBet1() != null && dto.getBet2() == null)) {
                 Throwables.propagate(new BetException(String.format("The user %s entered a wrong score", user.getUsername())));
             } else if (today.isAfter(dto.getMatchTime().getTime())) {
                 wrongDate++;
