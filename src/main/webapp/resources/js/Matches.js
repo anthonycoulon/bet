@@ -116,7 +116,6 @@ Matches.prototype.refreshMatches = function() {
 				.replace('${dto.matchLevel}', d.matchLevel)
 				.replace('${dto.matchLevelShort}', d.matchLevelShort)
 				.replace('${dto.matchTime.time}', d.matchTime)
-				.replace('${dto.betId}', d.betId ? d.betId : '')
 				.replace('${dto.matchId}', d.matchId)
 				.replace('${dto.score}', d.score ? '<b>' + d.score + '</b>' : '-')
 				.replace('${dto.bet1}', d.bet1==null ? '' : d.bet1)
@@ -138,7 +137,6 @@ Matches.prototype.refreshMatches = function() {
 Matches.mask=
 '<tr>'+
 	'<td class="first-cell col-xs-1 col-md-2 col-lg-2">'+
-		'<input class="betId" type="hidden" value="${dto.betId}"/>'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
 		'<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +

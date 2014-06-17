@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,8 @@ public class MatchServiceImpl implements MatchService {
 
     @Autowired
     private MatchRepository matchRepository;
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     @Transactional(readOnly = true)
@@ -62,20 +66,31 @@ public class MatchServiceImpl implements MatchService {
     @Override
     @Transactional
     public List<OddsDto> saveUserBets(List<MatchDto> dtos, User user) {
+        String errorBet = String.format("The user %s entered a wrong score", user.getUsername());
+
         DateTime today = new DateTime();
+
         List<OddsDto> oddsDtos = Lists.newArrayList();
         int wrongDate = 0;
+
         for (MatchDto dto : dtos) {
+            if(dto.getMatchId()==null) {
+                String errorMatch = String.format("The user %s try to enter a bet without match", user.getUsername());
+                logger.warn(errorMatch);
+                Throwables.propagate(new BetException(errorMatch));
+            }
             if ((dto.getBet1() != null && dto.getBet2() != null) && today.isBefore(dto.getMatchTime().getTime())) {
                 oddsDtos.add(transformOdds(matchRepository.saveUserBet(dto, user)));
             } else if ((dto.getBet1() == null && dto.getBet2() != null) || (dto.getBet1() != null && dto.getBet2() == null)) {
-                Throwables.propagate(new BetException(String.format("The user %s entered a wrong score", user.getUsername())));
+                logger.warn(errorBet);
+                Throwables.propagate(new BetException(errorBet));
             } else if (today.isAfter(dto.getMatchTime().getTime())) {
                 wrongDate++;
             }
         }
         if(wrongDate!=0 && wrongDate==dtos.size()) {
-            Throwables.propagate(new BetException(String.format("The user %s entered a wrong score", user.getUsername())));
+            logger.warn(errorBet);
+            Throwables.propagate(new BetException(errorBet));
         }
         return oddsDtos;
     }
@@ -109,7 +124,6 @@ public class MatchServiceImpl implements MatchService {
         List<MatchDto> matches = Lists.newArrayList();
         for (Map<String, String> dto : dtos) {
             MatchDto match = new MatchDto();
-            match.setBetId(longValue(dto.get("betId")));
             match.setMatchId(longValue(dto.get("matchId")));
             match.setBet1(intValue(dto.get("bet1")));
             match.setBet2(intValue(dto.get("bet2")));

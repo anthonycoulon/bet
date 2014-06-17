@@ -2,6 +2,7 @@ package fr.valtech.bet.domain.repository.match;
 
 import java.util.Date;
 import java.util.List;
+import fr.valtech.bet.domain.model.bet.Bet;
 import fr.valtech.bet.domain.model.match.Match;
 import fr.valtech.bet.domain.model.match.MatchLevel;
 import fr.valtech.bet.domain.model.match.dto.MatchDto;
@@ -13,6 +14,8 @@ public interface MatchRepository {
     List<Date> findDates();
 
     fr.valtech.bet.domain.model.bet.Bet saveUserBet(MatchDto dto, User user);
+
+    Bet findBet(Long matchId, Long userId);
 
     List<Match> findMatches();
 

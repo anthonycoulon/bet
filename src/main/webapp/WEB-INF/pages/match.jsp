@@ -55,7 +55,6 @@
 			<c:forEach items="${dtos}" var="dto">
 				<tr>
 					<td class="first-cell col-xs-1 col-md-2 col-lg-2">
-						<input class="betId" type="hidden" value="${dto.betId}"/>
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
 						<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>

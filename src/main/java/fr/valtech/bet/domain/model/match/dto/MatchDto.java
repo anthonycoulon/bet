@@ -5,8 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MatchDto {
 
-    private Long betId;
-
     private Long matchId;
 
     private String opponent1;
@@ -36,15 +34,8 @@ public class MatchDto {
     private String flag1;
 
     private String flag2;
+
     private String matchLevelShort;
-
-    public Long getBetId() {
-        return betId;
-    }
-
-    public void setBetId(Long betId) {
-        this.betId = betId;
-    }
 
     public Long getMatchId() {
         return matchId;
@@ -192,7 +183,6 @@ public class MatchDto {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MatchDto{");
-        sb.append("betId=").append(betId);
         sb.append(", matchId=").append(matchId);
         sb.append(", opponent1='").append(opponent1).append('\'');
         sb.append(", opponent2='").append(opponent2).append('\'');

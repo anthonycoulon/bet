@@ -2,6 +2,7 @@ package fr.valtech.bet.domain.repository.match;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -39,12 +40,12 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         query.setParameter("date", date);
         query.setParameter("userId", currentUser.getId());
 
-        query.addScalar("matchId", LongType.INSTANCE).addScalar("betId", LongType.INSTANCE).addScalar("opponent1", StringType.INSTANCE)
+        query.addScalar("matchId", LongType.INSTANCE).addScalar("opponent1", StringType.INSTANCE)
                 .addScalar("opponent2", StringType.INSTANCE).addScalar("score", StringType.INSTANCE).addScalar("bet", StringType.INSTANCE)
                 .addScalar("matchDate", DateType.INSTANCE).addScalar("matchTime", TimestampType.INSTANCE)
-                .addScalar("odds1", IntegerType.INSTANCE).addScalar("odds2", IntegerType.INSTANCE).addScalar("matchLevelOrdinal", IntegerType.INSTANCE)
-                .addScalar("flag1", StringType.INSTANCE).addScalar("flag2", StringType.INSTANCE)
-                .setResultTransformer(Transformers.aliasToBean(MatchDto.class));
+                .addScalar("odds1", IntegerType.INSTANCE).addScalar("odds2", IntegerType.INSTANCE)
+                .addScalar("matchLevelOrdinal", IntegerType.INSTANCE).addScalar("flag1", StringType.INSTANCE)
+                .addScalar("flag2", StringType.INSTANCE).setResultTransformer(Transformers.aliasToBean(MatchDto.class));
         return query.list();
     }
 
@@ -55,32 +56,43 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
     @Override
     public Bet saveUserBet(MatchDto dto, User user) {
-        Bet bet;
         Bet merged;
         Match match = getEntityManager().find(Match.class, dto.getMatchId());
-        if (dto.getBetId() == null) {
+        Bet bet = findBet(dto.getMatchId(), user.getId());
+        if (bet == null) {
             bet = new Bet();
             bet.setMatch(match);
             bet.setGambler(user);
-            bet.setBet(constructBet(dto));
-            merged = getEntityManager().merge(bet);
 
-            updateMatchQuotes(dto, match, null, null);
+            merged = upateBet(dto, bet, match, null, null);
 
         } else {
-            bet = getEntityManager().find(Bet.class, dto.getBetId());
 
             Integer bet1 = Integer.valueOf(bet.getBet().split("-", 2)[0]);
             Integer bet2 = Integer.valueOf(bet.getBet().split("-", 2)[1]);
 
-            bet.setBet(constructBet(dto));
-            merged=getEntityManager().merge(bet);
-
-            updateMatchQuotes(dto, match, bet1, bet2);
+            merged = upateBet(dto, bet, match, bet1, bet2);
         }
         getEntityManager().flush();
 
         return merged;
+    }
+
+    private Bet upateBet(MatchDto dto, Bet bet, Match match, Integer bet1, Integer bet2) {
+        bet.setBet(constructBet(dto));
+
+        updateMatchQuotes(dto, match, bet1, bet2);
+        return getEntityManager().merge(bet);
+    }
+
+    @Override
+    public Bet findBet(Long matchId, Long userId) {
+        try {
+            return getEntityManager().createQuery("FROM Bet b where b.match.id=:matchId and b.gambler.id=:userId", Bet.class)
+                    .setParameter("matchId", matchId).setParameter("userId", userId).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
@@ -117,12 +129,12 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         } else {
             if (dto.getBet1() > dto.getBet2() && bet1 <= bet2) {
                 match.addOdds1(1);
-                if(!bet1.equals(bet2)) {
+                if (!bet1.equals(bet2)) {
                     match.addOdds2(-1);
                 }
             } else if (dto.getBet1() < dto.getBet2() && bet1 >= bet2) {
                 match.addOdds2(1);
-                if(!bet1.equals(bet2)) {
+                if (!bet1.equals(bet2)) {
                     match.addOdds1(-1);
                 }
             } else if (dto.getBet1().equals(dto.getBet2()) && bet1 < bet2) {
