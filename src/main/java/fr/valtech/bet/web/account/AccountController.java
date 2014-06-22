@@ -3,6 +3,7 @@ package fr.valtech.bet.web.account;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ import fr.valtech.bet.service.user.UserService;
 @RequestMapping("myaccount")
 public class AccountController {
 
-    public static final ArrayList<String> EXTENSIONS = Lists.newArrayList("jpg", "JPG", "png", "gif");
+    public static final ArrayList<String> EXTENSIONS = Lists.newArrayList("jpg", "jpeg", "JPG", "png", "gif");
 
     public static final int MAX_SIZE = 150000;
 
@@ -77,7 +78,7 @@ public class AccountController {
 
     @ResponseBody
     @RequestMapping(value = "forgotpwd/reset/{email:.+}")
-    public void resetPwd(@PathVariable("email") String email){
+    public void resetPwd(@PathVariable("email") String email) {
         if (StringUtils.isNotBlank(email)) {
             accountService.resetPwd(email);
         }
@@ -99,7 +100,7 @@ public class AccountController {
     @RequestMapping("download/avatar")
     public void downloadAvatar(HttpServletResponse response) {
         User connectedUser = userService.getConnectedUserWithAvatar();
-        response.setContentType(connectedUser.getAvatar().getContentType()); //TODO fix lazy
+        response.setContentType(connectedUser.getAvatar().getContentType());
         try {
             FileCopyUtils.copy(connectedUser.getAvatar().getFile(), response.getOutputStream());
         } catch (IOException e) {
