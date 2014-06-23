@@ -31,7 +31,7 @@ Matches.prototype.disabledBet = function () {
 };
 
 Matches.prototype.checkBetValue = function (bet1, bet2) {
-	if ((bet2.val().match(/[0-9]+/g) && bet1.val().match(/[0-9]+/g)) || (bet2.val()=='' && bet1.val()=='')) {
+	if (((bet2.val().match(/[0-9]+/g) && bet1.val().match(/[0-9]+/g)) && (bet2.val()>=0 && bet1.val()>=0)) || (bet2.val()=='' && bet1.val()=='')) {
 		bet1.parent().removeClass('has-error');
 	} else {
 		bet1.parent().addClass('has-error');

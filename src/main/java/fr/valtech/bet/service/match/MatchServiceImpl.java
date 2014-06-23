@@ -74,7 +74,7 @@ public class MatchServiceImpl implements MatchService {
         int wrongDate = 0;
 
         for (MatchDto dto : dtos) {
-            if(dto.getMatchId()==null) {
+            if (dto.getMatchId() == null) {
                 String errorMatch = String.format("The user %s try to enter a bet without match", user.getUsername());
                 logger.warn(errorMatch);
                 Throwables.propagate(new BetException(errorMatch));
@@ -88,7 +88,7 @@ public class MatchServiceImpl implements MatchService {
                 wrongDate++;
             }
         }
-        if(wrongDate!=0 && wrongDate==dtos.size()) {
+        if (wrongDate != 0 && wrongDate == dtos.size()) {
             logger.warn(errorBet);
             Throwables.propagate(new BetException(errorBet));
         }
@@ -177,6 +177,10 @@ public class MatchServiceImpl implements MatchService {
     }
 
     private Integer intValue(String val) {
-        return StringUtils.isBlank(val) ? null : Integer.valueOf(val);
+        Integer intValue = StringUtils.isBlank(val) ? null : Integer.valueOf(val);
+        if (intValue != null && intValue < 0) {
+            Throwables.propagate(new IllegalArgumentException("can't enter a negative value"));
+        }
+        return intValue;
     }
 }
