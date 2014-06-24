@@ -50,7 +50,7 @@
     </form>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" id="saveBtn" class="btn btn-primary">Save changes</button>
+            <button type="submit" id="saveBtn" class="btn btn-blue">Save changes</button>
             <button type="button" class="btn" id="cancelBtn">Cancel</button>
         </div>
     </div>

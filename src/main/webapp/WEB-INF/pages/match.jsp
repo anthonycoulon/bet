@@ -125,7 +125,7 @@
 		</tbody>
 	</table>
 	<section class="row">
-		<input type="button" value="Save" id="save_button" class="btn btn-large btn-primary"/>
+		<input type="button" value="Save" id="save_button" class="btn btn-large btn-blue"/>
 	</section>
 	<script type="text/javascript">
 		new Matches().init();

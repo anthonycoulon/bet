@@ -14,7 +14,7 @@
 </head>
 <body>
 	<label class="control-label" for="run-button">Run calculate score task</label>
-	<input type="button" value="Run" id="run-button" class="btn btn-large btn-primary"/>
+	<input type="button" value="Run" id="run-button" class="btn btn-large btn-blue"/>
 
 	<table id="matches" class="table-responsive table table-striped">
 		<thead>
@@ -49,7 +49,7 @@
 		</tbody>
 	</table>
 	<section class="row">
-		<input type="button" value="Save" id="save-button" class="btn btn-large btn-primary"/>
+		<input type="button" value="Save" id="save-button" class="btn btn-large btn-blue"/>
 	</section>
 	<script type="text/javascript">
 		new Admin().init();

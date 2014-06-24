@@ -36,7 +36,7 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button type="submit" id="sendBtn" class="btn btn-primary">Reset Password</button>
+                    <button type="submit" id="sendBtn" class="btn btn-blue">Reset Password</button>
                     <button type="button" class="btn" id="cancelBtn">Cancel</button>
                 </div>
             </div>

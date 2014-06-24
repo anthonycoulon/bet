@@ -20,8 +20,8 @@
 			</c:if>
 		</section>
 		<div class="controls">
-			<input type="file" class="btn btn-primary" id="file" data-filename-placement="inside" value="">
-			<button type="submit" id="uploadAvatar" class="btn btn-primary">Upload file</button>
+			<input type="file" class="btn btn-blue" id="file" data-filename-placement="inside" value="">
+			<button type="submit" id="uploadAvatar" class="btn btn-blue">Upload file</button>
 		</div>
 	</div>
     <form class="form-horizontal">
@@ -70,7 +70,7 @@
     </form>
     <div class="form-actions">
         <div class="controls">
-            <button type="submit" id="saveBtn" class="btn btn-primary">Save changes</button>
+            <button type="submit" id="saveBtn" class="btn btn-blue">Save changes</button>
             <button type="button" class="btn" id="cancelBtn">Cancel</button>
         </div>
     </div>
