@@ -33,7 +33,7 @@
 	</blockquote>
 	<c:choose>
 		<c:when test="${empty userDetail.userBets}">
-			<b>No user bets...</b>
+			<b>No bet...</b>
 		</c:when>
 		<c:otherwise>
 			<table class="table-responsive table table-striped">
