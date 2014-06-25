@@ -113,7 +113,7 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
 
     @Override
     public List<Match> findByLevel(MatchLevel level) {
-        TypedQuery<Match> query = getEntityManager().createQuery("FROM Match m WHERE m.matchLevel=:level", Match.class);
+        TypedQuery<Match> query = getEntityManager().createQuery("FROM Match m WHERE m.matchLevel=:level ORDER BY m.timeDate", Match.class);
         query.setParameter("level", level);
 
         return query.getResultList();
