@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-	<link rel="stylesheet" href="<c:url value="/resources/css/flags.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/logos.css"/>"/>
 	<link rel="stylesheet" href="<c:url value="/resources/css/detail.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
@@ -44,11 +44,11 @@
 							${bet.oponent1}
 						</td>
 						<td class="flagM">
-							<span class="famfamfam-flag-${bet.flag1}"></span>
+							<span class="sp-${bet.flag1}"></span>
 						</td>
 						<td class="score">${bet.bet}</td>
 						<td class="flagM">
-							<span class="famfamfam-flag-${bet.flag2}"></span>
+							<span class="sp-${bet.flag2}"></span>
 						</td>
 						<td class="opponent2">
 							${bet.oponent2}

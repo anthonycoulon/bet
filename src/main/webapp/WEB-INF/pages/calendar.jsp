@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/flags.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/logos.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -40,7 +40,7 @@
 	            </c:choose>
             </td>
 	        <td class="flag">
-		        <span class="famfamfam-flag-${match.opponent1.flag}"></span>
+		        <span class="sp-${match.opponent1.flag}"></span>
 	        </td>
             <td class="score">
 	            <c:choose>
@@ -53,7 +53,7 @@
 	            </c:choose>
             </td>
 	        <td  class="flag">
-		        <span class="famfamfam-flag-${match.opponent2.flag}"></span>
+		        <span class="sp-${match.opponent2.flag}"></span>
 	        </td>
             <td class="opponent2">
 	            <c:choose>

@@ -152,13 +152,13 @@ Matches.mask=
 		'${dto.opponent1}'+
 	'</td>'+
 	'<td class="flagM">'+
-		'<span class="famfamfam-flag-${dto.flag1}"></span>'+
+		'<span class="sp-${dto.flag1}"></span>'+
 	'</td>'+
 	'<td class="score">'+
 		'${dto.score}'+
 	'</td>'+
 	'<td class="flagM">'+
-		'<span class="famfamfam-flag-${dto.flag2}"></span>'+
+		'<span class="sp-${dto.flag2}"></span>'+
 	'</td>'+
 	'<td class="opponent2">'+
 		'${dto.opponent2}'+

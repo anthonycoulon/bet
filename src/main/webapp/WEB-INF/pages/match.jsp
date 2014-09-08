@@ -5,7 +5,7 @@
 <head>
 	<script type="text/javascript" src="<c:url value="/resources/js/Matches.js"/>"></script>
 	<link rel="stylesheet" href="<c:url value="/resources/css/match.css"/>"/>
-	<link rel="stylesheet" href="<c:url value="/resources/css/flags.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/logos.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -75,7 +75,7 @@
 						</c:choose>
 					</td>
 					<td class="flagM">
-						<span class="famfamfam-flag-${dto.flag1}"></span>
+						<span class="sp-${dto.flag1}"></span>
 					</td>
 					<td class="score">
 						<c:choose>
@@ -88,7 +88,7 @@
 						</c:choose>
 					</td>
 					<td class="flagM">
-						<span class="famfamfam-flag-${dto.flag2}"></span>
+						<span class="sp-${dto.flag2}"></span>
 					</td>
 					<td class="opponent2">
 						<c:choose>

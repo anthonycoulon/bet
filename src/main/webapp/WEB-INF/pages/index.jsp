@@ -11,7 +11,7 @@
         <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
             <div class="login-box">
                 <div class="login-logo">
-                    <a href="#" class="img-responsive"><img src="<c:url value="/resources/img/logo-valtech-brazil-gf.png"/>"/></a>
+                    <a href="#" class="img-responsive"><img src="<c:url value="/resources/img/logo-valtech-ldc.png"/>"/></a>
                 </div>
                 <hr />
                 <div class="login-form">
