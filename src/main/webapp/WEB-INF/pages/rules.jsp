@@ -13,7 +13,7 @@
 <body>
 <div class="container-fluid">
     <h1 class="text-primary">Valtech Bet Rules</h1>
-    <p class="lead">Let's play together and find the next winner of this world cup!</p>
+    <p class="lead">Let's play together and find the next winner of this champions league!</p>
 
     <h3 class="text-primary">Valtech Bet Description</h3>
     <p>The Valtech Bet site is a project for all Valtech collaborators about the 2014 UEFA Champions League. The aim is to bet for each game during the event.</p>
@@ -29,18 +29,21 @@
     <p>Each winner you find gives you : <strong>1 point.</strong></p>
     <p>Each correct score you find gives you <strong>2 points.</strong></p>
     <p>If you bet for a team with a bad victory's prevision, it gives you a <strong>2 points</strong> bonus.</p>
-    <p>Here it is an example: Suppose the match Real Madrid - PSG. Assuming you bet for Real Madrid as the winner, and you bet 2-1. Finally, Real Madrid wins and with the correct score. You win 1 point for finding the good winner and 2 points for finding the good score.</p>
+    <p>Here it is an example: Suppose the match Real Madrid - PSG. Assuming you bet for PSG as the winner, and you bet 2-1. Finally, PSG wins and with the correct score. You win 1 point for finding the good winner and 2 points for finding the good score.</p>
     <p>
-        After the groupe phase the points are doubled. So the maximum possible points you can win by bet are :
+        After the group phase the points are multiplied. So the maximum possible points you can win by bet considering the previously example are :
         <ul>
             <li>
-                In quarter finals:&nbsp;&nbsp;3pts * 2 = 6 points.
+                In eighth finals:&nbsp;&nbsp;&nbsp;&nbsp;3pts * 2 = 6 points.
             </li>
             <li>
-                In semi finals:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3pts * 2 * 2 = 12 points.
+                In quarter finals:&nbsp;&nbsp;3pts * 3 = 9 points.
             </li>
             <li>
-                In final:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3pts * 2 * 2 * 2 = 24 points.
+                In semi finals:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3pts * 4 = 12 points.
+            </li>
+            <li>
+                In final:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3pts * 6 = 18 points.
             </li>
         </ul>
     </p>
