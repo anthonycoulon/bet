@@ -95,7 +95,7 @@
 	<div class="container">
 		<div class="alert alert-success bet-alert">Successfully saved</div>
 		<div class="alert alert-danger bet-alert">An error occured on the site. Please try again or make sure you provided the right information.</div>
-		<section id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<section id="content" class="">
 			<decorator:body/>
 		</section>
 	</div>

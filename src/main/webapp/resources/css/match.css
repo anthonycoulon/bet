@@ -21,3 +21,35 @@ select#dates {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
+tr.firstLine {
+    background-color: #EEEEEE;
+}
+
+table#matches tr.firstLine td {
+    border-width: 2px;
+}
+
+table#matches tr td.score {
+    padding: 5px 0;
+    min-width: 30px;
+    text-align: center;
+}
+
+table#matches {
+    border-collapse: inherit !important;
+}
+
+.table-responsive {
+    border: none !important;
+}
+
+.flag, .bet {
+    text-align: center;
+}
+.opponent1 {
+    text-align: right;
+}
+.opponent2 {
+    text-align: left;
+}

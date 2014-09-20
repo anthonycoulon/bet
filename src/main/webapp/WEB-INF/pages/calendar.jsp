@@ -5,6 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/logos.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/match.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -13,22 +14,20 @@
 	</script>
 </head>
 <body>
-<table id="matches" class="table-responsive table table-condensed">
-
+<h4>
+    <b>${matchLevel}</b>
+</h4>
+<table id="matches" class="table-responsive table table-striped">
     <tbody>
     <c:forEach items="${matches}" var="match">
         <tr>
             <th colspan="6">
                 <fmt:formatDate value="${match.matchDate}" pattern="dd/MM/yyyy"/>
                 <fmt:formatDate value="${match.timeDate}" pattern="KK:mm a"/>
+                ${match.stadium.name}
             </th>
         </tr>
         <tr>
-            <td>
-				${match.matchLevel.label}
-				<br/>
-				${match.stadium.name}
-            </td>
             <td class="opponent1">
 	            <c:choose>
 		            <c:when test="${match.winner==1}">

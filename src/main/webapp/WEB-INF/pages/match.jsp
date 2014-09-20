@@ -24,7 +24,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<section class="row">
+	<section>
 		<label for="dates">Day : </label>
 		<select name="dates" id="dates" class="form-control">
 			<option value="none"></option>
@@ -50,20 +50,19 @@
 		</c:otherwise>
 	</c:choose>
 
-	<table id="matches" class="table-responsive table table-striped">
+	<table id="matches" class="table-responsive table table-condensed">
 		<tbody>
 			<c:forEach items="${dtos}" var="dto">
-				<tr>
-					<td class="first-cell col-xs-1 col-md-2 col-lg-2">
+                <tr class="firstLine">
+					<td colspan="5">
 						<input class="matchId" type="hidden" value="${dto.matchId}"/>
-						<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>
+						${dto.matchLevel}
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
-						<span class="visible-xs"></span>
-						<span class="hidden-xs">
-							&nbsp;-&nbsp;
-						</span>
+						&nbsp;-&nbsp;
 						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
 					</td>
+                </tr>
+                <tr>
 					<td class="opponent1">
 						<c:choose>
 							<c:when test="${dto.winner==1}">
@@ -74,7 +73,7 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td class="flagM">
+					<td class="flag">
 						<span class="sp-${dto.flag1}"></span>
 					</td>
 					<td class="score">
@@ -87,7 +86,7 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td class="flagM">
+					<td class="flag">
 						<span class="sp-${dto.flag2}"></span>
 					</td>
 					<td class="opponent2">
@@ -102,8 +101,8 @@
 					</td>
 				</tr>
 				<tr class="line-bet">
-					<td class="first-cell col-xs-1 col-md-2 col-lg-2">
-						<b>Bet : </b>
+					<td>
+						Bet :
 					</td>
 					<td colspan="3" class="bet">
 						<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>
@@ -124,7 +123,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<section class="row">
+	<section>
 		<input type="button" value="Save" id="save_button" class="btn btn-large btn-blue"/>
 	</section>
 	<script type="text/javascript">

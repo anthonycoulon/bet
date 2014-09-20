@@ -4,11 +4,6 @@ Matches = function() {
 
 Matches.prototype.init = function() {
 
-	if($(document).width()<360) {
-		$('#matches').css('margin-left','-30px');
-		$('#matches').css('margin-right','-30px');
-	}
-
 	this.disabledBet();
 	$('#dates').change(bind(this, this.refreshMatches));
 	$('#save_button').click(bind(this, this.saveBet));
@@ -135,29 +130,26 @@ Matches.prototype.refreshMatches = function() {
 };
 
 Matches.mask=
-'<tr>'+
-	'<td class="first-cell col-xs-1 col-md-2 col-lg-2">'+
+'<tr class="firstLine">'+
+	'<td colspan="5">'+
 		'<input class="matchId" type="hidden" value="${dto.matchId}"/>'+
-		'<span class="visible-xs">${dto.matchLevelShort}</span><span class="hidden-xs">${dto.matchLevel}</span>'+
+		'${dto.matchLevel}'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
-		'<span class="visible-xs">'+
-			''+
-		'</span>'+
-		'<span class="hidden-xs">'+
-			'&nbsp;&nbsp;-&nbsp;&nbsp;'+
-		'</span>'+
+		'&nbsp;&nbsp;-&nbsp;&nbsp;'+
 		'${dto.matchTime}' +
 	'</td>'+
+'</tr>'+
+'<tr>'+
 	'<td class="opponent1">'+
 		'${dto.opponent1}'+
 	'</td>'+
-	'<td class="flagM">'+
+	'<td class="flag">'+
 		'<span class="sp-${dto.flag1}"></span>'+
 	'</td>'+
 	'<td class="score">'+
 		'${dto.score}'+
 	'</td>'+
-	'<td class="flagM">'+
+	'<td class="flag">'+
 		'<span class="sp-${dto.flag2}"></span>'+
 	'</td>'+
 	'<td class="opponent2">'+
@@ -165,8 +157,8 @@ Matches.mask=
 	'</td>'+
 '</tr>' +
 '<tr class="line-bet">' +
-	'<td class="first-cell col-xs-1 col-md-2 col-lg-2">'+
-		'<b>Bet : </b>'+
+	'<td>'+
+		'Bet :'+
 	'</td>'+
 	'<td colspan="3" class="bet">'+
 		'<input type="text" class="bet1 bet form-control" value="${dto.bet1}"/> - <input type="text" class="bet2 bet form-control" value="${dto.bet2}"/>'+
