@@ -5,6 +5,7 @@
 <head>
 	<link rel="stylesheet" href="<c:url value="/resources/css/logos.css"/>"/>
 	<link rel="stylesheet" href="<c:url value="/resources/css/detail.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/match.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -36,7 +37,7 @@
 			<b>No bet...</b>
 		</c:when>
 		<c:otherwise>
-			<table class="table-responsive table table-striped">
+			<table class="table-responsive table table-striped" id="matches">
 				<c:forEach begin="0" end="${fn:length(userDetail.userBets)-1}" varStatus="b">
 					<c:set value="${userDetail.userBets[b.index]}" var="bet"/>
 					<tr>

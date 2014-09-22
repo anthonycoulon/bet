@@ -40,7 +40,7 @@ table#matches {
     border-collapse: inherit !important;
 }
 
-.flag, .bet {
+.flag, .flagM, .bet, .score {
     text-align: center;
 }
 .opponent1 {
