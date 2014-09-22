@@ -19,7 +19,7 @@
 		<input type="button" value="Run" id="run-button" class="btn btn-large btn-blue"/>
 	</section>
 	<section>
-		<input type="button" value="Save" id="save-button" class="btn btn-large btn-blue"/>
+		<input type="button" value="Save" class="save-button btn btn-large btn-blue"/>
 	</section>
 	<table id="matches" class="table-responsive table table-striped">
 		<thead>
@@ -54,7 +54,7 @@
 		</tbody>
 	</table>
 	<section>
-		<input type="button" value="Save" id="save-button" class="btn btn-large btn-blue"/>
+		<input type="button" value="Save" class="save-button btn btn-large btn-blue"/>
 	</section>
 	<script type="text/javascript">
 		new Admin().init();

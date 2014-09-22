@@ -7,7 +7,7 @@ Admin.prototype.init = function() {
 		window.location='/bet/admin/calculateTask'
 	});
 
-	$('#save-button').click(bind(this, this.saveMatch));
+	$('.save-button').click(bind(this, this.saveMatch));
 };
 
 Admin.prototype.saveMatch = function() {
