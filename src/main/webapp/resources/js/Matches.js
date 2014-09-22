@@ -12,10 +12,10 @@ Matches.prototype.init = function() {
 Matches.prototype.disabledBet = function () {
 	var matches = $('#matches tbody tr');
 	var today = new Date();
-	for (var i = 0; i < matches.length; i+=2) {
+	for (var i = 0; i < matches.length; i+=3) {
 		var matchTime=$(matches[i]).find('td input.matchTime').val();
 		if(matchTime<=today.getTime()) {
-			$(matches[i]).next().find('td input.bet').attr('disabled','disabled')
+			$(matches[i]).next().next().find('td input.bet').attr('disabled','disabled')
 		}
 	}
 	if($('#matches tbody tr.line-bet').length==$('input.bet[disabled=disabled]').length/2) {
@@ -40,14 +40,13 @@ Matches.prototype.saveBet = function() {
 	}
 	var matches = $('#matches tbody tr');
 	var bets=[];
-	for(var i=0; i<matches.length; i+=2){
+	for(var i=0; i<matches.length; i+=3){
 		var m = matches[i];
 		var bet={};
-		bet.betId = $(m).find('.betId').val();
 		bet.matchId = $(m).find('.matchId').val();
-		this.checkBetValue($(m).next().find('.bet1'), $(m).next().find('.bet2'));
-		bet.bet1 = $(m).next().find('.bet1').val();
-		bet.bet2 = $(m).next().find('.bet2').val();
+		this.checkBetValue($(m).next().next().find('.bet1'), $(m).next().next().find('.bet2'));
+		bet.bet1 = $(m).next().next().find('.bet1').val();
+		bet.bet2 = $(m).next().next().find('.bet2').val();
 		bet.matchTime = $(m).find('.matchTime').val();
 		bets.push(bet);
 	}
@@ -57,8 +56,7 @@ Matches.prototype.saveBet = function() {
 		this.ajax.success();
 		for(var i=0; i<_data.length; i++) {
 			var q = _data[i];
-			var progress = $('tr input.matchId[type=hidden][value='+ q.matchId+']').parent().parent().next().find('td div.progress');
-			$('tr input.matchId[type=hidden][value='+ q.matchId +']').parent().find('input.betId[type=hidden]').val(q.betId);
+			var progress = $('tr input.matchId[type=hidden][value='+ q.matchId+']').parent().parent().next().next().find('td div.progress');
 			progress.empty();
 			progress.append(Matches.maskOdds
 				.replace('${dto.odds1}', q.odds1)
