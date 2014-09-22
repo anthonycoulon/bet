@@ -59,3 +59,7 @@ img.avatar {
     color: #fff;
     background: #0c84da;
 }
+
+.table-responsive {
+    border: none !important;
+}

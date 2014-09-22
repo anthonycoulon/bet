@@ -40,10 +40,6 @@ table#matches {
     border-collapse: inherit !important;
 }
 
-.table-responsive {
-    border: none !important;
-}
-
 .flag, .bet {
     text-align: center;
 }

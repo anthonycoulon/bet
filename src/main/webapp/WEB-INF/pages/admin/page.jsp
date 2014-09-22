@@ -5,6 +5,7 @@
 <html>
 <head>
 	<script type="text/javascript" src="<c:url value="/resources/js/admin/Admin.js"/>"></script>
+	<link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>"/>
 	<script type="text/javascript">
 		$(function() {
 			$('.menu-item').removeClass('active');
@@ -13,16 +14,20 @@
 	</script>
 </head>
 <body>
-	<label class="control-label" for="run-button">Run calculate score task</label>
-	<input type="button" value="Run" id="run-button" class="btn btn-large btn-blue"/>
-
+	<section>
+		<label class="control-label" for="run-button">Run calculate score task</label>
+		<input type="button" value="Run" id="run-button" class="btn btn-large btn-blue"/>
+	</section>
+	<section>
+		<input type="button" value="Save" id="save-button" class="btn btn-large btn-blue"/>
+	</section>
 	<table id="matches" class="table-responsive table table-striped">
 		<thead>
 			<tr>
 				<th>Date</th>
-				<th>#1</th>
-				<th>Score</th>
-				<th>#2</th>
+				<th  class="opponent1">#1</th>
+				<th  class="score">Score</th>
+				<th  class="opponent2">#2</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,22 +38,22 @@
 						<input type="hidden" id="id" value="${match.id}"/>
 					</td>
 					<td>
-						<fmt:formatDate value="${match.matchTime}" pattern="dd/MM/yyyy"/>
+						<fmt:formatDate value="${match.matchTime}" pattern="dd/MM /yyyy"/>
 					</td>
-					<td>
+					<td class="opponent1">
 						${match.opponent1}
 					</td>
-					<td>
-						<input type="text" id="score" value="${match.score}" class="form-control" style="width:70px"/>
+					<td class="score">
+						<input type="text" id="score" value="${match.score}" class="form-control"/>
 					</td>
-					<td>
+					<td class="opponent2">
 						${match.opponent2}
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<section class="row">
+	<section>
 		<input type="button" value="Save" id="save-button" class="btn btn-large btn-blue"/>
 	</section>
 	<script type="text/javascript">

@@ -1,0 +1,17 @@
+input#score {
+    width:50px;
+}
+
+table#matches {
+    margin-left: -8px;
+}
+
+.opponent1 {
+    text-align: right;
+}
+.score {
+    text-align: center;
+}
+.score input {
+    margin: auto;
+}
