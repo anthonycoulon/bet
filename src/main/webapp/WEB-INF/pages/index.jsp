@@ -3,7 +3,8 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="HandheldFriendly" content="true" />
 </head>
 <body>
 <div class="container" id="login-block">
