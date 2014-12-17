@@ -24,6 +24,8 @@ public class UserDto {
 
     private Boolean modifyPwd;
 
+    private Boolean isNotified;
+
     public Long getId() {
         return id;
     }
@@ -104,6 +106,14 @@ public class UserDto {
         this.modifyPwd = modifyPwd;
     }
 
+    public Boolean getIsNotified() {
+        return isNotified;
+    }
+
+    public void setIsNotified(Boolean isNotified) {
+        this.isNotified = isNotified;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserDto{");
@@ -117,6 +127,7 @@ public class UserDto {
         sb.append(", confirmation='").append(confirmation).append('\'');
         sb.append(", isEmailGood=").append(isEmailGood);
         sb.append(", modifyPwd=").append(modifyPwd);
+        sb.append(", isNotified=").append(isNotified);
         sb.append('}');
         return sb.toString();
     }

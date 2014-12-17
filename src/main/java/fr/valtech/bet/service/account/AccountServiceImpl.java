@@ -36,6 +36,7 @@ public class AccountServiceImpl implements AccountService {
         if (userDto.getUsername().equals(user.getUsername()) && currentPwd.equals(user.getPassword())) {
             user.setName(userDto.getName());
             user.setFirstName(userDto.getFirstName());
+            user.setIsNotified(userDto.getIsNotified());
 
             if (StringUtils.isNotBlank(userDto.getNewPassword())) {
                 user.setPassword(encodePassword(userDto.getNewPassword()));

@@ -51,7 +51,8 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <input type="checkbox" class="" id="changePwd"><label id="changePwdLabel" for="changePwd">Change Password</label>
+                <input type="checkbox" class="" id="changePwd"><label class="checkboxLavel" id="changePwdLabel"
+                                                                      for="changePwd">Change Password</label>
             </div>
         </div>
         <div class="control-group showPwd" id="newPasswordGroup" hidden="hidden">
@@ -64,6 +65,19 @@
             <label class="control-label" for="confirmation">Confirmation</label>
             <div class="controls">
                 <input type="password" class="form-control" id="confirmation" placeholder="Confirmation">
+            </div>
+        </div>
+        <div class="control-group" id="notificationGroup">
+            <div class="controls">
+                <c:choose>
+                    <c:when test="${user.isNotified}">
+                        <input id="notified" type="checkbox" checked="true"/>
+                    </c:when>
+                    <c:otherwise>
+                        <input id="notified" type="checkbox"/>
+                    </c:otherwise>
+                </c:choose>
+                <label class="checkboxLavel" id="notifiedLabel" for="notified">Notification before match</label>
             </div>
         </div>
         <span class="error"></span>

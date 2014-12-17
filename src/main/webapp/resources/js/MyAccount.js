@@ -21,6 +21,7 @@ MyAccount.prototype.saveUser = function () {
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
     user.modifyPwd = $("#changePwd").is(":checked");
+    user.isNotified = $("#notified").is(":checked");
 
     this.initErrors();
     if(user.modifyPwd) {

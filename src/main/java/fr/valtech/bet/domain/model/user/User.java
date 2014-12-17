@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.Type;
 import com.google.common.collect.Lists;
 import fr.valtech.bet.domain.model.bet.Bet;
 
@@ -55,6 +56,10 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AVATAR_ID")
     private Avatar avatar;
+
+    @Type(type = "true_false")
+    @Column(name = "IS_NOTIFIED")
+    private Boolean isNotified;
 
     public Long getId() {
         return id;
@@ -128,6 +133,14 @@ public class User {
         this.avatar = avatar;
     }
 
+    public Boolean getIsNotified() {
+        return isNotified;
+    }
+
+    public void setIsNotified(Boolean isNotified) {
+        this.isNotified = isNotified;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -161,7 +174,10 @@ public class User {
         sb.append(", name='").append(name).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", bets=").append(bets);
         sb.append(", score=").append(score);
+        sb.append(", avatar=").append(avatar);
+        sb.append(", isNotified=").append(isNotified);
         sb.append('}');
         return sb.toString();
     }
