@@ -119,6 +119,12 @@ public class MatchRepositoryImpl extends BetRepository implements MatchRepositor
         return query.getResultList();
     }
 
+    @Override
+    public Match findMatche(Date tomorow) {
+        return getEntityManager().createQuery("FROM Match m WHERE m.matchDate=:date", Match.class).setParameter("date", tomorow)
+                .getResultList().get(0);
+    }
+
     private Match updateMatchQuotes(MatchDto dto, Match match, Integer bet1, Integer bet2) {
         if (bet1 == null || bet2 == null) {
             if (dto.getBet1() > dto.getBet2()) {

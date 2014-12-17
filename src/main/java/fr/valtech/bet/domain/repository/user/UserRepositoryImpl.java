@@ -54,6 +54,11 @@ public class UserRepositoryImpl extends BetRepository implements UserRepository 
     }
 
     @Override
+    public List<User> findUsersWhoAreNotified() {
+        return getEntityManager().createQuery("FROM User u where u.isNotified=true", User.class).getResultList();
+    }
+
+    @Override
     public List<Bet> findUserConsideredBet(Long userId) {
         TypedQuery<Bet> query = getEntityManager().createQuery("FROM Bet b WHERE b.considered=true AND b.gambler.id=:userId ORDER BY b.match.timeDate", Bet.class);
         query.setParameter("userId", userId);

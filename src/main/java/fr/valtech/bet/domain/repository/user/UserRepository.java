@@ -24,4 +24,6 @@ public interface UserRepository {
     User findUserWithAvatar(String username);
 
     User findUserByIdWithAvatar(Long userId);
+
+    List<User> findUsersWhoAreNotified();
 }
