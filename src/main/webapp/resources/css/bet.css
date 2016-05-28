@@ -18,6 +18,14 @@ body {
     text-decoration: none;
 }
 
+.navbar-brand {
+    padding: 0 15px !important;
+}
+
+.navbar-brand img.logo_valtech {
+    width: 140px;
+}
+
 .navbar {
     border-radius: 0 !important;
 }
