@@ -8,35 +8,95 @@
 }
 
 /* Voici les positions des logos pour les clubs de la champions league du fichier sprite-logos.png */
-.sp-aja { background-image: url("../img/logos/aja.png"); }
-.sp-and { background-image: url("../img/logos/and.png"); }
-.sp-apo { background-image: url("../img/logos/apo.png"); }
-.sp-ars { background-image: url("../img/logos/ars.png"); }
-.sp-asm { background-image: url("../img/logos/asm.png"); }
-.sp-asr { background-image: url("../img/logos/asr.png"); }
-.sp-ath { background-image: url("../img/logos/ath.png"); }
-.sp-atm { background-image: url("../img/logos/atm.png"); }
-.sp-bal { background-image: url("../img/logos/bal.png"); }
-.sp-bat { background-image: url("../img/logos/bat.png"); }
-.sp-cha { background-image: url("../img/logos/cha.png"); }
-.sp-che { background-image: url("../img/logos/che.png"); }
-.sp-csk { background-image: url("../img/logos/csk.png"); }
-.sp-dor { background-image: url("../img/logos/dor.png"); }
-.sp-fcb { background-image: url("../img/logos/fcb.png"); }
-.sp-fcp { background-image: url("../img/logos/fcp.png"); }
+.sp-sui {
+    background-image: url("../img/logos/sui.png");
+}
+
+.sp-alb {
+    background-image: url("../img/logos/alb.png");
+}
+
+.sp-fra {
+    background-image: url("../img/logos/fra.png");
+}
+
+.sp-rou {
+    background-image: url("../img/logos/rou.png");
+}
 .sp-gal { background-image: url("../img/logos/gal.png"); }
-.sp-juv { background-image: url("../img/logos/juv.png"); }
-.sp-lev { background-image: url("../img/logos/lev.png"); }
-.sp-liv { background-image: url("../img/logos/liv.png"); }
-.sp-lud { background-image: url("../img/logos/lud.png"); }
-.sp-mar { background-image: url("../img/logos/mar.png"); }
-.sp-mci { background-image: url("../img/logos/mci.png"); }
-.sp-mff { background-image: url("../img/logos/mff.png"); }
-.sp-mun { background-image: url("../img/logos/mun.png"); }
-.sp-oly { background-image: url("../img/logos/oly.png"); }
-.sp-psg { background-image: url("../img/logos/psg.png"); }
-.sp-rma { background-image: url("../img/logos/rma.png"); }
-.sp-sch { background-image: url("../img/logos/sch.png"); }
-.sp-scp { background-image: url("../img/logos/scp.png"); }
-.sp-slb { background-image: url("../img/logos/slb.png"); }
-.sp-zen { background-image: url("../img/logos/zen.png"); }
+
+.sp-rus {
+    background-image: url("../img/logos/rus.png");
+}
+
+.sp-ang {
+    background-image: url("../img/logos/ang.png");
+}
+
+.sp-slo {
+    background-image: url("../img/logos/slo.png");
+}
+
+.sp-all {
+    background-image: url("../img/logos/all.png");
+}
+
+.sp-iln {
+    background-image: url("../img/logos/iln.png");
+}
+
+.sp-ukr {
+    background-image: url("../img/logos/ukr.png");
+}
+
+.sp-pol {
+    background-image: url("../img/logos/pol.png");
+}
+
+.sp-tur {
+    background-image: url("../img/logos/tur.png");
+}
+
+.sp-esp {
+    background-image: url("../img/logos/esp.png");
+}
+
+.sp-cro {
+    background-image: url("../img/logos/cro.png");
+}
+
+.sp-rtc {
+    background-image: url("../img/logos/rtc.png");
+}
+
+.sp-ita {
+    background-image: url("../img/logos/ita.png");
+}
+
+.sp-sue {
+    background-image: url("../img/logos/sue.png");
+}
+
+.sp-irl {
+    background-image: url("../img/logos/irl.png");
+}
+
+.sp-bel {
+    background-image: url("../img/logos/bel.png");
+}
+
+.sp-isl {
+    background-image: url("../img/logos/isl.png");
+}
+
+.sp-aut {
+    background-image: url("../img/logos/aut.png");
+}
+
+.sp-por {
+    background-image: url("../img/logos/por.png");
+}
+
+.sp-hon {
+    background-image: url("../img/logos/hon.png");
+}
