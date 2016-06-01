@@ -19,7 +19,7 @@
                 <h4 class="modal-title">An email has been sent</h4>
             </div>
             <div class="modal-body">
-                <p>An email has been sent with your new passord.</p>
+                <p>An email has been sent with your new password.</p>
             </div>
             <div class="modal-footer">
                 <button id="closeModal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
