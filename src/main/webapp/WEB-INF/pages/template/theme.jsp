@@ -66,10 +66,6 @@
 		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=F"/>>Group F</a></li>
 		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=G"/>>Group G</a></li>
-		                    <li class="divider"></li>
-		                    <li><a href=<c:url value="/calendar?level=H"/>>Group H</a></li>
-		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=eighth"/>>Eighth Final</a></li>
 		                    <li class="divider"></li>
 		                    <li><a href=<c:url value="/calendar?level=quarter"/>>Quarter Final</a></li>
