@@ -134,7 +134,7 @@ Matches.mask=
 		'${dto.matchLevel}'+
 		'<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>' +
 		'&nbsp;&nbsp;-&nbsp;&nbsp;'+
-		'${dto.matchTime}' +
+'${dto.matchTime} (French hour)' +
 	'</td>'+
 '</tr>'+
 '<tr>'+

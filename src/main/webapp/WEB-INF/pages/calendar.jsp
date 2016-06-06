@@ -23,7 +23,7 @@
         <tr>
             <th colspan="6">
                 <fmt:formatDate value="${match.matchDate}" pattern="dd/MM/yyyy"/>
-                <fmt:formatDate value="${match.timeDate}" pattern="KK:mm a"/>
+				<fmt:formatDate value="${match.timeDate}" pattern="KK:mm a"/> (French hour)
                 ${match.stadium.name}
             </th>
         </tr>

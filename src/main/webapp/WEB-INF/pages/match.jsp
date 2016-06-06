@@ -59,7 +59,7 @@
 						${dto.matchLevel}
 						<input type="hidden" value="${dto.matchTime.time}" class="matchTime"/>
 						&nbsp;-&nbsp;
-						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/>
+						<fmt:formatDate value="${dto.matchTime}" pattern="KK:mm a"/> (French hour)
 					</td>
                 </tr>
                 <tr>
