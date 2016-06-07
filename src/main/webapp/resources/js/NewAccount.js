@@ -26,7 +26,7 @@ NewAccount.prototype.saveUser = function () {
     user.newPassword = $("#newPassword").val();
     user.confirmation = $("#confirmation").val();
 
-    var emailChecker = new RegExp("[a-z\-]+\.[a-z\-]+@valtech\.(fr|de|uk|dk|se|com|us)");
+    var emailChecker = new RegExp(/^[a-z\-]+\.[a-z\-]+@valtech\.([a-z]+|[a-z]+.[a-z]+)$/);
     var isEmailGood = emailChecker.test(user.username);
     user.isEmailGood = isEmailGood;
 
