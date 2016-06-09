@@ -30,7 +30,7 @@ public class BatchNotificationMailImpl implements BatchNotificationMail {
     @Override
     @Scheduled(cron = "0 0 13 * * ?")
     public void notification() {
-        String subject = "Valtech Bet : Y a un match demain !";
+        String subject = "Valtech Bet : There is a match tomorrow !";
         DateTime tomorow = new DateMidnight().toDateTime().plusDays(1);
 
         if (matchRepository.findMatche(tomorow.toDate()) != null) {
@@ -45,9 +45,9 @@ public class BatchNotificationMailImpl implements BatchNotificationMail {
 
     private String buildBody(User user, DateTime tomorow) {
         StringBuilder bodyBuilder = new StringBuilder();
-        bodyBuilder.append("Salut ").append(user.getFirstName()).append("\n\n").append("Il y a un match le ")
-                .append(tomorow.toString("dd/MM/yyyy")).append(" ! C'est le moment de saisir tes pronostiques.").append("\n\n")
-                .append("Bon match.");
+        bodyBuilder.append("Hi ").append(user.getFirstName()).append("\n\n").append("There is a match the ")
+                .append(tomorow.toString("dd/MM/yyyy")).append(". This is the best time to bet !").append("\n\n")
+                .append("Good match !");
         return bodyBuilder.toString();
     }
 }
